@@ -175,7 +175,7 @@ HrVideoData : HrMultiCtlMod {
 
 	cleanUp {
 		videoListener.removeDependant(this);
-		videoListener.freeCleanup;
-		videoGui.freeCleanup;
+		videoGui.free;
+		videoListener.free;
 	}
 }
