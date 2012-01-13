@@ -1,0 +1,20 @@
+?Hadron 1
+?StartPlugs
+HrDACunnamed64834nilPoint( 191, 399 )Rect(1040, 45, 250, 130)Rect(116.61793756485, 956.05097913742, 250, 130)false
+HrWrapSynthunnamed63799[ "analog" ]Point( 199, 277 )Rect(870, 186, 350, 240)Rect(400, 400, 350, 240)false
+HrCtlEnvunnamed806220731nilPoint( 201, 230 )Rect(845, 329, 450, 390)Rect(665.05166244507, 31.193586587906, 450, 390)false
+HrMultiCtlModunnamed877597765nilPoint( 198, 57 )Rect(895, 170, 450, 375)Rect(894.16817426682, 194.55889725685, 450, 375)false
+?EndPlugs
+?StartConnections
+64834[ [ 63799, 0 ], [ 63799, 1 ] ][  ]
+63799[  ][ [ 64834, 0 ], [ 64834, 1 ] ]
+806220731[ [ nil, nil ] ][ [ nil, nil ], [ nil, nil ] ]
+877597765[ [ nil, nil ] ][  ]
+?EndConnections
+?StartPlugParams
+648340.132300nil0
+637990.422700nilList[  ]0.529200nilList[  ]0.685100nilList[  ]0.703000nilList[  ]0.316200nilList[  ]1
+806220731"HrControlSpec(0.0, 1.0, 'linear', 0.0, 0.0, \"\")""Env([ 0.0, 1.0, 0.0 ], [ 0.0076335878111422, 0.99236641218886 ], [ -4.0, -4.0895119673839 ])""0.15151245593831"[ 2, 1 ]1
+877597765"{ |pctFast = 0| 	var notFast = (1 - pctFast) * 0.5, 	rhythm = Dstutter(2, Dwrand([0.1, 0.2, 0.4], [pctFast, notFast, notFast], inf)), 	trig = TDuty.kr(rhythm, 0, rhythm), 	dur = Latch.kr(trig, trig); 	[ 		TExpRand.kr(130, 260, trig) * (0.4 / dur), 		Lag.kr(TExpRand.kr(500, 12000, trig), 0.02), 		Lag.kr(TExpRand.kr(0.05, 0.25, trig), 0.02), 		trig 	] }"[ [ 2, 3 ], [ 2, 5 ], [ 2, 4 ], [ 3, 2 ] ]14
+?EndPlugParams
+?EndSave
