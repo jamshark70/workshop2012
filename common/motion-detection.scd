@@ -124,15 +124,15 @@ Proto({
 	};
 	~makeResponder = {
 		if(~resp.notNil) { ~removeResponder.() };
-		~resp = OSCFunc(e { |msg|
+		~resp = OSCresponderNode(nil, '/coord', e { |time, resp, msg|
 			~points[msg[4] - 1].addPoint(*msg[1..3]).predict;
 			if(msg[4] == ~dim.squared) {
 				~predict.();
 				BP(~collIndex).changed(\allPtsReceived);
 			};
-		}, '/coord').fix;
+		}).add;
 	};
-	~removeResponder = { ~resp.free; };
+	~removeResponder = { ~resp.remove; };
 	// assumes a/ on AppClock b/ on a drawing func
 	~updatePoints = {
 		~points.do { |pt| pt.plot };
@@ -243,14 +243,14 @@ Proto({
 		defer(e { ~onoff.value = (onoff > 0).binaryValue });
 	};
 	~pdHandshake = {
-		~handshakeResp = OSCFunc(e {
+		~handshakeResp = OSCresponderNode(nil, '/handshakeReply', e {
 			~handshakeResp = nil;
 			~handshakeThread.stop;
 			~handshakeThread = nil;
 			~pdAddr.tryPerform(\sendMsg, \noiseReduction, ~noiseReduction.value);
 			"Communication with pd is established.".postln;
 			NotificationCenter.notify(PR(~collIndex), \handsShook);
-		}, '/handshakeReply', nil).oneShot;
+		}).add.removeWhenDone;
 		~handshakeThread = Task({
 			loop {
 				~pdAddr.tryPerform(\sendMsg, \handshake);
@@ -386,16 +386,17 @@ Proto({
 		).add;
 	};
 	~makeResponder = {
-		~resp = OSCFunc(e { |msg|
+		~resp = OSCresponderNode(s.addr, '/coordlog', e { |time, resp, msg|
 			~model.points[msg[2]].addPoint(*msg[3..]).predict;
 			if(msg[2] + 1 == ~model.dim.squared) {
 				~model.predict;
 				~model.changed(\allPtsReceived);
 			};
-		}, '/coordlog', s.addr);
+		}).add;
 	};
 	~freeCleanup = {
-		[~buf, ~resp].free;
+		~buf.free;
+		~resp.remove;
 	};
 	~asPattern = {
 		Prout({
@@ -403,16 +404,15 @@ Proto({
 			if(~synth.isNil) {
 				if(~endResp.notNil) { ~endResp.free };
 				~synth = Synth(~def.name, [bufnum: ~buf, frameRate: ~frameRate, loop: ~loop]);
-				~endResp = OSCFunc(
-					OSCArgsMatcher([~synth.nodeID], e { ~synth = nil; thisbp.stop(0) }),
-					'/n_end', s.addr
-				);
+				~endResp = OSCpathResponder(s.addr, ['/n_end', ~synth.nodeID], e {
+					~synth = nil; thisbp.stop(0)
+				}).add;
 			};
 			loop { 10.wait };
 		});
 	};
 	~stopCleanup = {
 		if(~synth.notNil) { ~synth.free; ~synth = nil };
-		~endResp.free;
+		~endResp.remove;
 	};
 }) => PR(\soundFileReader);
