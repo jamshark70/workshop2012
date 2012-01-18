@@ -145,7 +145,7 @@ Proto({
 	~predict = {
 		var /*sum = Point(0, 0),*/ temppt, centroidx = 0, centroidy = 0, magsum = 0,
 			theta, insertIndex;
-		~kmeans = KMeans(~kmSize);
+		~kmeans = 'KMeans'.asClass.tryPerform(\new, ~kmSize);
 		~points.do { |p|
 			temppt = [p.xabs.linlin(0, 319, -1, 1), p.yabs.linlin(0, 239, -1, 1)];
 			centroidx = centroidx + (temppt[0] * p.mag.last);
@@ -299,7 +299,7 @@ PR(\motionGui).clone({
 		currentEnvironment
 	};
 	~updateView = {
-		var bounds = ~uview.bounds, ctr, pt;
+		var bounds = ~uview.bounds, ctr, pt, km;
 		pt = ~model.anglePoint;
 		ctr = ~model.centroid * 0.5 + 0.5 * Point(319, 239);
 		Pen.color_(~angleColor)
@@ -307,10 +307,12 @@ PR(\motionGui).clone({
 		.width_(4)
 		.line(ctr, ctr + Polar(bounds.height * 0.4 * ~model.normmag, atan2(pt.y, pt.x)).asPoint)
 		.stroke.width_(1);
-		~model.kmeans.centroids.do { |pair, i|
-			pair = pair * 0.5 + 0.5 * #[319, 319];
-			Pen.color_(~kmeansColors[i])
-			.fillOval(Rect.aboutPoint(Point(*pair), 16, 16));
+		if((km = ~model.v[\kmeans]).notNil) {
+			km.centroids.do { |pair, i|
+				pair = pair * 0.5 + 0.5 * #[319, 319];
+				Pen.color_(~kmeansColors[i])
+				.fillOval(Rect.aboutPoint(Point(*pair), 16, 16));
+			};
 		};
 		~model.updatePoints;
 	};
