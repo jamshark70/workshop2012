@@ -1,0 +1,14 @@
+?Hadron 1
+?StartPlugs
+HrVideoDataunnamed1519036414nilPoint( 100, 100 )Rect(813, 206, 450, 375)Rect(810.85577917099, 67.023417949677, 450, 375)false
+HrDACunnamed1475828715nilPoint( 160, 247 )Rect(997, 48, 250, 160)Rect(1018.0254149437, 606.53791952133, 250, 160)false
+?EndPlugs
+?StartConnections
+1519036414[ [ nil, nil ] ][ [ nil, nil ] ]
+1475828715[ [ nil, nil ], [ nil, nil ] ][  ]
+?EndConnections
+?StartPlugParams
+1519036414"[ 'Mag@(1,0)' ]"[ [ 2, 1 ] ]18
+14758287151nil0
+?EndPlugParams
+?EndSave
