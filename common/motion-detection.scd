@@ -117,6 +117,7 @@ Proto({
 		~ysum = 0;
 		~prevXSum = 0;
 		~prevYSum = 0;
+		~clusterFuncs = ~clusterFuncs.collect { |func| e(func) };
 
 		currentEnvironment
 	};
@@ -163,6 +164,11 @@ Proto({
 			(centroidy / max(magsum, 1)) // .linlin(-1, 1, 0, 239)
 		);
 		~kmeans.update;
+		// lazy: these might be expensive and not always requested
+		// this is one of the most unintentionally humorous lines I've written
+		// in rather some time
+		~clusterCalcs = ~clusterFuncs.collect { |func| Thunk(func) };
+			
 		~magsum = magsum;
 		~normmag = magsum / ~maxmag;
 
@@ -197,7 +203,30 @@ Proto({
 		// return value: clients may do
 		// if(ml.removeClient(this)) { ml.free }
 		~clients.size <= 0
-	};		
+	};
+	~clusterFuncs = (
+		spreadX: {
+			var coords;
+			if(~kmeans.centroids.size > 0) {
+				coords = ~kmeans.centroids.flop[0];
+				coords.maxItem - coords.minItem
+			} { 0 }
+		},
+		spreadY: {
+			var coords;
+			if(~kmeans.centroids.size > 0) {
+				coords = ~kmeans.centroids.flop[1];
+				coords.maxItem - coords.minItem
+			} { 0 }
+		},
+		spread: {
+			// since these are thunks, redundant calcs won't be done
+			hypot(~clusterCalcs[\spreadX].value, ~clusterCalcs[\spreadY].value)
+		} //,
+		// orient: {
+			
+		// }
+	);
 }) => PR(\motionListener);
 
 // let's do this right... don't fold gui into data-handling class
