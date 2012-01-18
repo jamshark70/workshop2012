@@ -84,11 +84,16 @@ HrVideoData : HrMultiCtlMod {
 		.background_(Color.gray(0.92))
 		.hasHorizontalScroller_(false);
 
-		videoListener = PR(\motionListener) => BP(("ml"++uniqueID).asSymbol);
-		videoGui = PR(\motionAngleGui).chuck(
-			BP(("mg"++uniqueID).asSymbol), nil, (model: videoListener)
-		);
-		videoListener.addDependant(this);
+		if(BP.exists(\ml)) {
+			videoListener = BP(\ml);
+			videoGui = BP(\mg);
+		} {
+			videoListener = PR(\motionListener) => BP(\ml);
+			videoGui = PR(\motionAngleGui).chuck(
+				BP(\mg), nil, (model: videoListener)
+			);
+		};
+		videoListener.addClient(this);
 
 		this.makeSynth;
 
@@ -173,8 +178,9 @@ HrVideoData : HrMultiCtlMod {
 	}
 
 	cleanUp {
-		videoListener.removeDependant(this);
-		videoGui.free;
-		videoListener.free;
+		if(videoListener.removeClient(this)) {
+			videoGui.free;
+			videoListener.free;
+		}
 	}
 }

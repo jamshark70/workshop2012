@@ -96,6 +96,7 @@ Proto({
 	~magThresh = 7000;
 	~kmSize = 2;
 	~prep = {
+		~clients = IdentitySet.new;
 		~points = Array(~dim.squared);
 		~dim.do { |xi|
 			~dim.do { |yi|
@@ -121,6 +122,7 @@ Proto({
 	};
 	~freeCleanup = {
 		~removeResponder.();
+		BP(~collIndex).changed(\modelWasFreed);
 	};
 	~makeResponder = {
 		if(~resp.notNil) { ~removeResponder.() };
@@ -180,6 +182,22 @@ Proto({
 		currentEnvironment
 	};
 
+	~addClient = { |object|
+		~clients.add(object);
+		// why the difference?
+		// the motion gui is a dependant, but not a client
+		BP(~collIndex).addDependant(object);
+		currentEnvironment
+	};
+	~removeClient = { |object|
+		~clients.remove(object);
+		// why the difference?
+		// the motion gui is a dependant, but not a client
+		BP(~collIndex).removeDependant(object);
+		// return value: clients may do
+		// if(ml.removeClient(this)) { ml.free }
+		~clients.size <= 0
+	};		
 }) => PR(\motionListener);
 
 // let's do this right... don't fold gui into data-handling class
@@ -187,6 +205,7 @@ Proto({
 	~gridColor = Color.gray(0.6);
 	~pdAddr = NetAddr("127.0.0.1", 57122);
 	~noiseReduction = 64;
+	~autoSwitchOffCamera = true;
 	~prep = { |model|
 		~model ?? { ~model = model };
 		~model.predict;  // need to fill some variables in the model
@@ -196,14 +215,21 @@ Proto({
 		currentEnvironment
 	};
 	~freeCleanup = {
+		var win = ~win;
 		~controller.remove;
-		~win.tryPerform(\close);
+		if(~autoSwitchOffCamera ? false) {
+			~cameraPowerSwitch.(0);
+		};
+		defer { win.tryPerform(\close) };
 	};
 	~makeController = {
 		var updateFunc = inEnvir { ~uview.refresh };
 		~controller = SimpleController(~model)
 		.put(\allPtsReceived, {
 			defer(updateFunc)
+		})
+		.put(\modelWasFreed, e {
+			BP(~collIndex).free;
 		});
 	};
 	~makeViews = {
