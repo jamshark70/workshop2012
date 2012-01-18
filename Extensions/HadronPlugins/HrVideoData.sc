@@ -36,7 +36,7 @@ HrVideoData : HrMultiCtlMod {
 		}) {
 			pollRate = extraArgs[1].asFloat;
 		} {
-			pollRate = defaultPollRate;
+			pollRate = 8;  // pd happens to spit out data about 8 frames/sec
 		};
 		helpString = "Choose video parameter data and map to other plugins.";
 		
