@@ -28,7 +28,7 @@ HrVideoData : HrMultiCtlMod {
 
 	init
 	{
-		var loadSemaphore;
+		loadSemaphore = Semaphore(1);
 
 		window.background_(Color.gray(0.7));
 		if(extraArgs.size >= 1 and: {
@@ -103,7 +103,6 @@ HrVideoData : HrMultiCtlMod {
 		saveSets =
 			[
 				{ |argg|
-					loadSemaphore = Semaphore(1);
 					postOpText.activeItems = argg.interpret;
 					fork {
 						loadSemaphore.wait; // block others
