@@ -26,6 +26,20 @@ SynthDef(\kr2ar, { |outBus0, value|
 h = Hadron.new;
 )
 
+// too lazy to open pd by hand every time
+(
+var dir = thisProcess.nowExecutingPath.dirname.dirname;
+
+"ps x | grep 'pd-extended' | grep -v 'grep'".unixCmd(e { |result|
+	if(result > 0) {
+		// pd is not running; load the video patch
+		"xdg-open %".format((dir +/+ "common/frame-diff5.pd").escapeChar($ )).unixCmd;
+	};
+}, postOutput: true);  // postOutput is required to avoid "broken pipe"
+)
+
+// File.exists((thisProcess.nowExecutingPath.dirname +/+ "../common/frame-diff5.pd").escapeChar($ ))
+
 // save time in the video capture
 HadronStateLoad(h).loadState("~/share/SC/hadron.git/TestPatches/analog1.hadron".standardizePath);
 
