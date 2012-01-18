@@ -1,5 +1,5 @@
 HrVideoData : HrMultiCtlMod {
-	classvar videoParams, videoIndices;
+	classvar <videoParams, <videoIndices;
 	var synthChannels, activeIndices;
 	var videoListener, videoGui;
 	var activeItems;
@@ -7,15 +7,52 @@ HrVideoData : HrMultiCtlMod {
 	*initClass
 	{
 		this.addHadronPlugin;
-		videoParams = [
-			'CentroidX': { |ml| ml.centroid.x * 0.5 + 0.5 },
-			'CentroidY': { |ml| ml.centroid.y * 0.5 + 0.5 }
-		];
-		videoIndices = ('CentroidX': 0, 'CentroidY': 2);
 		StartUp.add {
 			(this.filenameSymbol.asString.dirname.dirname.dirname
 				+/+ "common/motion-detection.scd")
 			.debug("HrVideoData: loading motion-detection.scd").loadPath;
+
+			videoParams = [
+				'CentroidX': { |ml| ml.centroid.x * 0.5 + 0.5 },
+				'CentroidY': { |ml| ml.centroid.y * 0.5 + 0.5 },
+				'NormMag': { |ml| ml.normmag },
+				'Angle': { |ml| ml.anglePoint.theta },
+				'Radius': { |ml| ml.anglePoint.rho },
+			];
+			if('KMeans'.asClass.notNil) {
+				// we'll just assume the default # of KMeans clusters
+				// this might need to change later
+				videoParams = videoParams.grow(6 + (PR(\motionListener).kmSize * 4));
+				videoParams.add(\ClusterSpreadX)
+				.add({ |ml| ml.clusterCalcs[\spreadX].value })
+				.add(\ClusterSpreadY)
+				.add({ |ml| ml.clusterCalcs[\spreadY].value })
+				.add(\ClusterSpread)
+				.add({ |ml| ml.clusterCalcs[\spread].value })
+				// .add(\ClusterOrient)
+				// .add({ |ml| ml.clusterOrient })
+				;
+				PR(\motionListener).kmSize.do { |i|
+					videoParams.add("Cluster%X".format(i).asSymbol)
+					.add({ |ml| ml.kmeans.centroids[i][0] })
+					.add("Cluster%Y".format(i).asSymbol)
+					.add({ |ml| ml.kmeans.centroids[i][1] });
+				};
+			};
+			videoParams = videoParams.grow(PR(\motionListener).dim.squared * 2);
+			PR(\motionListener).dim.do { |xi|
+				PR(\motionListener).dim.do { |yi|
+					videoParams.add("Mag@(%,%)".format(xi, yi).asSymbol)
+					.add({ |ml|
+						var pt = ml.points[xi * ml.dim + yi];
+						pt.mag.last / pt.maxmag
+					});
+				};
+			};
+			videoIndices = IdentityDictionary.new;
+			videoParams.pairsDo { |key, func, i|
+				videoIndices.put(key, i);
+			};
 		};
 	}
 	*height { ^335 }
