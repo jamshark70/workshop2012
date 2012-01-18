@@ -148,7 +148,7 @@ HrVideoData : HrMultiCtlMod {
 	makeSynthDef {
 		synthChannels = max(1, postOpText.activeItems.size);
 		replyID = UniqueID.next;
-		SynthDef("HrVideoData"++uniqueID, { |prOutBus, pollRate = 1, t_trig = 1|
+		SynthDef("HrVideoData"++uniqueID, { |prOutBus, outBus0, pollRate = 1, t_trig = 1|
 			var input = NamedControl.kr(\data, 0 ! synthChannels),
 			envArray = Env([0, 1], [max(1, pollRate).reciprocal], \lin).asArray;
 			input = input.asArray.collect { |chan|
@@ -156,6 +156,7 @@ HrVideoData : HrMultiCtlMod {
 				EnvGen.kr(envArray, t_trig);
 			};
 			ReplaceOut.kr(prOutBus, input);
+			Out.ar(outBus0, K2A.ar(input));
 		}).add;
 		this.rebuildBus(synthChannels).rebuildTargets(postOpText.activeItems.size);
 		numChannels = postOpText.activeItems.size;
