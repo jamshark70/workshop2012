@@ -1,0 +1,17 @@
+?Hadron 1
+?StartPlugs
+HrDACunnamed2026294386nilPoint( 224, 414 )Rect(768, 69, 250, 160)Rect(768, 69, 250, 160)false
+HrPolyPatternTL137834311nilPoint( 59, 254 )Rect(422, 229, 600, 490)Rect(421.0127799511, 302.70233392715, 600, 490)false
+HrWrapSynthana1820713829[ "analog" ]Point( 223, 356 )Rect(784, 69, 350, 300)Rect(400, 32, 350, 300)false
+?EndPlugs
+?StartConnections
+2026294386[ [ 1820713829, 0 ], [ 1820713829, 1 ] ][  ]
+137834311[  ][ [ nil, nil ], [ nil, nil ] ]
+1820713829[  ][ [ 2026294386, 0 ], [ 2026294386, 1 ] ]
+?EndConnections
+?StartPlugParams
+20262943860.831500nil0
+137834311'tl'[ [ 'dur', "Pconst(5, Pexprand(0.75, 4/3, inf) * Env(#[0.08, 0.9], #[5], \\exp))" ], [ 'pitchrange', "Env(#[5, 1.12], #[5], \\exp)" ], [ 'freq', "Pexprand(1/Pkey(\\pitchrange), Pkey(\\pitchrange), inf) * Plazy({ Pn(exprand(400, 700), inf) })" ], [ 'amp', "Pkey(\\pitchrange).expexp(1.12, 5, 0.02, 0.15)" ], [ 'ffreq', "Pkey(\\pitchrange).expexp(1.12, 5, 450, 9000)" ] ]18207138290Set[  ]
+18207138290.447400nilList[  ]0.529200nilList[  ]0.666600nilList[  ]0.768600nilList[  ]0.316200nilList[  ]0.500000nilList[  ]1
+?EndPlugParams
+?EndSave

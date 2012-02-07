@@ -1,0 +1,23 @@
+?Hadron 1
+?StartPlugs
+HrDACunnamed2026294386nilPoint( 224, 414 )Rect(768, 69, 250, 160)Rect(768, 69, 250, 160)false
+HrPolyPatternTL137834311nilPoint( 28, 183 )Rect(211, 204, 600, 490)Rect(421.0127799511, 302.70233392715, 600, 490)false
+HrWrapSynthana1820713829[ "analog" ]Point( 223, 356 )Rect(785, 44, 350, 300)Rect(400, 32, 350, 300)false
+HrVideoDataunnamed894909977nilPoint( 35, 51 )Rect(875, 157, 450, 375)Rect(24.905903339386, 41.186630487442, 450, 375)false
+HrRangeMaptlrun1498412151nilPoint( 40, 99 )Rect(933, 402, 410, 315)Rect(30.225211620331, 174.01457667351, 410, 315)false
+?EndPlugs
+?StartConnections
+2026294386[ [ 1820713829, 0 ], [ 1820713829, 1 ] ][  ]
+137834311[  ][ [ nil, nil ], [ nil, nil ] ]
+1820713829[  ][ [ 2026294386, 0 ], [ 2026294386, 1 ] ]
+894909977[ [ nil, nil ] ][ [ nil, nil ] ]
+1498412151[ [ nil, nil ] ][ [ nil, nil ] ]
+?EndConnections
+?StartPlugParams
+20262943860.831500nil0
+137834311'tl'[ [ 'dur', "Pconst(5, Pexprand(0.75, 4/3, inf) * Env(#[0.08, 0.9], #[5], \\exp))" ], [ 'pitchrange', "Env(#[5, 1.12], #[5], \\exp)" ], [ 'freq', "Pexprand(1/Pkey(\\pitchrange), Pkey(\\pitchrange), inf) * Plazy({ Pn(exprand(400, 700), inf) })" ], [ 'amp', "Pkey(\\pitchrange).expexp(1.12, 5, 0.02, 0.15)" ], [ 'ffreq', "Pkey(\\pitchrange).expexp(1.12, 5, 450, 9000)" ] ]18207138290Set[  ]
+18207138290.447400nilList[  ]0.529200nilList[  ]0.666600nilList[  ]0.768600nilList[  ]0.316200nilList[  ]0.500000nilList[  ]1
+894909977"[ 'Mag@(0,0)' ]"[ [ 5, 4 ] ]18
+1498412151"[ HrControlSpec(0.0, 1.0, 'linear', 0.0, 0.0, \"\"), HrControlSpec(-0.15, 0.85, 'linear', 0.0, 0.0, \"\") ]"0[ 2, 1 ]0.000000
+?EndPlugParams
+?EndSave
