@@ -109,7 +109,7 @@ HrVideoData : HrMultiCtlMod {
 		if(this.shouldWatch) {
 			pollRateView = HrEZSlider(window, Rect(10, 150, 430, 20),
 				"update rate", [1, 25], { |view|
-					pollRate = view.value;
+					this.pollRate = view.value;
 					if(synthInstance.notNil) {
 						synthInstance.set(\pollRate, pollRate * (watcher.notNil.binaryValue));
 					};
@@ -172,7 +172,7 @@ HrVideoData : HrMultiCtlMod {
 					{
 						loadSemaphore.wait;
 						if(argg.notNil) {
-							pollRate = argg;
+							this.pollRate = argg;
 							pollRateView.tryPerform(\valueAction_, argg);
 						};
 						loadSemaphore.signal;
