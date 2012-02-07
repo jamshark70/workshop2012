@@ -1,0 +1,42 @@
+class:: HrVideoData
+summary:: An interface to video analysis data from PD
+categories:: HadronPlugins
+
+DESCRIPTION::
+This is a Hadron plugin. Hadron plugins are not meant for instantiating by hand in code. They are used internally by the Hadron system.
+
+HrVideoData connects to a specific Pure Data patch that analyzes webcam input and routes the data to plug-ins' modulation targets. The webcam image is divided into 25 squares, and the center and rate of motion is calculated for each. From these, the rest of the parameters are calculated in SuperCollider.
+
+Use the arrow buttons to add parameters to the active list (right-hand side). Every parameter that is added gets a modulation target selector in the lower panel.
+
+Note that the parameter's data range may not match the target's expected range. Use link::Classes/HrRangeMap:: to convert one range into another.
+
+strong::Parameters::
+
+table::
+## CentroidX, CentroidY || X and Y of the center of motion. Range: -1 to 1.
+## NormMag || Relative measure of the amount of motion. Range: 0 to about 1.
+## Angle || Overall angle of motion. Range: 0 to 2pi (6.283).
+## Radius || Speed of centroid's motion. Range: 0 to (unlikely) sqrt(8) (2.828).
+## Cluster0X, Cluster0Y || X and Y of one cluster of squares. Clusters measure roughly how widespread the motion is. If the motion is confined to one part of the image, the clusters will be close together. The positions of the two clusters are not necessarily stable. Range: -1 to 1.
+## Cluster0X, Cluster0Y || X and Y of the other cluster.
+## ClusterSpreadX, ClusterSpreadY || The difference between the X coordinates, and Y coordinates respectively, of the two clusters. Range: -2 to 2.
+## ClusterSpread || The diagonal distance between the two clusters. Range: 0 to sqrt(32) (5.657).
+## Mag@(x,y) || The amount of motion in the square at x and y, where Mag@(0,0) is top left, Mag@(4,0) is top right, and Mag@(4,4) bottom right. Range: 0 to something less than 1.
+::
+
+
+CLASSMETHODS::
+
+private:: videoParams
+private:: videoIndices
+private:: initClass
+private:: height
+private:: shouldWatch
+
+INSTANCEMETHODS::
+
+private:: init
+private:: makeSynthDef
+private:: update
+private:: cleanUp
