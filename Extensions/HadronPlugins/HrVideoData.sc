@@ -98,7 +98,7 @@ HrVideoData : HrMultiCtlMod {
 		({|btn|
 			if(btn.value == 1) {
 				isMapped = modControl.collect { |ctl, i| ctl.map(prOutBus.index + i) };
-				synthInstance.set(\pollRate, pollRate * (watcher.notNil.binaryValue));
+				synthInstance.set(\pollRate, pollRate);
 			} {
 				modControl.do(_.unmap);
 				isMapped = false ! numChannels;
@@ -111,7 +111,7 @@ HrVideoData : HrMultiCtlMod {
 				"update rate", [1, 25], { |view|
 					this.pollRate = view.value;
 					if(synthInstance.notNil) {
-						synthInstance.set(\pollRate, pollRate * (watcher.notNil.binaryValue));
+						synthInstance.set(\pollRate, pollRate);
 					};
 				}, pollRate, labelWidth: 100, numberWidth: 45
 			);
