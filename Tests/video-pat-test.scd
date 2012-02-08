@@ -31,7 +31,6 @@ h = Hadron.new;
 
 HrPbindef(\tl).quant = 0;
 
-// fine, more fucking crap that's not working
 ~saveAddr = s.addr;
 ~debugAddr = DebugNetAddr("127.0.0.1", 57110);
 
@@ -52,3 +51,32 @@ p.synthInstance
 
 o.free;
 o = OSCFunc({ |msg| if(msg[1] == p.synthInstance.nodeID) { msg.postln } }, '/modValue', s.addr);
+
+
+// triggers are not always picked up
+// I suspect lagging in HrVideoData synth
+
+p = h.alivePlugs[3];
+
+p.synthInstance.trace;
+
+p.insp
+
+// record some
+b = Buffer.alloc(s, 44100, 1);  // should be 64 sec @ kr
+
+a = {
+	var rec = RecordBuf.kr(In.kr(p.slotAt(\prOutBus), 1), bufnum: b, loop: 0, doneAction: 2);
+	DC.kr(0).poll(Done.kr(rec), "Recording over");
+	0
+}.play;
+
+a.trace
+a.free;
+
+b.getToFloatArray(wait: -1, action: { |data| x = data; "done".postln });
+
+x.maxItem
+x.plot;
+
+// definitely misses peaks!
