@@ -1,0 +1,44 @@
+?Hadron 1
+?StartPlugs
+HrDACunnamed404261051nilPoint( 246, 416 )Rect(1, 583, 250, 160)Rect(2, 558, 250, 160)true
+HrStereoMixerunnamed1496085951[ "2" ]Point( 246, 367 )Rect(1, 523, 250, 220)Rect(2, 498, 250, 220)true
+HrOscilosc905800254nilPoint( 318, 222 )Rect(70, 299, 560, 415)Rect(452, 304, 560, 415)false
+HrFilterfilt2135893242nilPoint( 318, 255 )Rect(1, 483, 350, 260)Rect(612, 406, 350, 260)true
+HrPanunnamed2127829258nilPoint( 318, 289 )Rect(1, 603, 350, 140)Rect(2, 578, 350, 140)true
+HrCtlEnvoscil_amp1664929317nilPoint( 620, 129 )Rect(1, 353, 450, 390)Rect(1, 329, 450, 390)true
+HrRangeMapampmap1926811199nilPoint( 620, 170 )Rect(1, 428, 410, 315)Rect(1, 404, 410, 315)true
+HrMonoPatternunnamed289521633nilPoint( 622, 77 )Rect(376, 124, 600, 490)Rect(540.0112221241, 586.40578079224, 600, 490)false
+HrVideoDataunnamed1950730366nilPoint( 342, 20 )Rect(1, 368, 450, 375)Rect(15, 79, 450, 375)true
+HrRangeMapffreq452368285nilPoint( 476, 54 )Rect(1, 404, 410, 315)Rect(1, 404, 410, 315)false
+HrRangeMappan1442904312nilPoint( 481, 91 )Rect(665, 118, 410, 315)Rect(129.68884468079, 135.49784398079, 410, 315)false
+HrRangeMapdetune1899825248nilPoint( 361, 112 )Rect(1, 428, 410, 315)Rect(650, 190, 410, 315)true
+?EndPlugs
+?StartConnections
+404261051[ [ 1496085951, 0 ], [ 1496085951, 1 ] ][  ]
+1496085951[ [ nil, nil ], [ nil, nil ], [ 2127829258, 0 ], [ 2127829258, 1 ] ][ [ 404261051, 0 ], [ 404261051, 1 ] ]
+905800254[  ][ [ 2135893242, 0 ], [ 2135893242, 1 ] ]
+2135893242[ [ 905800254, 0 ], [ 905800254, 1 ] ][ [ 2127829258, 0 ], [ 2127829258, 1 ] ]
+2127829258[ [ 2135893242, 0 ], [ 2135893242, 1 ] ][ [ 1496085951, 2 ], [ 1496085951, 3 ] ]
+1664929317[ [ 289521633, 0 ] ][ [ 1926811199, 0 ], [ nil, nil ] ]
+1926811199[ [ 1664929317, 0 ] ][ [ nil, nil ] ]
+289521633[  ][ [ 1664929317, 0 ], [ nil, nil ] ]
+1950730366[ [ nil, nil ] ][ [ nil, nil ], [ nil, nil ], [ 1899825248, 0 ] ]
+452368285[ [ nil, nil ] ][ [ nil, nil ] ]
+1442904312[ [ nil, nil ] ][ [ nil, nil ] ]
+1899825248[ [ 1950730366, 2 ] ][ [ nil, nil ] ]
+?EndConnections
+?StartPlugParams
+4042610510.196629nil0
+14960859511.0000001.000000nilnilList[  ]List[  ]
+9058002540.062822164.813778[ [ 0, -3.6912460327148, 1, 0.5, 0, 'sawtooth' ], [ 0, 0, 1, 0.5, 0, 'sawtooth' ] ]00101Env([ 0, 1, 1, 0 ], [ 0.05, 0.9, 0.05 ], 0, 2)
+21358932422000[ 4139.1474609375, 0.037663114483495, 0.0 ]
+21278292580-0.087249
+1664929317"HrControlSpec(0.0, 1.0, 'linear', 0.0, 0.0, \"\")""Env([ 0.0, 1.0, 0.5, 0.0 ], [ 0.0076335877862595, 0.22900763358779, 0.76335877862595 ], [ -4.0, -4.0, -4.0 ])""0.35"[ 0, 0 ]0
+1926811199"[ HrControlSpec(0.0, 1.0, 'linear', 0.0, 0.0, \"\"), HrControlSpec(0.0, 0.1, 'linear', 0.0, 0.0, \"\") ]"1[ 3, 1 ]0
+289521633'arpeg'[ [ 'dur', "0.175 * Pswitch([1.0, Pn(0.5, 2)], (Pwhite(0.0, 0.999, inf) + (HrPMod(\\speed) * 0.8).clip(0, 1.99)).trunc)" ], [ 'legato', "2" ], [ 'degree', "Pstutter(2, Place([ [-9, 0, -1, 1], -5 ], inf))" ], [ 'octave', "Pseq([5, 6], inf) + Pwhite((0 - HrPMod(\\speed, 0, #[0, 1])) * 2, HrPMod(\\speed) * 3).round(1)" ], [ "HrMonoTarget(##).parse('905800254:freq')", "\\freq" ], [ "HrMonoTarget(##).parse('1664929317:timeScale')", "\\sustain" ] ]nil1Set[  ]1.000000
+1950730366"[ 'CentroidY', 'NormMag', 'CentroidX' ]"[ [ 10, 4 ], [ 8, 1 ], [ 11, 4 ] ]18
+452368285"[ HrControlSpec(1.0, 0.0, 'linear', 0.0, 0.0, \"\"), HrControlSpec(250.0, 8000.0, 'exp', 0.0, 0.0, \"\") ]"0[ 4, 1 ]0.437916
+1442904312"[ HrControlSpec(0.0, 1.0, 'linear', 0.0, 0.0, \"\"), HrControlSpec(-1.0, 1.0, 'linear', 0.0, 0.0, \"\") ]"0[ 5, 1 ]0.432769
+1899825248"[ HrControlSpec(0.0, 1.0, 'linear', 0.0, 0.0, \"\"), HrControlSpec(-40.0, 40.0, 'linear', 0.0, 0.0, \"\") ]"1[ 3, 9 ]0
+?EndPlugParams
+?EndSave
