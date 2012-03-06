@@ -1,0 +1,25 @@
+#N canvas 371 361 450 300 10;
+#X obj 91 21 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
+;
+#X obj 118 80 gemhead;
+#X obj 91 115 pix_video;
+#X msg 223 47 create;
+#X msg 287 48 destroy;
+#X obj 261 89 gemwin;
+#X obj 91 154 pix_texture;
+#X obj 206 151 print;
+#X msg 17 49 enumerate;
+#X msg 16 74 open 0;
+#X obj 91 49 t f f f;
+#X obj 91 190 rectangle 4 3;
+#X connect 0 0 10 0;
+#X connect 1 0 2 0;
+#X connect 2 0 6 0;
+#X connect 3 0 5 0;
+#X connect 4 0 5 0;
+#X connect 6 0 11 0;
+#X connect 8 0 2 0;
+#X connect 9 0 2 0;
+#X connect 10 0 2 0;
+#X connect 10 1 1 0;
+#X connect 10 2 5 0;
