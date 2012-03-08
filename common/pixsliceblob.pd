@@ -15,6 +15,7 @@
 #X obj 104 265 f;
 #X obj 95 232 t b;
 #X obj 118 330 outlet;
+#X obj 142 243 expr 1 - $f1;
 #X connect 0 0 8 0;
 #X connect 1 0 4 0;
 #X connect 2 0 0 3;
@@ -25,7 +26,7 @@
 #X connect 7 0 11 0;
 #X connect 8 0 14 0;
 #X connect 8 1 13 1;
-#X connect 8 2 12 1;
+#X connect 8 2 16 0;
 #X connect 8 3 12 2;
 #X connect 9 0 8 1;
 #X connect 10 0 12 3;
@@ -38,3 +39,4 @@
 #X connect 12 0 15 0;
 #X connect 13 0 12 0;
 #X connect 14 0 13 0;
+#X connect 16 0 12 1;
