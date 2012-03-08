@@ -1,4 +1,4 @@
-#N canvas 371 361 450 300 10;
+#N canvas 782 58 450 355 10;
 #X obj 91 21 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
 ;
 #X obj 118 80 gemhead;
@@ -6,15 +6,23 @@
 #X msg 223 47 create;
 #X msg 287 48 destroy;
 #X obj 261 89 gemwin;
-#X obj 91 154 pix_texture;
-#X obj 206 151 print;
+#X obj 33 177 pix_texture;
+#X obj 337 14 print;
 #X msg 17 49 enumerate;
 #X msg 16 74 open 0;
 #X obj 91 49 t f f f;
-#X obj 91 190 rectangle 4 3;
+#X obj 33 213 rectangle 4 3;
+#X msg 17 17 driver 1;
+#X obj 164 154 pix_movement 0.1;
+#X obj 164 216 pix_blob;
+#X msg 186 185 4;
+#X floatatom 209 248 5 0 0 0 - - -;
+#X floatatom 194 279 5 0 0 0 - - -;
+#X floatatom 179 307 5 0 0 0 - - -;
 #X connect 0 0 10 0;
 #X connect 1 0 2 0;
 #X connect 2 0 6 0;
+#X connect 2 0 13 0;
 #X connect 3 0 5 0;
 #X connect 4 0 5 0;
 #X connect 6 0 11 0;
@@ -23,3 +31,9 @@
 #X connect 10 0 2 0;
 #X connect 10 1 1 0;
 #X connect 10 2 5 0;
+#X connect 12 0 2 0;
+#X connect 13 0 14 0;
+#X connect 14 1 18 0;
+#X connect 14 2 17 0;
+#X connect 14 3 16 0;
+#X connect 15 0 14 1;
