@@ -9,8 +9,8 @@ HrVideoData : HrMultiCtlMod {
 		this.addHadronPlugin;
 		StartUp.add {
 			(this.filenameSymbol.asString.dirname.dirname.dirname
-				+/+ "common/motion-detection.scd")
-			.debug("HrVideoData: loading motion-detection.scd").loadPath;
+				+/+ "common/motion-detection-gem.scd")
+			.debug("HrVideoData: loading motion-detection-gem.scd").loadPath;
 
 			videoParams = [
 				'CentroidX': { |ml| ml.centroid.x * 0.5 + 0.5 },
