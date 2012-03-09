@@ -1,7 +1,8 @@
 HrVideoData : HrMultiCtlMod {
 	classvar <videoParams, <videoIndices;
+	classvar videoListener, videoGui;  // only one of each! shared among instances
+
 	var synthChannels, activeIndices;
-	var videoListener, videoGui;
 	var activeItems;
 
 	*initClass
@@ -19,29 +20,29 @@ HrVideoData : HrMultiCtlMod {
 				'Angle': { |ml| ml.anglePoint.theta },
 				'Radius': { |ml| ml.anglePoint.rho },
 			];
-			if('KMeans'.asClass.notNil) {
-				// we'll just assume the default # of KMeans clusters
-				// this might need to change later
-				videoParams = videoParams.grow(6 + (PR(\motionListener).kmSize * 4));
-				videoParams.add(\ClusterSpreadX)
-				.add({ |ml| ml.clusterCalcs[\spreadX].value })
-				.add(\ClusterSpreadY)
-				.add({ |ml| ml.clusterCalcs[\spreadY].value })
-				.add(\ClusterSpread)
-				.add({ |ml| ml.clusterCalcs[\spread].value })
-				// .add(\ClusterOrient)
-				// .add({ |ml| ml.clusterOrient })
-				;
-				PR(\motionListener).kmSize.do { |i|
-					videoParams.add("Cluster%X".format(i).asSymbol)
-					.add({ |ml| ml.kmeans.centroids[i][0] })
-					.add("Cluster%Y".format(i).asSymbol)
-					.add({ |ml| ml.kmeans.centroids[i][1] });
-				};
-			};
-			videoParams = videoParams.grow(PR(\motionListener).dim.squared * 2);
-			PR(\motionListener).dim.do { |xi|
-				PR(\motionListener).dim.do { |yi|
+			// if('KMeans'.asClass.notNil) {
+			// 	// we'll just assume the default # of KMeans clusters
+			// 	// this might need to change later
+			// 	videoParams = videoParams.grow(6 + (PR(\motionListener).kmSize * 4));
+			// 	videoParams.add(\ClusterSpreadX)
+			// 	.add({ |ml| ml.clusterCalcs[\spreadX].value })
+			// 	.add(\ClusterSpreadY)
+			// 	.add({ |ml| ml.clusterCalcs[\spreadY].value })
+			// 	.add(\ClusterSpread)
+			// 	.add({ |ml| ml.clusterCalcs[\spread].value })
+			// 	// .add(\ClusterOrient)
+			// 	// .add({ |ml| ml.clusterOrient })
+			// 	;
+			// 	PR(\motionListener).kmSize.do { |i|
+			// 		videoParams.add("Cluster%X".format(i).asSymbol)
+			// 		.add({ |ml| ml.kmeans.centroids[i][0] })
+			// 		.add("Cluster%Y".format(i).asSymbol)
+			// 		.add({ |ml| ml.kmeans.centroids[i][1] });
+			// 	};
+			// };
+			videoParams = videoParams.grow(HrVideoListener.defaultSize.squared * 2);
+			HrVideoListener.defaultSize.do { |xi|
+				HrVideoListener.defaultSize.do { |yi|
 					videoParams.add("Mag@(%,%)".format(xi, yi).asSymbol)
 					.add({ |ml|
 						var pt = ml.points[xi * ml.dim + yi];
@@ -121,14 +122,9 @@ HrVideoData : HrMultiCtlMod {
 		.background_(Color.gray(0.92))
 		.hasHorizontalScroller_(false);
 
-		if(BP.exists(\ml)) {
-			videoListener = BP(\ml);
-			videoGui = BP(\mg);
-		} {
-			videoListener = PR(\motionListener) => BP(\ml);
-			videoGui = PR(\motionAngleGui).chuck(
-				BP(\mg), nil, (model: videoListener)
-			);
+		if(videoListener.isNil) {
+			videoListener = HrVideoListener.new;
+			videoGui = HrVideoAngleGui(videoListener);
 		};
 		videoListener.addClient(this);
 
@@ -219,6 +215,7 @@ HrVideoData : HrMultiCtlMod {
 		if(videoListener.removeClient(this)) {
 			videoGui.free;
 			videoListener.free;
+			videoGui = videoListener = nil;
 		}
 	}
 }
