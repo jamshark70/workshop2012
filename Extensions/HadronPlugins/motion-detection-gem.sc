@@ -112,7 +112,7 @@ HrVideoListener {
 	var xbuf, ybuf, bufIndex, xsum, ysum, prevXSum, prevYSum;
 	var <>clusterFuncs, <clusterCalcs;
 	var resp;
-	var <rawCentroid, <magsum, <normmag, <anglePoint, <centroid;
+	var <rawCentroid, <magsum = 0, <normmag, <anglePoint, <centroid;
 
 	*new { |dim(defaultSize), ptNum(5), anglebufSize(3), imgSize(Point(320, 240))|
 		^super.new.init(dim, ptNum, anglebufSize, imgSize)
@@ -159,8 +159,6 @@ HrVideoListener {
 				this.changed(\allPtsReceived);
 			} {
 				points[msg[4] - 1].addPoint(*msg[1..3]).predict;
-				// if(msg[4] == dim.squared) {
-				// };
 			};
 		}).add;
 	}
@@ -173,7 +171,7 @@ HrVideoListener {
 	// rework: anglebuf is now the last few centroids
 	// then calculate the slope from linear regression and get the angle from this
 	predict {
-		var /*sum = Point(0, 0),*/ temppt, centroidx = 0, centroidy = 0, magsum = 0,
+		var /*sum = Point(0, 0),*/ temppt, centroidx = 0, centroidy = 0,
 			theta, insertIndex, magtemp;
 		// lazy: these might be expensive and not always requested
 		// this is one of the most unintentionally humorous lines I've written
