@@ -241,7 +241,6 @@ HrVideoGui {
 		this.pdHandshake();
 	}
 	free {
-		var win = win;
 		controller.remove;
 		handshakeThread.stop;
 		handshakeResp.remove;
