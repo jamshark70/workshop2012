@@ -1,6 +1,6 @@
 HrVideoData : HrMultiCtlMod {
 	classvar <videoParams, <videoIndices;
-	classvar videoListener, videoGui;  // only one of each! shared among instances
+	classvar <videoListener, <videoGui;  // only one of each! shared among instances
 
 	var synthChannels, activeIndices;
 	var activeItems;
@@ -9,10 +9,6 @@ HrVideoData : HrMultiCtlMod {
 	{
 		this.addHadronPlugin;
 		StartUp.add {
-			(this.filenameSymbol.asString.dirname.dirname.dirname
-				+/+ "common/motion-detection-gem.scd")
-			.debug("HrVideoData: loading motion-detection-gem.scd").loadPath;
-
 			videoParams = [
 				'CentroidX': { |ml| ml.centroid.x * 0.5 + 0.5 },
 				'CentroidY': { |ml| ml.centroid.y * 0.5 + 0.5 },
