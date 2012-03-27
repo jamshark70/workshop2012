@@ -1,0 +1,29 @@
+?Hadron 1
+?StartPlugs
+HrDACunnamed887976426nilPoint( 292, 339 )Rect(0, 0, 0, 0)Rect(0, -2, 106, 2)true
+HrDIYSynthunnamed483527726nilPoint( 208, 206 )Rect(0, -2, 106, 2)Rect(418, 208, 450, 440)true
+HrOscilunnamed1831369541nilPoint( 208, 141 )Rect(0, -2, 106, 2)Rect(696, 262, 560, 415)true
+HrPolyPatternunnamed1835887186nilPoint( 295, 75 )Rect(653, 204, 600, 490)Rect(653, 204, 600, 490)false
+HrStereoMixerunnamed2080515629nilPoint( 292, 281 )Rect(0, 0, 0, 0)Rect(0, -2, 106, 2)true
+HrOscilunnamed1314961435nilPoint( 382, 140 )Rect(0, 0, 0, 0)Rect(0, -2, 106, 2)true
+HrDIYSynthunnamed1535623853nilPoint( 382, 206 )Rect(0, 0, 0, 0)Rect(0, -2, 106, 2)true
+?EndPlugs
+?StartConnections
+887976426[ [ 2080515629, 0 ], [ 2080515629, 1 ] ][  ]
+483527726[ [ 1831369541, 0 ], [ 1831369541, 1 ] ][ [ 2080515629, 0 ], [ 2080515629, 1 ] ]
+1831369541[  ][ [ 483527726, 0 ], [ 483527726, 1 ] ]
+1835887186[  ][ [ nil, nil ], [ nil, nil ] ]
+2080515629[ [ 483527726, 0 ], [ 483527726, 1 ], [ 1535623853, 0 ], [ 1535623853, 1 ] ][ [ 887976426, 0 ], [ 887976426, 1 ] ]
+1314961435[  ][ [ 1535623853, 0 ], [ 1535623853, 1 ] ]
+1535623853[ [ 1314961435, 0 ], [ 1314961435, 1 ] ][ [ 2080515629, 2 ], [ 2080515629, 3 ] ]
+?EndConnections
+?StartPlugParams
+8879764261nil0
+483527726"{ arg input; RHPF.ar(input, freq: SinOsc.ar(1, mul: 50, add: 440), rq: 0.5); }"
+18313695410.100000440[ [ 11.0, 0, 1, 0.5, 0, 'sawtooth' ], [ 0, 0, 0.0, 0.5, 0, 'sawtooth' ] ]00101Env([ 0, 1, 1, 0 ], [ 0.05, 0.9, 0.05 ], 0, 2, nil)
+1835887186'(name new)'[ [ 'dur', "Pseq([0.6, 0.1, 0.1, 0.6, 0.1, 0.1, 0.2, 0.1, 0.1, 0.2, 0.1, 0.1, 0.2, 0.1, 0.1, 0.2, 0.2], inf)" ], [ 'o0_coarse', "Pseq([11, 8, 6, 8, 6, 4, 6, 4, 1, 4, 1, -1, 1, -1, -4, -1, 0], inf)" ] ]18313695410Set[  ]1.000000
+20805156291.0000001.000000nilnilList[  ]List[  ]
+13149614350.100000440[ [ 0, 0, 0.1, 0.5, 0, 'triangle' ], [ 0, 0, 1, 0.5, 0, 'sawtooth' ] ]00101Env([ 0, 1, 1, 0 ], [ 0.05, 0.9, 0.05 ], 0, 2, nil)
+1535623853"{ arg input; RHPF.ar(input, freq: SinOsc.ar(1, mul: 50, add: 440), rq: 0.5); }"
+?EndPlugParams
+?EndSave
