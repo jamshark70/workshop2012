@@ -158,3 +158,60 @@ a = {
 }.play;
 
 a.free;
+
+
+
+// try part-conv with fingernail tremolo
+
+f = SoundFile.openRead("/media/39ED-A99A/from-linux/xinghai/10-11-spring/max/guzheng all.wav");
+f.seek(222277);
+f.readData(d = Signal.newClear(53500 * 2));
+f.close;
+
+d.plot;
+d = d[0, 2..] * Env(#[0, 1, 0], 0.5 ! 2, \sin).discretize(d.size div: 2);
+d.plot;
+
+f = SoundFile.new.headerFormat_("WAV").sampleFormat_("int24").numChannels_(1);
+f.openWrite("~/share/SC/wk2011spr.git/Tests/gzkernel-short.wav".standardizePath);
+f.writeData(d);
+f.close;
+
+b.free;
+b = Buffer.readAndQuery(s, "~/share/SC/wk2011spr.git/Tests/gzkernel-short.wav".standardizePath);
+
+c.free;
+c = Buffer.alloc(s, PartConv.calcBufSize(1024, b), 1);
+c.preparePartConv(b, 1024);
+
+a = {
+	var freq = MouseX.kr(10, 450, warp: 1, lag: 0.1),
+	vibratoAmt = 0.2.midiratio,
+	vibrato = SinOsc.kr(5).exprange(vibratoAmt.reciprocal, vibratoAmt);
+	LeakDC.ar(
+		PartConv.ar(Impulse.ar(freq * vibrato * [1, 5/4]).sum, 1024, c) * -20.dbamp
+	) ! 2;
+}.play;
+
+a.free;
+
+
+s.record;
+
+a = {
+	var freq = EnvGen.kr(Env(#[0, 1, 1, 0.2], #[10, 4, 10], \sin), doneAction: 2).linexp(0, 1, 10, 262),
+	vibratoAmt = 0.2.midiratio,
+	vibrato = SinOsc.kr(LFNoise1.kr(0.4).range(3, 5)).exprange(vibratoAmt.reciprocal, vibratoAmt);
+	LeakDC.ar(
+		PartConv.ar(Impulse.ar(freq * vibrato * [1, 5/4]).sum, 1024, c) * -20.dbamp
+	) ! 2;
+}.play;
+
+a.free;
+
+s.stopRecording;
+
+fork {
+	SoundFile.normalize("/home/dlm/.local/share/SuperCollider/Recordings/SC_120401_183457.aiff", "~/share/SC/wk2011spr.git/docs/conv-demo.wav", "WAV", "int16", threaded: true)
+};
+
