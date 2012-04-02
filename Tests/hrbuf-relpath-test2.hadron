@@ -1,0 +1,11 @@
+?Hadron 1
+?StartPlugs
+HrBufferunnamed1829548500nilPoint( 100, 100 )Rect(895, 300, 300, 210)Rect(428.64822268486, 281.4213051796, 300, 210)false
+?EndPlugs
+?StartConnections
+1829548500[ [ nil, nil ], [ nil, nil ] ][ [ nil, nil ], [ nil, nil ] ]
+?EndConnections
+?StartPlugParams
+182954850088200.000000true"gzkernel-short.wav"true1false
+?EndPlugParams
+?EndSave
