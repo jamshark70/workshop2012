@@ -1,0 +1,29 @@
+?Hadron 1
+?StartPlugs
+HrWrapSynthtrans99316255[ "impulses" ]Point( 246, 267 )Rect(674, 96, 350, 360)Rect(879, 122, 350, 360)false
+HrDACmainOut1250969381nilPoint( 322, 399 )Rect(794, 29, 250, 160)Rect(790.49831485748, 51.672998905182, 250, 160)false
+HrDIYSynthpartconv506175234nilPoint( 322, 332 )Rect(1, 303, 450, 440)Rect(828, 252, 450, 440)true
+HrWrapSynthpad1289046280[ "impulses" ]Point( 415, 267 )Rect(1, 383, 350, 360)Rect(960, 95, 350, 360)true
+HrPolyPatternpad1946358337nilPoint( 574, 63 )Rect(260, 204, 600, 490)Rect(260, 204, 600, 490)false
+HrMultiCtlModup1561291505nilPoint( 98, 137 )Rect(1, 368, 450, 375)Rect(467, 33, 450, 375)true
+HrRangeMapstart1368327133nilPoint( 99, 69 )Rect(31, 90, 410, 315)Rect(190.04923629761, 315.07082033157, 410, 315)false
+?EndPlugs
+?StartConnections
+99316255[  ][ [ 506175234, 0 ] ]
+1250969381[ [ 506175234, 0 ], [ 506175234, 1 ] ][  ]
+506175234[ [ 99316255, 0 ], [ 1289046280, 0 ] ][ [ 1250969381, 0 ], [ 1250969381, 1 ] ]
+1289046280[  ][ [ 506175234, 1 ] ]
+1946358337[  ][ [ nil, nil ], [ nil, nil ] ]
+1561291505[ [ 1368327133, 0 ] ][ [ nil, nil ], [ nil, nil ], [ nil, nil ] ]
+1368327133[ [ nil, nil ] ][ [ 1561291505, 0 ] ]
+?EndConnections
+?StartPlugParams
+993162550.000000nilList[  ]0.551860nilList[  ]0.923077nilList[  ]0.836660nilList[  ]0.500000nilList[  ]0.551823nilList[  ]0.707107nilList[  ]0.000000nilList[  ]1
+12509693810.286517nil0
+506175234"{ arg input;	input = input.sum * 0.5;	PartConv.ar(input, 1024, ~gzkernel, mul: 0.dbamp)}"
+12890462800.447474nilList[  ]0.551860nilList[  ]0.717949nilList[  ]0.166667nilList[  ]0.692308nilList[  ]0.628205nilList[  ]0.897436nilList[  ]0.756410nilList[  ]1
+1946358337'pulsepad'[ [ 'dur', "Pwhite(0.5, 2.5, inf)" ], [ 'legato', "Pwhite(2.0, 4.0, inf)" ], [ 'topNote', "Pseries({ rrand(4, 10) }, Pwrand(#[1, 2, 3], #[0.1, 0.45, 0.45], inf) * Prand(#[-1, 1], inf), inf).fold(-3, 14)" ], [ 'degree', "Pkey(\\topNote) - Pn(Pseries(0, Pwrand(#[1, 2, 3, 4], #[0.1, 0.4, 0.3, 0.2].normalizeSum, inf), { rrand(2, 4) }).clump(10), inf)" ] ]12890462800Set[  ]0.000000
+1561291505"{ |goTrig = 0| var eg, go2; [ eg = EnvGen.kr(Env([10, 10, 10, 67.midicps, 67.midicps - 0.02], #[0.05, 3, 15, 0.25], \\sin, releaseNode: 1), goTrig <= 0).linexp(10, 67.midicps, 10, 67.midicps), go2 = SetResetFF.kr(HPZ1.kr(eg) < 0.0, Trig1.kr(goTrig <= 0, 0.1)), EnvGen.kr(Env(#[0.7, 0.7, 0], #[2, 9], -4, releaseNode: 1), 1 - go2) ] }"[ [ 1, 5 ], [ 5, 2 ], [ 1, 1 ] ]14
+1368327133"[ HrControlSpec(0.0, 1.0, 'linear', 0.0, 0.0, \"\"), HrControlSpec(-0.5, 0.5, 'linear', 0.0, 0.0, \"\") ]"0[ 0, 0 ]0.000000
+?EndPlugParams
+?EndSave
