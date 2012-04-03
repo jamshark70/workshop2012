@@ -1,0 +1,23 @@
+?Hadron 1
+?StartPlugs
+HrDACunnamed1206913928nilPoint( 330, 403 )Rect(1043, 29, 250, 160)Rect(1040.1204271317, 99.487626075745, 250, 160)false
+HrFMOscilunnamed415935059nilPoint( 323, 336 )Rect(811, 163, 554, 270)Rect(741.23344373703, 73.459521055222, 554, 270)false
+HrPolyPattern11962656330nilPoint( 536, 63 )Rect(681, 229, 600, 490)Rect(679.70395374298, 493.16618537903, 600, 490)false
+HrRangeMapmeter_amt874973464nilPoint( 362, 17 )Rect(504, 212, 410, 315)Rect(503.24783039093, 237.01012408733, 410, 315)false
+HrPolyPattern21022117174nilPoint( 538, 117 )Rect(720, 117, 600, 490)Rect(417.07384562492, 647.75902795792, 600, 490)false
+?EndPlugs
+?StartConnections
+1206913928[ [ 415935059, 0 ], [ 415935059, 1 ] ][  ]
+415935059[  ][ [ 1206913928, 0 ], [ 1206913928, 1 ] ]
+1962656330[  ][ [ nil, nil ], [ nil, nil ] ]
+874973464[ [ nil, nil ] ][ [ nil, nil ] ]
+1022117174[  ][ [ nil, nil ], [ nil, nil ] ]
+?EndConnections
+?StartPlugParams
+12069139281.000000nil0
+415935059[ 440, 0, 0, 0.1, 0.19278467355936 ][ [ 1, 0, 1, 1, 0 ], [ 1, 0, 1, 1, 0 ] ][ [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 ], [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 ], [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 ] ]Env([ 0.0, 1.0, 0.20155039060023, 0.0 ], [ 0.18802084028721, 0.2749999811252, 0.5369791785876 ], [ -3.3691812696269, -3.3362419079113, -2.9081958270332 ], 2)
+1962656330'p1'[ [ 'gen_dur', "Pexprand(0.08, 0.22, inf)" ], [ 'nextBeat', "Ptime() + Pkey(\\gen_dur)" ], [ 'nextRounded', "max(0.125, Pkey(\\nextBeat).roundUp(0.125))" ], [ 'dur', "blend(Pkey(\\nextBeat), Pkey(\\nextRounded), HrPMod(\\meter, 0, #[0, 1])) - Ptime()" ], [ 'freq', "440" ], [ 'sustain', "0.1" ], [ 'amp', "0.2" ] ]4159350591Set[  ]1.000000
+874973464"[ HrControlSpec(0.0, 1.0, 'linear', 0.0, 0.0, \"\"), HrControlSpec(0.0, 1.0, 'linear', 0.0, 0.0, \"\") ]"0[ 3, 1 ]0.000000
+1022117174'p2'[ [ 'gen_dur', "Pexprand(0.08, 0.22)" ], [ 'nextBeat', "(Ptime() + Pkey('gen_dur'))" ], [ 'nextRounded', "(0.125 max: (Pkey('nextBeat') roundUp: 0.125))" ], [ 'dur', "(Pkey('nextBeat').blend(Pkey('nextRounded'), HrPMod('meter')) - Ptime())" ], [ 'freq', "330" ], [ 'sustain', "0.100000" ], [ 'amp', "0.200000" ] ]4159350591Set[  ]1.000000
+?EndPlugParams
+?EndSave
