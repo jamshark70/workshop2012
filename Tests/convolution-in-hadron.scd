@@ -1,7 +1,7 @@
 var dir, bufLoadFailed = true, cond = Condition.new;
 
 if(thisProcess.platform.name == \windows) {
-	~dir = HrVideoData.filenameSymbol.asString.dirname.dirname.dirname +/+ "Tests";
+	dir = HrVideoData.filenameSymbol.asString.dirname.dirname.dirname +/+ "Tests";
 } {
 	dir = thisProcess.nowExecutingPath.dirname;
 };
