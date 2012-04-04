@@ -1,0 +1,23 @@
+?Hadron 1
+?StartPlugs
+HrWrapSynthunnamed1321574493[ "bufGrainPan" ]Point( 301, 273 )Rect(857, 373, 350, 330)Rect(400, 62, 350, 330)false
+HrRangeMapbufnumToKr1414999691nilPoint( 566, 116 )Rect(843, 146, 410, 315)Rect(186.20499992371, 196.40580844879, 410, 315)false
+HrBuffercolumbia687583148nilPoint( 568, 70 )Rect(679, 134, 300, 210)Rect(680, 109, 300, 210)false
+HrDACunnamed1810658797nilPoint( 308, 371 )Rect(156, 122, 250, 160)Rect(155.39293384552, 147.44470405579, 250, 160)false
+HrPolyPatternunnamed742563683nilPoint( 188, 83 )Rect(239, 229, 600, 490)Rect(196.38504195213, 732.28218507767, 600, 490)false
+?EndPlugs
+?StartConnections
+1321574493[  ][ [ 1810658797, 0 ], [ 1810658797, 1 ] ]
+1414999691[ [ 687583148, 0 ] ][ [ nil, nil ] ]
+687583148[ [ nil, nil ], [ nil, nil ] ][ [ 1414999691, 0 ], [ nil, nil ] ]
+1810658797[ [ 1321574493, 0 ], [ 1321574493, 1 ] ][  ]
+742563683[  ][ [ nil, nil ], [ nil, nil ] ]
+?EndConnections
+?StartPlugParams
+13215744930.115385nilList[  ]0.000977nilList[  ]0.000000nilList[  ]0.500000nilList[  ]0.500000nilList[  ]1.000000nilList[  ]0.100343nilList[  ]0.205128nilList[  ]1
+1414999691"[ HrControlSpec(0.0, 1024.0, 'linear', 1.0, 0.0, \"\"), HrControlSpec(0.0, 1024.0, 'linear', 1.0, 0.0, \"\") ]"1[ 1, 3 ]0
+68758314853500.000000true"gzkernel-short.wav"true1false
+18106587970.764045nil0
+742563683'babytalk'[ [ 'dur', "Pwhite(1, 4, inf) * 0.15" ], [ 'sustain', "Pwhite(0.1, 0.4, inf)" ], [ 'rate', "Pexprand(0.8, 1.25, inf)" ], [ 'start', "Pwhite(0, (1.0 - (Pkey(\\sustain) * Pkey(\\rate) / 1.213)), inf)" ], [ 'pan', "Pwhite(0.6, 1.0, inf) * Prand(#[-1, 1], inf)" ] ]13215744931Set[  ]0.000000
+?EndPlugParams
+?EndSave
