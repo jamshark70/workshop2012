@@ -1,0 +1,17 @@
+?Hadron 1
+?StartPlugs
+HrFMOscilunnamed1172643111nilPoint( 302, 219 )Rect(640, 535, 554, 270)Rect(172, 527, 554, 270)false
+HrCtlModunnamed439579663nilPoint( 301, 142 )Rect(817, 384, 450, 240)Rect(755, 248, 450, 240)false
+HrDACunnamed700817508nilPoint( 302, 274 )Rect(437, 250, 250, 160)Rect(195, 620, 250, 160)false
+?EndPlugs
+?StartConnections
+1172643111[  ][ [ 700817508, 0 ], [ 700817508, 1 ] ]
+439579663[ [ nil, nil ] ][ [ nil, nil ] ]
+700817508[ [ 1172643111, 0 ], [ 1172643111, 1 ] ][  ]
+?EndConnections
+?StartPlugParams
+1172643111[ 389.68859863281, 0, 0, 0.1, 1 ][ [ 1, 0, 1, 1, 0 ], [ 1, 0, 1, 1, 0 ] ][ [ 1.0, 0.5, 0.33333333333333, 0.25, 0.2, 0.16666666666667, 0.14285714285714, 0.125, 0.11111111111111, 0.1 ], [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 ], [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 ] ]Env([ 0, 1, 1, 0 ], [ 0.05, 0.9, 0.05 ], 0, 2, nil)
+439579663"{ |sig| var trig; trig = [Impulse.kr(5), Impulse.kr(Line.kr(5, 0, 60)), Impulse.kr(Line.kr(0, 10, 30)), Impulse.ar(Line.kr(10, 0, 15)), Impulse.kr(Line.kr(0, 5, 10))]; Select.kr(ToggleFF.kr(trig.at(0)), [DC.ar(880), DC.ar(440)]) * Select.kr(ToggleFF.kr(trig.at(1)), [DC.ar(0.9), DC.ar(1.1)]) * Select.kr(ToggleFF.kr(trig.at(2)), [DC.ar(1.5), DC.ar(0.5)]) * Select.kr(ToggleFF.kr(trig.at(3)), [SinOsc.ar(5, mul: 0.1, add: 1), DC.ar(2)]) * Select.kr(ToggleFF.kr(trig.at(4)), [DC.ar(0.5), Saw.ar(5, mul: 0.1, add: 1)]) }"[ 1, 3 ]125.000000
+7008175081nil0
+?EndPlugParams
+?EndSave
