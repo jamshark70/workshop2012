@@ -215,3 +215,53 @@ fork {
 	SoundFile.normalize("/home/dlm/.local/share/SuperCollider/Recordings/SC_120401_183457.aiff", "~/share/SC/wk2011spr.git/docs/conv-demo.wav", "WAV", "int16", threaded: true)
 };
 
+
+
+// actual sample for piece
+s.boot;
+
+b.free;
+b = Buffer.readAndQuery(s, thisProcess.nowExecutingPath.dirname.dirname +/+ "samples/Audio/23-24.wav");
+
+// normalize (only to be *sure* of level - will require big amp scaling downward)
+
+f = SoundFile.openRead(b.path);
+fork { x = f.channelPeaks(threaded: true) };
+x
+
+// also need a mono impulse response
+~b2.free
+~b2 = Buffer.alloc(s, b.numFrames, 1);
+
+a = {
+	var phase = Sweep.ar(rate: b.sampleRate),
+	in = BufRd.ar(2, b, phase, loop: 0, interpolation: 1),
+	done = A2K.kr(phase) >= b.numFrames;
+	BufWr.ar(in[0] / (x[0] + 0.05), ~b2, phase, loop: 0);
+	Poll.kr(done, phase);
+	FreeSelf.kr(done);
+	0
+}.play;
+
+(instrument: \bufGrainPan, time: ~b2.duration, bufnum: ~b2, amp: 0.5).play;
+
+c.free; c = nil;
+c = Buffer.alloc(s, PartConv.calcBufSize(1024, b), 1);
+c.preparePartConv(b, 1024);
+
+c.write(b.path.dirname.dirname +/+ "partconv-ir.wav", headerFormat: "WAV", sampleFormat: "float");
+
+~b2.query
+
+s.bufferAllocator.debug
+
+
+// again, for trimmed (but I normalized this in audacity, so simpler)
+b.free;
+b = Buffer.readAndQuery(s, thisProcess.nowExecutingPath.dirname.dirname +/+ "samples/23-24-trim.wav");
+
+c.free; c = nil;
+c = Buffer.alloc(s, PartConv.calcBufSize(1024, b), 1);
+c.preparePartConv(b, 1024);
+
+c.write(b.path.dirname.dirname +/+ "partconv-ir-trim.wav", headerFormat: "WAV", sampleFormat: "float");
