@@ -1,0 +1,47 @@
+?Hadron 1
+?StartPlugs
+HrFMOscilunnamed1172643111nilPoint( 302, 234 )Rect(10, 68, 554, 270)Rect(172, 527, 554, 270)false
+HrCtlModfirst contour439579663nilPoint( 275, 71 )Rect(843, 479, 450, 240)Rect(755, 248, 450, 240)false
+HrDACunnamed700817508nilPoint( 302, 422 )Rect(660, 129, 250, 160)Rect(660, 129, 250, 160)false
+HrCtlModsecond contour1843226872nilPoint( 265, 42 )Rect(843, 321, 450, 240)Rect(451, 212, 450, 240)false
+HrCtlModthird contour1613330758nilPoint( 285, 101 )Rect(843, 82, 450, 240)Rect(605, 257, 450, 240)false
+HrMultiCtlModmix the modulators1914360927nilPoint( 255, 142 )Rect(427, 50, 450, 375)Rect(238, 29, 450, 375)false
+HrCtlModamplitude for all the synth830943057nilPoint( 269, 458 )Rect(560, 299, 450, 240)Rect(561, 274, 450, 240)false
+HrFilterunnamed1943226904nilPoint( 322, 324 )Rect(1, 483, 350, 260)Rect(968, 273, 350, 260)true
+HrCtlModmodulate dry/wet ratio of the filter118119294nilPoint( 433, 324 )Rect(1, 503, 450, 240)Rect(571, 158, 450, 240)true
+HrDIYSynthunnamed679010034[ "5", "2" ]Point( 302, 374 )Rect(1, 303, 450, 440)Rect(695, 11, 450, 440)true
+HrStereoSplitterunnamed801466583nilPoint( 302, 269 )Rect(1, 523, 250, 220)Rect(201, 175, 250, 220)true
+HrCtlModselectX_index1995258456nilPoint( 132, 88 )Rect(563, 146, 450, 240)Rect(880.75042390823, 102.89159584045, 450, 240)false
+HrRangeMapview895068717nilPoint( 98, 164 )Rect(780, 156, 410, 315)Rect(17.335760116577, 331.70709991455, 410, 315)false
+?EndPlugs
+?StartConnections
+1172643111[  ][ [ 801466583, 0 ], [ 801466583, 1 ] ]
+439579663[ [ nil, nil ] ][ [ 1914360927, 2 ] ]
+700817508[ [ 679010034, 0 ], [ 679010034, 1 ] ][  ]
+1843226872[ [ nil, nil ] ][ [ 1914360927, 1 ] ]
+1613330758[ [ nil, nil ] ][ [ 1914360927, 3 ] ]
+1914360927[ [ 1995258456, 0 ], [ 1843226872, 0 ], [ 439579663, 0 ], [ 1613330758, 0 ], [ nil, nil ], [ nil, nil ], [ nil, nil ] ][ [ nil, nil ] ]
+830943057[ [ nil, nil ] ][ [ nil, nil ] ]
+1943226904[ [ 801466583, 2 ], [ 801466583, 3 ] ][ [ 679010034, 2 ], [ 679010034, 3 ] ]
+118119294[ [ nil, nil ] ][ [ 679010034, 4 ] ]
+679010034[ [ 801466583, 0 ], [ 801466583, 1 ], [ 1943226904, 0 ], [ 1943226904, 1 ], [ 118119294, 0 ] ][ [ 700817508, 0 ], [ 700817508, 1 ] ]
+801466583[ [ 1172643111, 0 ], [ 1172643111, 1 ] ][ [ 679010034, 0 ], [ 679010034, 1 ], [ 1943226904, 0 ], [ 1943226904, 1 ] ]
+1995258456[ [ nil, nil ] ][ [ 1914360927, 0 ] ]
+895068717[ [ nil, nil ] ][ [ nil, nil ] ]
+?EndConnections
+?StartPlugParams
+1172643111[ 18000.0, 0, 0, 0.1, 1 ][ [ 1, 0, 1, 1, 0 ], [ 1, 0, 1, 1, 0 ] ][ [ 1.0, 0.5, 0.33333333333333, 0.25, 0.2, 0.16666666666667, 0.14285714285714, 0.125, 0.11111111111111, 0.1 ], [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 ], [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 ] ]Env([ 0, 1, 1, 0 ], [ 0.05, 0.9, 0.05 ], 0, 2)
+439579663"{ |sig| var trig; trig = [Impulse.kr(10), Impulse.kr(Line.kr(50, 0, 10)), Impulse.kr(Line.kr(0, 50, 5))]; Select.kr(ToggleFF.kr(trig.at(0)), [DC.ar(880), DC.ar(440)]) * Select.kr(ToggleFF.kr(trig.at(1)), [DC.ar(0.9), DC.ar(1.1)]) * Select.kr(ToggleFF.kr(trig.at(2)), [DC.ar(1.5), DC.ar(0.5)]) }"[ 0, 0 ]025.000000
+7008175080.685393nil1
+1843226872"{ |sig| var trig; trig = Impulse.kr(50); XLine.kr(20, 20000, 60) * Select.kr(ToggleFF.kr(trig), [DC.kr(0.9), DC.kr(1.1)]) }"[ 0, 0 ]025.000000
+1613330758"{ |sig| var trig; trig = [Dust.kr(10), Dust.kr(5), Dust.kr(50)]; Select.kr(ToggleFF.kr(trig.at(0)), [DC.ar(880) , DC.ar(440)]) * Select.kr(ToggleFF.kr(trig.at(1)), [DC.ar(0.9), DC.ar(1.1)]) * Select.kr(ToggleFF.kr(trig.at(2)), [DC.ar(1.5), DC.ar(0.5)]) * EnvGen.kr(Env([0.8, 0.8, 1, 1], [10, 5, 30], \\exp)) }"[ 0, 0 ]025.000000
+1914360927"{ |index, m1, m2, m3| SelectX.kr(index, [m1, m2, m3]) }"[ [ 1, 3 ] ]14
+830943057"{ |sig| EnvGen.kr(Env([0, 0.1, 0.1, 0.25], [10, 5, 30])) }"[ 3, 1 ]04
+1943226904500.0000000.000000[ 880.0, 3.5, 0.8959629535675 ]
+118119294"{ |sig| EnvGen.kr(Env([0, 0, 0, 1], [(10 + 5), 15, 10])) }"[ 8, 0 ]04
+679010034"{ arg input;  var dry = input[[0, 1]], wet = input[[2, 3]], xfade = input[4];  XFade2.ar(dry, wet, xfade * 2 - 1)}"
+8014665831.0000001.000000nilnilList[  ]List[  ]
+1995258456"{ |sig| EnvGen.kr(Env([2, 2, 1, 0], [25, 10, 10])) }"[ 13, 4 ]14
+895068717"[ HrControlSpec(0.0, 2.0, 'linear', 0.0, 0.0, \"\"), HrControlSpec(0.0, 1.0, 'linear', 0.0, 0.0, \"\") ]"0[ 0, 0 ]0.000000
+?EndPlugParams
+?EndSave
