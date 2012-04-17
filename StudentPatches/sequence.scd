@@ -11,6 +11,28 @@ s.waitForBoot {
 		};
 	} => PR(\hadronCmd);
 
+	PR(\funcCmd).clone {
+		~setDoneSignal = {
+			~doneSignal = NotificationCenter.register(\midiGo, \go, currentEnvironment, e {
+				~stop.();
+			});
+			{
+				~window = Window("Advance", Rect(0, 40, 200, 120));
+				~button = Button(~window, ~window.view.bounds.insetBy(2, 2))
+				.states_([
+					[~label ?? { "Click or hit MIDI button to advance" },
+						Color.black, Color(1.0, 0.65, 0.65)]
+				])
+				.action_(e { ~stop.() });
+				~window.front;
+			}.fork(AppClock);
+		};
+		~clearDoneSignal = {
+			~doneSignal.remove;
+			defer(e { ~window.close });
+		};
+	} => PR(\waitCmd);
+
 	if(thisProcess.platform.name == \windows) {
 		~dir = HrVideoData.filenameSymbol.asString.dirname.dirname.dirname +/+ "StudentPatches";
 	} {
@@ -19,8 +41,11 @@ s.waitForBoot {
 
 	MIDIClient.init;
 	MIDIIn.connectAll;
+
+	MIDIdef(\goButton).free;
+	MIDIdef(\goButton, { NotificationCenter.notify(\midiGo, \go) }, 13, nil, \control);
 };
-)
+);
 
 (
 var upd;
@@ -130,6 +155,96 @@ t = TLSequenceIterator([
 		path: topEnvironment[\dir] +/+ "A-delays3.hadron"
 	),
 	\cmdSync,
+
+	2, // 10,
+
+	hadronCmd: (
+		id: \conv,
+		path: topEnvironment[\dir] +/+ "A-convolution.hadron"
+	),
+	\cmdSync,
+	waitCmd: (label: "Click/MIDI to fade in convolution"),
+	\cmdSync,
+	{
+		var p = Library.at(\hadronCmd, \conv).alivePlugs.detect { |plug| plug.ident == "fade" };
+		defer { p.modSets[\modValue].value(1) };
+		3
+	},
+	{ defer { Library.at(\hadronCmd, \delay).graceExit; Library.removeEmptyAt(\hadronCmd, \delay) }; 0 },
+	waitCmd: (label: "Click/MIDI to raise pitch"),
+	\cmdSync,
+	{
+		var p = Library.at(\hadronCmd, \conv).alivePlugs.select(_.isKindOf(HrRangeMap)).detect { |plug| plug.ident == "start" };
+		defer { p.modSets[\modValue].value(1) };
+		0
+	},
+	hadronCmd: (
+		id: \scrape,
+		path: topEnvironment[\dir] +/+ "A-scrape-transition.hadron"
+	),
+	\cmdSync,
+	waitCmd: (label: "Click/MIDI to fade convolution"),
+	\cmdSync,
+	[
+		{
+			var p = Library.at(\hadronCmd, \conv).alivePlugs
+			.select(_.isKindOf(HrRangeMap))
+			.detect { |plug| plug.ident == "fade" };
+			defer { p.modSets[\modValue].value(-0.1) };
+			12.5
+		},
+		{ defer { Library.at(\hadronCmd, \conv).graceExit; Library.removeEmptyAt(\hadronCmd, \conv) }; 0 }
+	],
+
+	\cmdSync,
+	waitCmd: (label: "Click/MIDI to run transition"),
+	\cmdSync,
+	{
+		var p = Library.at(\hadronCmd, \scrape).alivePlugs
+		.select(_.isKindOf(HrRangeMap))
+		.detect { |plug| plug.ident == "goctl" };
+		defer { p.modSets[\modValue].value(1) };
+		21
+	},
+	
+	///// SECTION B
+	// starts with, "Pause electronics," so, discard all existing hadron patches
+	// but do load the next one we'll need... (doesn't play automatically)
+	hadronCmd: (
+		id: \trem129,
+		path: topEnvironment[\dir] +/+ "B-tremolo129.hadron"
+	),
+	\cmdSync,
+	{
+		defer {
+			Library.at(\hadronCmd).keys.do { |key|
+				Library.at(\hadronCmd, key).graceExit;
+				Library.removeEmptyAt(\hadronCmd, key);
+			};
+		};
+		0
+	},
+	waitCmd: (label: "Click/MIDI to run 129"),
+	\cmdSync,
+	{
+		var p = Library.at(\hadronCmd, \trem129).alivePlugs
+		.detect(_.isKindOf(HrPolyPattern))
+		defer { p.run(true) };
+		10
+	},
+
+	hadronCmd: (
+		id: \contour,
+		path: topEnvironment[\dir] +/+ "hjh-producing-some-pitch-contours2.hadron"
+	),
+	\cmdSync,
+	
+
+
+	///// don't see where to fit in the music box sound
+
+
+	///// SECTION C
 
 	funcCmd: (
 		setDoneSignal: { ~doneSignal = true }

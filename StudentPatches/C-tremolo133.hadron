@@ -1,0 +1,23 @@
+?Hadron 1
+?StartPlugs
+HrBuffer129677349836nilPoint( 594, 86 )Rect(868, 389, 300, 210)Rect(868, 389, 300, 210)false
+HrWrapSynthunnamed1721097782[ "bufGrainPan" ]Point( 291, 295 )Rect(882, 341, 350, 330)Rect(400, 62, 350, 330)false
+HrCtlModunnamed466047997nilPoint( 594, 132 )Rect(660, 182, 450, 240)Rect(658.80861616135, 207.1990737915, 450, 240)false
+HrDACunnamed1224775279nilPoint( 291, 353 )Rect(885, 137, 250, 160)Rect(2, 559, 250, 160)false
+HrPolyPatternunnamed597930772nilPoint( 176, 127 )Rect(516, 137, 600, 490)Rect(118.72175979614, 78.003736495972, 600, 490)false
+?EndPlugs
+?StartConnections
+677349836[ [ nil, nil ], [ nil, nil ] ][ [ 466047997, 0 ], [ nil, nil ] ]
+1721097782[  ][ [ 1224775279, 0 ], [ 1224775279, 1 ] ]
+466047997[ [ 677349836, 0 ] ][ [ nil, nil ] ]
+1224775279[ [ 1721097782, 0 ], [ 1721097782, 1 ] ][  ]
+597930772[ [ nil, nil ] ][ [ nil, nil ], [ nil, nil ] ]
+?EndConnections
+?StartPlugParams
+677349836926634.000000true"../samples/133-134.wav"true1false
+17210977820.000000nilList[  ]0.023438nilList[  ]0.000000nilList[  ]0.500000nilList[  ]1.000000nilList[  ]0.987179nilList[  ]0.974359nilList[  ]1
+466047997"{ |sig| sig }"[ 2, 'bufnum' ]14
+12247752791.000000nil0
+597930772'fade133'[ [ 'dur', "Pwhite(1.6, 2.5)" ], [ 'sustain', "5.000000" ], [ 'start', "Pwhite(0.0, 0.09)" ], [ 'amp', "0.5" ], [ 'rate', "Pexprand(0.98)" ] ]17210977820Set[  ]1.000000( 'independent': true, 'reset': false )
+?EndPlugParams
+?EndSave
