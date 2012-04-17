@@ -37,7 +37,7 @@ s.waitForBoot {
 		s.sync;
 
 		h = Hadron.new;
-		HadronStateLoad(h).loadState(dir +/+ "convolution-in-hadron5.hadron");
+		HadronStateLoad(h).loadState(dir +/+ "convolution-in-hadron5b.hadron");
 
 		AppClock.sched(2, {
 			if(bufLoadFailed) {
