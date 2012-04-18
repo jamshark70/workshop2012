@@ -170,7 +170,7 @@ t = TLSequenceIterator([
 		defer { p.modSets[\modValue].value(1) };
 		3
 	},
-	{ defer { Library.at(\hadronCmd, \delay).graceExit; Library.removeEmptyAt(\hadronCmd, \delay) }; 0 },
+	{ defer { Library.at(\hadronCmd, \delay).graceExit; Library.global.removeEmptyAt(\hadronCmd, \delay) }; 0 },
 	waitCmd: (label: "Click/MIDI to raise pitch"),
 	\cmdSync,
 	{
@@ -193,10 +193,9 @@ t = TLSequenceIterator([
 			defer { p.modSets[\modValue].value(-0.1) };
 			12.5
 		},
-		{ defer { Library.at(\hadronCmd, \conv).graceExit; Library.removeEmptyAt(\hadronCmd, \conv) }; 0 }
+		{ defer { Library.at(\hadronCmd, \conv).graceExit; Library.global.removeEmptyAt(\hadronCmd, \conv) }; 0 }
 	],
 
-	\cmdSync,
 	waitCmd: (label: "Click/MIDI to run transition"),
 	\cmdSync,
 	{
@@ -204,7 +203,7 @@ t = TLSequenceIterator([
 		.select(_.isKindOf(HrRangeMap))
 		.detect { |plug| plug.ident == "goctl" };
 		defer { p.modSets[\modValue].value(1) };
-		21
+		10
 	},
 	
 	///// SECTION B
@@ -218,8 +217,10 @@ t = TLSequenceIterator([
 	{
 		defer {
 			Library.at(\hadronCmd).keys.do { |key|
-				Library.at(\hadronCmd, key).graceExit;
-				Library.removeEmptyAt(\hadronCmd, key);
+				if(#[trem129, scrape].includes(key).not) {
+					Library.at(\hadronCmd, key).graceExit;
+					Library.global.removeEmptyAt(\hadronCmd, key);
+				};
 			};
 		};
 		0
@@ -228,9 +229,17 @@ t = TLSequenceIterator([
 	\cmdSync,
 	{
 		var p = Library.at(\hadronCmd, \trem129).alivePlugs
-		.detect(_.isKindOf(HrPolyPattern))
+		.detect(_.isKindOf(HrPolyPattern));
 		defer { p.run(true) };
-		10
+		8
+	},
+
+	{
+		defer {
+			Library.at(\hadronCmd, \scrape).graceExit;
+			Library.global.removeEmptyAt(\hadronCmd, \scrape);
+		};
+		2
 	},
 
 	hadronCmd: (
@@ -238,13 +247,125 @@ t = TLSequenceIterator([
 		path: topEnvironment[\dir] +/+ "hjh-producing-some-pitch-contours2.hadron"
 	),
 	\cmdSync,
-	
+	// fades in by itself
+	2.0,
+	[
+		12,
+		{
+			var p = Library.at(\hadronCmd, \trem129).alivePlugs
+			.detect(_.isKindOf(HrPolyPattern));
+			defer { p.run(false) };
+			10
+		},
+		{
+			defer {
+				Library.at(\hadronCmd, \trem129).graceExit;
+				Library.global.removeEmptyAt(\hadronCmd, \trem129);
+			};
+		}
+	],
 
+	hadronCmd: (
+		id: \bells,
+		path: topEnvironment[\dir] +/+ "deep-note-bells.hadron"
+	),
+	\cmdSync,
 
-	///// don't see where to fit in the music box sound
+	waitCmd: (label: "Click/MIDI for bells"),
+	\cmdSync,
+	{
+		var p = Library.at(\hadronCmd, \bells).alivePlugs
+		.detect(_.isKindOf(HrPolyPattern));
+		defer { p.run(true) };
+		4
+	},
+	// midi to fade in/out
 
 
 	///// SECTION C
+
+	hadronCmd: (
+		id: \trem133,
+		path: topEnvironment[\dir] +/+ "C-tremolo133.hadron"
+	),
+	\cmdSync,
+	waitCmd: (label: "Click/MIDI for tremolo"),
+	\cmdSync,
+	{
+		var func = { |key, bool|
+			var p = Library.at(\hadronCmd, key).alivePlugs
+			.select(_.isKindOf(HrPolyPattern));
+			defer { p.do(_.run(bool)) };
+		}, p;
+		func.(\trem133, true);
+		func.(\bells, false);
+
+		// fade out contour
+		p = Library.at(\hadronCmd, \contour)
+		.alivePlugs.detect { |plug| plug.ident == "envgate" };
+		if(p.notNil) { defer { p.modSets[\modValue].value(0) } };
+
+		2
+	},
+
+	hadronCmd: (
+		id: \ringz,
+		path: topEnvironment[\dir] +/+ "xthird-part-1.hadron"
+	),
+	\cmdSync,
+
+	// remove old patches: in subthread, won't affect cmdSync
+	[
+		1.5,
+		{
+			defer {
+				Library.at(\hadronCmd).keys.do { |key|
+					if(#[trem133, ringz].includes(key).not) {
+						Library.at(\hadronCmd, key).graceExit;
+						Library.global.removeEmptyAt(\hadronCmd, key);
+					};
+				};
+			};
+			0
+		},
+	],
+
+	waitCmd: (label: "Click/MIDI for perc"),
+	\cmdSync,
+	{
+		var p = Library.at(\hadronCmd, \ringz).alivePlugs
+		.detect(_.isKindOf(HrPolyPattern));
+		defer { p.run(true) };
+		4
+	},
+
+	hadronCmd: (
+		id: \deepnote,
+		path: topEnvironment[\dir] +/+ "C-deep-note-converge.hadron"
+	),
+	\cmdSync,
+	waitCmd: (label: "Click/MIDI for deep note"),
+	\cmdSync,
+	{
+		var func = { |key, bool|
+			var p = Library.at(\hadronCmd, key).alivePlugs
+			.select(_.isKindOf(HrPolyPattern));
+			defer { p.do(_.run(bool)) };
+		};
+		func.(\deepnote, true);
+		6
+	},
+
+	{
+		var func = { |key, bool|
+			var p = Library.at(\hadronCmd, key).alivePlugs
+			.select(_.isKindOf(HrPolyPattern));
+			defer { p.do(_.run(bool)) };
+		};
+		func.(\trem133, false);
+		func.(\ringz, false);
+		0
+	},
 
 	funcCmd: (
 		setDoneSignal: { ~doneSignal = true }
@@ -255,7 +376,7 @@ t = TLSequenceIterator([
 upd = SimpleController(t).put(\done, {
 	upd.remove;
 	{
-		Library.at(\hadronCmd).do(_.graceExit);
+		Library.at(\hadronCmd).keys.do({ |key| Library.at(\hadronCmd, key).graceExit });
 		topEnvironment[\gzkernel].free;
 	}.fork(AppClock);
 });
