@@ -1,17 +1,17 @@
 ?Hadron 1
 ?StartPlugs
-HrBufferunnamed1024722161nilPoint( 591, 102 )Rect(1, 533, 300, 210)Rect(1, 509, 300, 210)true
+HrBufferunnamed1024722161nilPoint( 591, 102 )Rect(1, 533, 300, 210)Rect(1, 509, 300, 210)false
 HrCtlModunnamed2099018716nilPoint( 591, 139 )Rect(822, 257, 450, 240)Rect(822, 257, 450, 240)false
 HrDACunnamed1614006816nilPoint( 175, 432 )Rect(996, 206, 250, 160)Rect(533.87683010101, 400.61240911484, 250, 160)false
 HrPolyPatternunnamed1670450738nilPoint( 150, 185 )Rect(737, 229, 600, 490)Rect(735.77943587303, 265.33851051331, 600, 490)false
-HrWrapSynthunnamed1081418428[ "bufGrainPan" ]Point( 175, 299 )Rect(1, 413, 350, 330)Rect(1, 389, 350, 330)true
+HrWrapSynthunnamed1081418428[ "bufGrainPan" ]Point( 175, 299 )Rect(1, 413, 350, 330)Rect(1, 389, 350, 330)false
 HrVideoDataunnamed1975212080nilPoint( 207, 37 )Rect(909, 29, 450, 375)Rect(907.74851703644, 17.873015165329, 450, 375)false
 HrRangeMapunnamed241156782nilPoint( 208, 76 )Rect(443, 212, 410, 315)Rect(431.13181591034, 7.022705078125, 410, 315)false
 HrPolyPatternbig1406834853nilPoint( 315, 186 )Rect(583, 229, 600, 490)Rect(581.72579312325, 439.23278665543, 600, 490)false
-HrStereoMixerunnamed1564251545nilPoint( 175, 395 )Rect(1, 523, 250, 220)Rect(1, 499, 250, 220)true
-HrWrapSynthrvb609052000[ "bufGrainPan" ]Point( 352, 259 )Rect(1, 413, 350, 330)Rect(401, 37, 350, 330)true
-HrCtlModunnamed310181206nilPoint( 594, 176 )Rect(1, 503, 450, 240)Rect(1, 479, 450, 240)true
-HrDIYSynthrvb1641266065nilPoint( 352, 299 )Rect(1, 303, 450, 440)Rect(2, 278, 450, 440)true
+HrStereoMixerunnamed1564251545nilPoint( 175, 395 )Rect(1, 523, 250, 220)Rect(1, 499, 250, 220)false
+HrWrapSynthrvb609052000[ "bufGrainPan" ]Point( 352, 259 )Rect(1, 413, 350, 330)Rect(401, 37, 350, 330)false
+HrCtlModunnamed310181206nilPoint( 594, 176 )Rect(1, 503, 450, 240)Rect(1, 479, 450, 240)false
+HrDIYSynthrvb1641266065nilPoint( 352, 299 )Rect(1, 303, 450, 440)Rect(2, 278, 450, 440)false
 HrMultiCtlModgo93378608nilPoint( 66, 134 )Rect(431, 84, 450, 375)Rect(617, 186, 450, 375)false
 HrRangeMapgoctl508565143nilPoint( 66, 92 )Rect(804, 324, 410, 315)Rect(802.63967609406, 348.75075125694, 410, 315)false
 ?EndPlugs

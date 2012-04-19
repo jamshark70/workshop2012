@@ -1,10 +1,10 @@
 ?Hadron 1
 ?StartPlugs
-HrWrapSynthtrans99316255[ "impulses" ]Point( 246, 267 )Rect(678, 29, 350, 360)Rect(879, 122, 350, 360)false
-HrDACmainOut1250969381nilPoint( 322, 399 )Rect(797, 29, 250, 160)Rect(790.49831485748, 51.672998905182, 250, 160)false
+HrWrapSynthtrans99316255[ "impulses" ]Point( 246, 267 )Rect(678, 29, 350, 360)Rect(879, 122, 350, 360)true
+HrDACmainOut1250969381nilPoint( 322, 399 )Rect(797, 29, 250, 160)Rect(790.49831485748, 51.672998905182, 250, 160)true
 HrDIYSynthpartconv506175234nilPoint( 322, 332 )Rect(1, 303, 450, 440)Rect(1, 279, 450, 440)true
 HrWrapSynthpad1289046280[ "impulses" ]Point( 415, 267 )Rect(1, 383, 350, 360)Rect(401, 67, 350, 360)true
-HrPolyPatternpad1946358337nilPoint( 574, 63 )Rect(717, 199, 600, 490)Rect(260, 204, 600, 490)false
+HrPolyPatternpad1946358337nilPoint( 574, 63 )Rect(717, 199, 600, 490)Rect(260, 204, 600, 490)true
 HrMultiCtlModup1561291505nilPoint( 98, 137 )Rect(1, 368, 450, 375)Rect(265, 185, 450, 375)true
 HrRangeMapstart1368327133nilPoint( 99, 69 )Rect(31, 90, 410, 315)Rect(190.04923629761, 315.07082033157, 410, 315)false
 HrRangeMapfade662043057nilPoint( 250, 69 )Rect(57, 29, 410, 315)Rect(55.73869228363, 16.421683073044, 410, 315)false

@@ -1,11 +1,11 @@
 ?Hadron 1
 ?StartPlugs
 HrWrapSynthunnamed1082117777[ "bufGrainPan" ]Point( 230, 213 )Rect(874, 391, 350, 300)Rect(400, 32, 350, 300)false
-HrBuffer5-6265955780nilPoint( 557, 87 )Rect(1, 533, 300, 210)Rect(1, 509, 300, 210)true
-HrBuffer7-8146106913nilPoint( 567, 123 )Rect(1, 533, 300, 210)Rect(1, 509, 300, 210)true
-HrBuffer9-10533967629nilPoint( 577, 163 )Rect(1, 533, 300, 210)Rect(1, 509, 300, 210)true
+HrBuffer5-6265955780nilPoint( 557, 87 )Rect(1, 533, 300, 210)Rect(1, 509, 300, 210)false
+HrBuffer7-8146106913nilPoint( 567, 123 )Rect(1, 533, 300, 210)Rect(1, 509, 300, 210)false
+HrBuffer9-10533967629nilPoint( 577, 163 )Rect(1, 533, 300, 210)Rect(1, 509, 300, 210)false
 HrPolyPatternunnamed1116568457nilPoint( 123, 132 )Rect(574, 133, 600, 490)Rect(2, 228, 600, 490)false
-HrMultiCtlModbufnums1814419813nilPoint( 557, 213 )Rect(1, 368, 450, 375)Rect(1, 344, 450, 375)true
+HrMultiCtlModbufnums1814419813nilPoint( 557, 213 )Rect(1, 368, 450, 375)Rect(1, 344, 450, 375)false
 HrDACunnamed2124467941nilPoint( 230, 408 )Rect(487, 82, 250, 160)Rect(485.28060150146, 132.47366857529, 250, 160)false
 HrFilterunnamed575498868nilPoint( 230, 271 )Rect(557, 29, 350, 260)Rect(557, 29, 350, 260)false
 HrVideoDataunnamed1374166899nilPoint( 123, 43 )Rect(852, 75, 450, 375)Rect(853, 50, 450, 375)false
