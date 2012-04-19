@@ -155,8 +155,10 @@ t = TLSequenceIterator([
 		path: topEnvironment[\dir] +/+ "A-delays3.hadron"
 	),
 	\cmdSync,
-
-	2, // 10,
+	{
+		HrVideoData.videoGui.cameraPowerSwitch(1);
+		2 // 10,
+	},
 
 	hadronCmd: (
 		id: \conv,
@@ -183,19 +185,6 @@ t = TLSequenceIterator([
 		path: topEnvironment[\dir] +/+ "A-scrape-transition.hadron"
 	),
 	\cmdSync,
-	waitCmd: (label: "Click/MIDI to fade convolution"),
-	\cmdSync,
-	[
-		{
-			var p = Library.at(\hadronCmd, \conv).alivePlugs
-			.select(_.isKindOf(HrRangeMap))
-			.detect { |plug| plug.ident == "fade" };
-			defer { p.modSets[\modValue].value(-0.1) };
-			12.5
-		},
-		{ defer { Library.at(\hadronCmd, \conv).graceExit; Library.global.removeEmptyAt(\hadronCmd, \conv) }; 0 }
-	],
-
 	waitCmd: (label: "Click/MIDI to run transition"),
 	\cmdSync,
 	{
@@ -203,8 +192,33 @@ t = TLSequenceIterator([
 		.select(_.isKindOf(HrRangeMap))
 		.detect { |plug| plug.ident == "goctl" };
 		defer { p.modSets[\modValue].value(1) };
+		HrVideoData.videoGui.cameraPowerSwitch(1);
 		10
 	},
+
+	// waitCmd: (label: "Click/MIDI to fade convolution"),
+	// \cmdSync,
+	[
+		3,
+		{
+			var p = Library.at(\hadronCmd, \conv).alivePlugs
+			.select(_.isKindOf(HrRangeMap))
+			.detect { |plug| plug.ident == "fade" };
+			defer { p.modSets[\modValue].value(-0.1) };
+			12.5
+		},
+		{
+			defer {
+				if(Library.at(\hadronCmd, \conv).notNil) {
+					Library.at(\hadronCmd, \conv).graceExit;
+					Library.global.removeEmptyAt(\hadronCmd, \conv)
+				};
+			};
+			0
+		}
+	],
+
+	5,  // total 15 seconds wait, enough for bigscrape?
 	
 	///// SECTION B
 	// starts with, "Pause electronics," so, discard all existing hadron patches
@@ -247,8 +261,10 @@ t = TLSequenceIterator([
 		path: topEnvironment[\dir] +/+ "hjh-producing-some-pitch-contours2.hadron"
 	),
 	\cmdSync,
-	// fades in by itself
-	2.0,
+	{
+		HrVideoData.videoGui.cameraPowerSwitch(1);
+		2 // 10,
+	},
 	[
 		12,
 		{
@@ -262,6 +278,7 @@ t = TLSequenceIterator([
 				Library.at(\hadronCmd, \trem129).graceExit;
 				Library.global.removeEmptyAt(\hadronCmd, \trem129);
 			};
+			0
 		}
 	],
 
