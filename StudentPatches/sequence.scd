@@ -42,8 +42,8 @@ s.waitForBoot {
 	MIDIClient.init;
 	MIDIIn.connectAll;
 
-	MIDIdef(\goButton).free;
-	MIDIdef(\goButton, { NotificationCenter.notify(\midiGo, \go) }, 13, nil, \control);
+	topEnvironment[\goButton].remove;
+	topEnvironment[\goButton] = CCResponder({ NotificationCenter.notify(\midiGo, \go) }, num: 13);
 };
 );
 
