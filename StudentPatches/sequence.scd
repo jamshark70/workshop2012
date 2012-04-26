@@ -384,9 +384,17 @@ t = TLSequenceIterator([
 		0
 	},
 
-	funcCmd: (
-		setDoneSignal: { ~doneSignal = true }
-	)
+	waitCmd: (label: "Click/MIDI to stop deep note"),
+	\cmdSync,
+	{
+		var p = Library.at(\hadronCmd, \deepnote).alivePlugs
+		.detect(_.isKindOf(HrPolyPattern));
+		if(p.notNil) { defer { p.run(false) } };
+		0
+	},
+
+	waitCmd: (label: "Click/MIDI to close"),
+	\cmdSync
 ]).play;
 
 // clean up on stop -- ANY stop
