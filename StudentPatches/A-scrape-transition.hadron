@@ -32,7 +32,7 @@ HrRangeMapgoctl508565143nilPoint( 66, 92 )Rect(804, 324, 410, 315)Rect(802
 508565143[ [ nil, nil ] ][ [ 93378608, 0 ] ]
 ?EndConnections
 ?StartPlugParams
-102472216171724.000000false"/home/dlm/share/SC/wk2011spr.git/samples/scrape-up.wav"true1false
+102472216171724.000000true"../samples/scrape-up.wav"true1false
 2099018716"{ |sig| sig }"[ 5, 'bufnum' ]14
 16140068160.910112nil0
 1670450738'scrapes'[ [ 'dur', "Pexprand(0.15, 0.7, inf) / HrPMod(\\scrapeMod, 0.25, #[0.1, 1])" ], [ 'start', "Pwhite(0, 0.2, inf)" ], [ 'pan', "Pwhite(-1, 1, inf)" ], [ 'rate', "Pexprand(0.9, 1.11, inf)" ], [ 'sustain', "Pwhite(0.8, 1.2, inf) * HrPMod(\\scrapeMod).linlin(0.1, 1, 0.4, 3)" ], [ 'amp', "0.8" ] ]10814184280Set[  ]1.000000( 'independent': true, 'reset': false )

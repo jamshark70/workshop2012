@@ -29,9 +29,9 @@ HrDIYSynthunnamed1604891272[ "3", "2" ]Point( 230, 345 )Rect(762, 127, 450,
 ?EndConnections
 ?StartPlugParams
 10821177770.000000nilList[  ]0.000000nilList[  ]0.500000nilList[  ]1.000000nilList[  ]0.000000nilList[  ]0.433677nilList[  ]1.000000nilList[  ]1
-265955780336020.000000false"/home/dlm/share/SC/wk2011spr.git/samples/5-6-mono.wav"true1false
-146106913396176.000000false"/home/dlm/share/SC/wk2011spr.git/samples/7-8-mono.wav"true1false
-533967629466876.000000false"/home/dlm/share/SC/wk2011spr.git/samples/9-10-mono.wav"true1false
+265955780336020.000000true"../samples/5-6-mono.wav"true1false
+146106913396176.000000true"../samples/7-8-mono.wav"true1false
+533967629466876.000000true"../samples/9-10-mono.wav"true1false
 1116568457'a_dly'[ [ 'dur', "Pexprand(0.5, 2.0, inf)" ], [ 'bufnum', "Pswitch1([HrPMod(\\a_buf1, 0, #[0, 128]), HrPMod(\\a_buf2, 0, #[0, 128]), HrPMod(\\a_buf3, 0, #[0, 128])], Pwhite(0, 2, inf))" ], [ 'sustain', "2.5" ], [ 'amp', "1" ], [ 'rate', "1" ] ]10821177770Set[  ]1.000000( 'independent': true, 'reset': false )
 1814419813"{ |b1, b2, b3| [b1, b2, b3] }"[ [ 5, 'a_buf1' ], [ 5, 'a_buf2' ], [ 5, 'a_buf3' ] ]14
 21244679411.000000nil0
