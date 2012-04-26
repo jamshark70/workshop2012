@@ -1,9 +1,9 @@
 ?Hadron 1
 ?StartPlugs
-HrBuffer129677349836nilPoint( 594, 86 )Rect(868, 389, 300, 210)Rect(868, 389, 300, 210)false
-HrWrapSynthunnamed1721097782[ "bufGrainPan" ]Point( 291, 295 )Rect(882, 341, 350, 330)Rect(400, 62, 350, 330)false
-HrCtlModunnamed466047997nilPoint( 594, 132 )Rect(660, 182, 450, 240)Rect(658.80861616135, 207.1990737915, 450, 240)false
-HrDACunnamed1224775279nilPoint( 291, 353 )Rect(885, 137, 250, 160)Rect(2, 559, 250, 160)false
+HrBuffer129677349836nilPoint( 594, 86 )Rect(868, 389, 300, 210)Rect(868, 389, 300, 210)true
+HrWrapSynthunnamed1721097782[ "bufGrainPan" ]Point( 291, 295 )Rect(882, 341, 350, 330)Rect(400, 62, 350, 330)true
+HrCtlModunnamed466047997nilPoint( 594, 132 )Rect(660, 182, 450, 240)Rect(658.80861616135, 207.1990737915, 450, 240)true
+HrDACunnamed1224775279nilPoint( 291, 353 )Rect(885, 137, 250, 160)Rect(2, 559, 250, 160)true
 HrPolyPatternunnamed597930772nilPoint( 176, 127 )Rect(516, 137, 600, 490)Rect(118.72175979614, 78.003736495972, 600, 490)false
 ?EndPlugs
 ?StartConnections

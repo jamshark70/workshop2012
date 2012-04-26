@@ -1,19 +1,19 @@
 ?Hadron 1
 ?StartPlugs
-HrFMOscilunnamed1172643111nilPoint( 302, 234 )Rect(10, 68, 554, 270)Rect(172, 527, 554, 270)false
+HrFMOscilunnamed1172643111nilPoint( 302, 234 )Rect(10, 68, 554, 270)Rect(172, 527, 554, 270)true
 HrCtlModfirst contour439579663nilPoint( 275, 71 )Rect(1, 503, 450, 240)Rect(1, 479, 450, 240)true
-HrDACunnamed700817508nilPoint( 302, 422 )Rect(661, 104, 250, 160)Rect(660, 129, 250, 160)false
+HrDACunnamed700817508nilPoint( 302, 422 )Rect(661, 104, 250, 160)Rect(660, 129, 250, 160)true
 HrCtlModsecond contour1843226872nilPoint( 265, 42 )Rect(1, 503, 450, 240)Rect(1, 479, 450, 240)true
 HrCtlModthird contour1613330758nilPoint( 285, 101 )Rect(1, 503, 450, 240)Rect(1, 479, 450, 240)true
 HrMultiCtlModmix the modulators1914360927nilPoint( 255, 142 )Rect(1, 368, 450, 375)Rect(1, 344, 450, 375)true
-HrCtlModamplitude for all the synth830943057nilPoint( 114, 450 )Rect(674, 390, 450, 240)Rect(1, 479, 450, 240)false
-HrFilterunnamed1943226904nilPoint( 322, 324 )Rect(10, 383, 350, 260)Rect(1, 459, 350, 260)false
+HrCtlModamplitude for all the synth830943057nilPoint( 114, 450 )Rect(674, 390, 450, 240)Rect(1, 479, 450, 240)true
+HrFilterunnamed1943226904nilPoint( 322, 324 )Rect(10, 383, 350, 260)Rect(1, 459, 350, 260)true
 HrCtlModmodulate dry/wet ratio of the filter118119294nilPoint( 433, 324 )Rect(1, 503, 450, 240)Rect(1, 479, 450, 240)true
 HrDIYSynthunnamed679010034[ "5", "2" ]Point( 302, 374 )Rect(1, 303, 450, 440)Rect(2, 278, 450, 440)true
 HrStereoSplitterunnamed801466583nilPoint( 302, 269 )Rect(1, 523, 250, 220)Rect(2, 498, 250, 220)true
 HrCtlModselectX_index1995258456nilPoint( 132, 88 )Rect(1, 503, 450, 240)Rect(1, 479, 450, 240)true
-HrRangeMapview895068717nilPoint( 98, 164 )Rect(780, 156, 410, 315)Rect(17.335760116577, 331.70709991455, 410, 315)false
-HrVideoDataunnamed1699118455nilPoint( 496, 80 )Rect(800, 29, 450, 375)Rect(798.5749745369, 29.773354768753, 450, 375)false
+HrRangeMapview895068717nilPoint( 98, 164 )Rect(780, 156, 410, 315)Rect(17.335760116577, 331.70709991455, 410, 315)true
+HrVideoDataunnamed1699118455nilPoint( 496, 80 )Rect(800, 29, 450, 375)Rect(798.5749745369, 29.773354768753, 450, 375)true
 HrRangeMapffreq1732665617nilPoint( 499, 128 )Rect(780, 404, 410, 315)Rect(208.32018566132, 308.19843256474, 410, 315)false
 HrRangeMapenvgate1962013376nilPoint( 116, 397 )Rect(740, 132, 410, 315)Rect(739.4454536438, 157.36146354675, 410, 315)false
 ?EndPlugs
