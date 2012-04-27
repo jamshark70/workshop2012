@@ -150,10 +150,17 @@ HrVideoListener {
 		this.changed(\modelWasFreed);
 	}
 	makeResponder {
+		// epic kludge: my old mac returns an upside-down Y for the main blob???
+		// Why?? (pure-data fail)
+		var invertY = String.scDir.contains("dewdrop");
 		if(resp.notNil) { this.removeResponder() };
 		resp = OSCresponderNode(nil, '/coord', { |time, resp, msg|
 			if(msg[4] == (dim.squared + 1)) {
-				blobxy = Point(msg[1], msg[2]);
+				if(invertY) {
+					blobxy = Point(msg[1], 1.0 - msg[2]);
+				} {
+					blobxy = Point(msg[1], msg[2]);
+				};
 				magsum = msg[3];
 				this.predict();
 				this.changed(\allPtsReceived);
