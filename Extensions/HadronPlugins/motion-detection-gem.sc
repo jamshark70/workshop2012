@@ -84,7 +84,7 @@ HrVideoBlock {
 			mag1 = mag1 * 0.5;
 			pt2 = Point(new_x + x_origin, new_y + y_origin);
 			Pen.color_(predict_color)
-			.fillOval(Rect.aboutPoint(pt2, mag, mag))
+			.fillOval(Rect.aboutPoint(pt2, mag1, mag1))
 			.moveTo(pt2).lineTo(pt1).stroke;
 		};
 	}
