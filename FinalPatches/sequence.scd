@@ -107,17 +107,18 @@ t = TLSequenceIterator([
 
 				SynthDef(\impulses, { |outBus0, freq = 440, det = 1.003, topFreq = 12000,
 					gate = 1, db = -60,
-					attack = 0.1, decay = 0.15, susLevel = 0.5, release = 0.25|
+					attack = 0.1, decay = 0.15, susLevel = 0.5, release = 0.25, pan = 0|
 					var sig = Blip.ar(freq * [1, det], trunc(topFreq / freq)).sum * db.dbamp,
 					eg = EnvGen.kr(Env.adsr(attack, decay, susLevel, release), gate, doneAction: 2);
-					Out.ar(outBus0, sig * eg);
+					Out.ar(outBus0, Pan2.ar(sig, pan, eg));
 				}, metadata: (
-					numOutputs: 1,
+					numOutputs: 2,
 					specs: (
 						freq: \freq.asSpec,
 						topFreq: \freq.asSpec,
 						det: [-0.5.midiratio, 0.5.midiratio, \exp].asSpec,
 						db: #[-120, 0],
+						pan: \bipolar.asSpec,
 						attack: #[0.002, 5, \exp],
 						decay: #[0.002, 5, \exp],
 						susLevel: #[0, 1, \amp],

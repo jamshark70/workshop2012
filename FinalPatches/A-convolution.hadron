@@ -1,35 +1,44 @@
 ?Hadron 1
 ?StartPlugs
-HrWrapSynthtrans99316255[ "impulses" ]Point( 246, 267 )Rect(678, 29, 350, 360)Rect(879, 122, 350, 360)true
+HrWrapSynthtrans99316255[ "impulses" ]Point( 242, 225 )Rect(1, 383, 350, 360)Rect(879, 122, 350, 360)true
 HrDACmainOut1250969381nilPoint( 322, 399 )Rect(797, 29, 250, 160)Rect(790.49831485748, 51.672998905182, 250, 160)true
-HrDIYSynthpartconv506175234nilPoint( 322, 332 )Rect(1, 303, 450, 440)Rect(1, 279, 450, 440)true
-HrWrapSynthpad1289046280[ "impulses" ]Point( 415, 267 )Rect(1, 383, 350, 360)Rect(401, 67, 350, 360)true
-HrPolyPatternpad1946358337nilPoint( 574, 63 )Rect(717, 199, 600, 490)Rect(260, 204, 600, 490)true
+HrDIYSynthpartconv506175234nilPoint( 322, 332 )Rect(1, 303, 450, 440)Rect(651, 166, 450, 440)true
+HrWrapSynthpad1289046280[ "impulses" ]Point( 411, 225 )Rect(1, 383, 350, 360)Rect(401, 67, 350, 360)true
+HrPolyPatternpad1946358337nilPoint( 574, 63 )Rect(1, 253, 600, 490)Rect(260, 204, 600, 490)true
 HrMultiCtlModup1561291505nilPoint( 98, 137 )Rect(1, 368, 450, 375)Rect(265, 185, 450, 375)true
 HrRangeMapstart1368327133nilPoint( 99, 69 )Rect(31, 90, 410, 315)Rect(190.04923629761, 315.07082033157, 410, 315)false
-HrRangeMapfade662043057nilPoint( 250, 69 )Rect(57, 29, 410, 315)Rect(55.73869228363, 16.421683073044, 410, 315)false
+HrRangeMapfade662043057nilPoint( 250, 69 )Rect(59, 29, 410, 315)Rect(55.73869228363, 16.421683073044, 410, 315)false
 HrCtlModfade662552891nilPoint( 249, 135 )Rect(1, 503, 450, 240)Rect(349, 241, 450, 240)true
+HrStereoMixerunnamed781490600nilPoint( 322, 284 )Rect(1, 523, 250, 220)Rect(201, 175, 250, 220)true
+HrLFOtranspan241369200nilPoint( 405, 137 )Rect(1, 428, 350, 315)Rect(826, 298, 350, 315)true
+HrLFOlfofreq7575106nilPoint( 404, 99 )Rect(1, 428, 350, 315)Rect(784, 41, 350, 315)true
 ?EndPlugs
 ?StartConnections
-99316255[  ][ [ 506175234, 0 ] ]
+99316255[  ][ [ 781490600, 0 ], [ 781490600, 1 ] ]
 1250969381[ [ 506175234, 0 ], [ 506175234, 1 ] ][  ]
-506175234[ [ 99316255, 0 ], [ 1289046280, 0 ] ][ [ 1250969381, 0 ], [ 1250969381, 1 ] ]
-1289046280[  ][ [ 506175234, 1 ] ]
+506175234[ [ 781490600, 0 ], [ 781490600, 1 ] ][ [ 1250969381, 0 ], [ 1250969381, 1 ] ]
+1289046280[  ][ [ 781490600, 2 ], [ 781490600, 3 ] ]
 1946358337[  ][ [ nil, nil ], [ nil, nil ] ]
 1561291505[ [ 1368327133, 0 ] ][ [ nil, nil ], [ nil, nil ], [ nil, nil ] ]
 1368327133[ [ nil, nil ] ][ [ 1561291505, 0 ] ]
 662043057[ [ nil, nil ] ][ [ 662552891, 0 ] ]
 662552891[ [ 662043057, 0 ] ][ [ nil, nil ] ]
+781490600[ [ 99316255, 0 ], [ 99316255, 1 ], [ 1289046280, 0 ], [ 1289046280, 1 ] ][ [ 506175234, 0 ], [ 506175234, 1 ] ]
+241369200[ [ nil, nil ] ][ [ nil, nil ] ]
+7575106[ [ nil, nil ] ][ [ nil, nil ] ]
 ?EndConnections
 ?StartPlugParams
-993162550.000000nilList[  ]0.551860nilList[  ]0.923077nilList[  ]0.833333nilList[  ]0.717949nilList[  ]0.551823nilList[  ]0.707107nilList[  ]0.000000nilList[  ]1
+993162550.000000nilList[  ]0.551860nilList[  ]0.923077nilList[  ]0.833333nilList[  ]0.717949nilList[  ]0.551823nilList[  ]0.707107nilList[  ]0.846154nilList[  ]0.686885nilList[  ]1
 12509693810.000000nil0
-506175234"{ arg input;	input = input.sum * 0.5;	PartConv.ar(input, 1024, topEnvironment[\\gzkernel], mul: 0.dbamp)}"
-12890462800.447474nilList[  ]0.551860nilList[  ]0.717949nilList[  ]0.541667nilList[  ]0.692308nilList[  ]0.628205nilList[  ]0.897436nilList[  ]0.756410nilList[  ]1
-1946358337'pulsepad'[ [ 'dur', "Pwhite(0.5, 2.5, inf)" ], [ 'legato', "Pwhite(2.0, 4.0, inf)" ], [ 'topNote', "Pseries({ rrand(4, 10) }, Pwrand(#[1, 2, 3], #[0.1, 0.45, 0.45], inf) * Prand(#[-1, 1], inf), inf).fold(-3, 14)" ], [ 'degree', "Pkey(\\topNote) - Pn(Pseries(0, Pwrand(#[1, 2, 3, 4], #[0.1, 0.4, 0.3, 0.2].normalizeSum, inf), { rrand(2, 4) }).clump(10), inf)" ], [ 'root', "2" ] ]12890462800Set[  ]0.000000( 'independent': true, 'reset': false )
+506175234"{ arg input;	PartConv.ar(input, 1024, topEnvironment[\\gzkernel])}"
+12890462800.447474nilList[  ]0.551860nilList[  ]0.717949nilList[  ]0.541667nilList[  ]0.692308nilList[  ]0.628205nilList[  ]0.897436nilList[  ]0.756410nilList[  ]0.500000nilList[  ]1
+1946358337'pulsepad'[ [ 'dur', "Pwhite(0.5, 2.5, inf)" ], [ 'legato', "Pwhite(2.0, 4.0, inf)" ], [ 'topNote', "Pseries({ rrand(4, 10) }, Pwrand(#[1, 2, 3], #[0.1, 0.45, 0.45], inf) * Prand(#[-1, 1], inf), inf).fold(-3, 14)" ], [ 'degree', "Pkey(\\topNote) - Pn(Pseries(0, Pwrand(#[1, 2, 3, 4], #[0.1, 0.4, 0.3, 0.2].normalizeSum, inf), { rrand(2, 4) }).clump(10), inf)" ], [ 'root', "2" ], [ 'pan', "Pwhite(0.4, 0.8, inf) * Prand(#[-1, 1], inf)" ] ]12890462800Set[  ]0.000000( 'independent': true, 'reset': false )
 1561291505"{ |goTrig = 0| var eg, go2; [ eg = EnvGen.kr(Env([10, 10, 10, 67.midicps, 67.midicps - 0.02], #[0.05, 0.5, 15, 0.25], \\sin, releaseNode: 1), goTrig <= 0).linexp(10, 67.midicps, 10, 67.midicps), go2 = SetResetFF.kr(HPZ1.kr(eg) < 0.0, Trig1.kr(goTrig <= 0, 0.1)), EnvGen.kr(Env(#[-20, -20, -300], #[2, 9], 6, releaseNode: 1), 1 - go2) ] }"[ [ 1, 'freq' ], [ 5, 'startOrStop' ], [ 1, 'db' ] ]14
 1368327133"[ HrControlSpec(0.0, 1.0, 'linear', 0.0, 0.0, \"\"), HrControlSpec(-0.5, 0.5, 'linear', 0.0, 0.0, \"\") ]"0[ 0, 0 ]0.000000
-662043057"[ HrControlSpec(-1.0, 1.0, 'linear', 0.0, 0.0, \"\"), HrControlSpec(-1.0, 1.0, 'linear', 0.0, 0.0, \"\") ]"0[ 0, 0 ]-0.729084
+662043057"[ HrControlSpec(-1.0, 1.0, 'linear', 0.0, 0.0, \"\"), HrControlSpec(-1.0, 1.0, 'linear', 0.0, 0.0, \"\") ]"0[ 0, 0 ]-1.000000
 662552891"{ |gate| EnvGen.kr(Env.asr(8, 0.5, 11, curve: -3), gate) }"[ 2, 'level' ]14
+7814906001.0000001.000000nilnilList[  ]List[  ]
+2413692005HrControlSpec(-0.8, 0.8, 'linear', 0.0, 0.0, "")[ 1, 'pan' ]14[ 2.9700603485107, 0, 0.0 ]
+75751065HrControlSpec(0.25, 5.0, 'linear', 0.0, 0.0, "")[ 11, 'param0' ]14[ 0.2222348125544, 0, 0.0 ]
 ?EndPlugParams
 ?EndSave
