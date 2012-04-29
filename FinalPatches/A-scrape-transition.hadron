@@ -1,0 +1,50 @@
+?Hadron 1
+?StartPlugs
+HrBufferunnamed1024722161nilPoint( 591, 102 )Rect(1, 533, 300, 210)Rect(1, 509, 300, 210)true
+HrCtlModunnamed2099018716nilPoint( 591, 139 )Rect(822, 257, 450, 240)Rect(822, 257, 450, 240)true
+HrDACunnamed1614006816nilPoint( 175, 432 )Rect(996, 206, 250, 160)Rect(533.87683010101, 400.61240911484, 250, 160)true
+HrPolyPatternunnamed1670450738nilPoint( 150, 185 )Rect(737, 229, 600, 490)Rect(735.77943587303, 265.33851051331, 600, 490)true
+HrWrapSynthunnamed1081418428[ "bufGrainPan" ]Point( 175, 299 )Rect(1, 413, 350, 330)Rect(1, 389, 350, 330)true
+HrVideoDataunnamed1975212080nilPoint( 207, 37 )Rect(909, 29, 450, 375)Rect(907.74851703644, 17.873015165329, 450, 375)true
+HrRangeMapunnamed241156782nilPoint( 208, 76 )Rect(443, 212, 410, 315)Rect(431.13181591034, 7.022705078125, 410, 315)true
+HrPolyPatternbig1406834853nilPoint( 315, 186 )Rect(583, 229, 600, 490)Rect(581.72579312325, 439.23278665543, 600, 490)false
+HrStereoMixerunnamed1564251545nilPoint( 175, 395 )Rect(1, 523, 250, 220)Rect(1, 499, 250, 220)true
+HrWrapSynthrvb609052000[ "bufGrainPan" ]Point( 352, 259 )Rect(1, 413, 350, 330)Rect(401, 37, 350, 330)true
+HrCtlModunnamed310181206nilPoint( 594, 176 )Rect(1, 503, 450, 240)Rect(1, 479, 450, 240)true
+HrDIYSynthrvb1641266065nilPoint( 352, 299 )Rect(1, 303, 450, 440)Rect(2, 278, 450, 440)true
+HrMultiCtlModgo93378608nilPoint( 66, 134 )Rect(431, 84, 450, 375)Rect(617, 186, 450, 375)true
+HrRangeMapgoctl508565143nilPoint( 66, 92 )Rect(804, 324, 410, 315)Rect(802.63967609406, 348.75075125694, 410, 315)true
+?EndPlugs
+?StartConnections
+1024722161[ [ nil, nil ], [ nil, nil ] ][ [ 2099018716, 0 ], [ nil, nil ] ]
+2099018716[ [ 1024722161, 0 ] ][ [ 310181206, 0 ] ]
+1614006816[ [ 1564251545, 0 ], [ 1564251545, 1 ] ][  ]
+1670450738[ [ nil, nil ] ][ [ nil, nil ], [ nil, nil ] ]
+1081418428[  ][ [ 1564251545, 0 ], [ 1564251545, 1 ] ]
+1975212080[ [ nil, nil ] ][ [ nil, nil ] ]
+241156782[ [ nil, nil ] ][ [ nil, nil ] ]
+1406834853[ [ nil, nil ] ][ [ nil, nil ], [ nil, nil ] ]
+1564251545[ [ 1081418428, 0 ], [ 1081418428, 1 ], [ 1641266065, 0 ], [ 1641266065, 1 ] ][ [ 1614006816, 0 ], [ 1614006816, 1 ] ]
+609052000[  ][ [ 1641266065, 0 ], [ 1641266065, 1 ] ]
+310181206[ [ 2099018716, 0 ] ][ [ nil, nil ] ]
+1641266065[ [ 609052000, 0 ], [ 609052000, 1 ] ][ [ 1564251545, 2 ], [ 1564251545, 3 ] ]
+93378608[ [ 508565143, 0 ] ][ [ nil, nil ], [ nil, nil ] ]
+508565143[ [ nil, nil ] ][ [ 93378608, 0 ] ]
+?EndConnections
+?StartPlugParams
+102472216171724.000000true"../samples/scrape-up.wav"true1false
+2099018716"{ |sig| sig }"[ 5, 'bufnum' ]14
+16140068160.910112nil0
+1670450738'scrapes'[ [ 'dur', "Pexprand(0.15, 0.7, inf) / HrPMod(\\scrapeMod, 0.25, #[0.1, 1])" ], [ 'start', "Pwhite(0, 0.2, inf)" ], [ 'pan', "Pwhite(-1, 1, inf)" ], [ 'rate', "Pexprand(0.9, 1.11, inf)" ], [ 'sustain', "Pwhite(0.8, 1.2, inf) * HrPMod(\\scrapeMod).linlin(0.1, 1, 0.4, 3)" ], [ 'amp', "0.8" ] ]10814184280Set[  ]1.000000( 'independent': true, 'reset': false )
+10814184280.000000nilList[  ]0.023438nilList[  ]0.500000nilList[  ]0.500000nilList[  ]1.000000nilList[  ]0.000000nilList[  ]0.433677nilList[  ]1
+1975212080"[ 'NormMag' ]"[ [ 7, 'modValue' ] ]18
+241156782"[ HrControlSpec(0.0, 1.0, 'linear', 0.0, 0.0, \"\"), HrControlSpec(0.1, 1.0, 'linear', 0.0, 0.0, \"\") ]"0[ 4, 'scrapeMod' ]0.004805
+1406834853'bigscrape'[ [ 'dur', "Pn(1, 1)" ], [ 'sustain', "3" ], [ 'rate', "Pexprand(0.88, 1.12, 8).clump(8)" ], [ 'amp', "0.5" ], [ 'eachtime', "1.626 / Pkey(\\rate)" ], [ 'lag', "Pfunc({ |ev| (maxItem(ev[\\eachtime]) - ev[\\eachtime]) + Array.fill(ev[\\eachtime].size, { 0.05.rand }) })" ] ]6090520000Set[  ]1.000000( 'independent': true, 'reset': false )
+15642515451.0000001.000000nilnilList[  ]List[  ]
+6090520000.000000nilList[  ]0.023438nilList[  ]0.000000nilList[  ]0.500000nilList[  ]1.000000nilList[  ]0.000000nilList[  ]0.433677nilList[  ]1
+310181206"{ |sig| sig }"[ 10, 'bufnum' ]14
+1641266065"{ |input| FreeVerb2.ar(input[0], input[1], 0.45, 0.95, damp: 0.7) }"
+93378608"{ |sig| var run = Trig1.kr(sig, 15), runbig = Trig1.kr((run <= 0) * (PulseCount.kr(sig) > 0), 0.2); run.poll(run, 'run'); runbig.poll(runbig, 'runbig'); [run, runbig] }"[ [ 4, 'startOrStop' ], [ 8, 'start' ] ]14
+508565143"[ HrControlSpec(0.0, 1.0, 'linear', 0.0, 0.0, \"\"), HrControlSpec(-1.0, 1.0, 'linear', 0.0, 0.0, \"\") ]"0[ 0, 0 ]0.063745
+?EndPlugParams
+?EndSave

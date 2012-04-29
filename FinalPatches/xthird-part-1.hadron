@@ -1,0 +1,20 @@
+?Hadron 1
+?StartPlugs
+HrDACunnamed1215512317nilPoint( 329, 417 )Rect(635, 29, 250, 160)Rect(234.74531936646, 159.93317365646, 250, 160)true
+HrWrapSynthunnamed589015576[ "percussive" ]Point( 329, 312 )Rect(911, 91, 350, 270)Rect(400, 2, 350, 270)true
+HrPolyPatternunnamed1827888755nilPoint( 443, 203 )Rect(354, 177, 600, 490)Rect(705.5758562088, 188.14642572403, 600, 490)false
+HrDIYSynthrvb1161017036nilPoint( 329, 366 )Rect(786, 29, 450, 440)Rect(775.95115232468, 66.741930007935, 450, 440)true
+?EndPlugs
+?StartConnections
+1215512317[ [ 1161017036, 0 ], [ 1161017036, 1 ] ][  ]
+589015576[  ][ [ 1161017036, 0 ], [ 1161017036, 1 ] ]
+1827888755[ [ nil, nil ] ][ [ nil, nil ], [ nil, nil ] ]
+1161017036[ [ 589015576, 0 ], [ 589015576, 1 ] ][ [ 1215512317, 0 ], [ 1215512317, 1 ] ]
+?EndConnections
+?StartPlugParams
+12155123170.432584nil1
+5890155760.447474nilList[  ]0.294872nilList[  ]0.500000nilList[  ]0.000000nilList[  ]0.500000nilList[  ]0.730769nilList[  ]1
+1827888755'perc1'[ [ 'dur', "Pseq([Pexprand(0.05, 0.3, { rrand(4, 11) }), Pwhite(1.0, 2.5, 1)], inf)" ], [ 'release', "Pwhite(0.15, 0.3, inf)" ], [ 'amp', "Pseg(Pseq([0.002, 0.1, 0.002], inf), 7.5)" ], [ 'pan', "Pseg(Pseq(#[-1, 1], inf), 15, \\lin)" ], [ 'freq', "Pwhite(110, 110 * (1 + (Pkey(\\amp) * 80)), inf)" ], [ 'ringtime', "Pkey(\\release) * Pwhite(2.0, 11.0, inf)" ] ]5890155760Set[  ]1.000000( 'independent': true, 'reset': false )
+1161017036"{ |input| var verbs = GVerb.ar(input, 100); Balance2.ar(verbs[0], verbs[1], #[-0.75, 0.75]).sum }"
+?EndPlugParams
+?EndSave

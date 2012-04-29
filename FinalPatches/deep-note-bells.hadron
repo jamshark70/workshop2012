@@ -1,0 +1,23 @@
+?Hadron 1
+?StartPlugs
+HrFMOscilunnamed1557396576nilPoint( 311, 380 )Rect(811, 92, 554, 270)Rect(317.17530345917, 37.768938064575, 554, 270)true
+HrPolyPatternunnamed1557000089nilPoint( 110, 289 )Rect(533, 204, 600, 490)Rect(530.97886657715, 620.87973976135, 600, 490)true
+HrDACunnamed1830027856nilPoint( 311, 423 )Rect(983, 510, 250, 160)Rect(981.72890853882, 535.25411653519, 250, 160)true
+HrRangeMapdeepMove628741205nilPoint( 268, 97 )Rect(1, 29, 410, 315)Rect(805.16398048401, 152.52799201012, 410, 315)false
+HrMIDIvol176231455nilPoint( 528, 335 )Rect(674, 47, 330, 255)Rect(673.29388809204, 71.689833283424, 330, 255)false
+?EndPlugs
+?StartConnections
+1557396576[  ][ [ 1830027856, 0 ], [ 1830027856, 1 ] ]
+1557000089[  ][ [ nil, nil ], [ nil, nil ] ]
+1830027856[ [ 1557396576, 0 ], [ 1557396576, 1 ] ][  ]
+628741205[ [ nil, nil ] ][ [ nil, nil ] ]
+176231455[  ][ [ nil, nil ] ]
+?EndConnections
+?StartPlugParams
+1557396576[ 440, 0.0, 0.045801526717557, 0.13991026163976, 1.0 ][ [ 5.0, 32.0, 1.869856804563, 1, 0 ], [ 8.0, -35.0, 2.7961652718935, 1, 0 ] ][ [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 ], [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 ], [ 1.0, 0, -0.11111111111111, 0, 0.04, 0, -0.020408163265306, 0, 0.012345679012346, 0, -0.0082644628099174, 0, 0.0059171597633136, 0, -0.0044444444444444 ] ]Env([ 0.0, 1.0, 0.48837210619172, 0.0 ], [ 0.057812497019768, 0.058854147791862, 0.88333335518837 ], [ -2.6971080662741, -3.5960966826931, -3.8909896224546 ])
+1557000089'deepnote'[ [ 'dur', "Pwrand(#[0.125, 0.25, 0.5, 0.75], #[0.9, 0.06, 0.02, 0.02], inf)" ], [ 'timescale', "Pkey(\\dur) * Pexprand(1.2, 2.4, inf) * HrPMod(\\deepMove, 0, #[0, 1]).linexp(0, 1, 0.5, 5)" ], [ 'degree', "Pclutch(Pn(Pshuf(#[-14, -7, -3, 0, 2, 4, 7, 9, 11, 14, 16, 18, 21], 1), inf).clump(Pwhite(2, 4, inf)), Pif(Pkey(\\dur) <= 0.125, Pn(0.87, inf).coin, true))" ], [ 'root', "2" ], [ 'dNote', "Pkey(\\degree).degreeToKey(Scale.major, 12) + 60 + Pkey(\\root)" ], [ 'mapped', "Penvir((maps: { var m = IdentityDictionary.new; #[-14, -7, -3, 0, 2, 4, 7, 9, 11, 14, 16, 18, 21].do { |deg| m[deg] = exprand(60.0, 69.0); }; m }.value), Pfunc({ |ev| ev[\\degree].collect(~maps[_]) }))" ], [ 'midinote', "blend(Pkey(\\mapped), Pkey(\\dNote), #[0, 1, 2.5].asSpec.map(HrPMod(\\deepMove)))" ] ]15573965760Set[  ]1.000000( 'independent': true, 'reset': false )
+18300278560.308989nil0
+628741205"[ HrControlSpec(0.0, 1.0, 'linear', 0.0, 0.0, \"\"), HrControlSpec(0.0, 1.0, 'linear', 0.0, 0.0, \"\") ]"0[ 2, 'deepMove' ]0.791500
+176231455HrControlSpec(0.0, 1.0, 'amp', 0.0, 0.0, "")0.187550'cc'10817"ReMOTE25-ReMOTE25 MIDI 1"[ 3, 'level' ]
+?EndPlugParams
+?EndSave

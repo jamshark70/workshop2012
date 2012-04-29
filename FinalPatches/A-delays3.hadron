@@ -1,0 +1,44 @@
+?Hadron 1
+?StartPlugs
+HrWrapSynthunnamed1082117777[ "bufGrainPan" ]Point( 230, 213 )Rect(874, 391, 350, 300)Rect(400, 32, 350, 300)true
+HrBuffer5-6265955780nilPoint( 557, 87 )Rect(1, 533, 300, 210)Rect(1, 509, 300, 210)true
+HrBuffer7-8146106913nilPoint( 567, 123 )Rect(1, 533, 300, 210)Rect(1, 509, 300, 210)true
+HrBuffer9-10533967629nilPoint( 577, 163 )Rect(1, 533, 300, 210)Rect(1, 509, 300, 210)true
+HrPolyPatternunnamed1116568457nilPoint( 123, 132 )Rect(574, 133, 600, 490)Rect(2, 228, 600, 490)false
+HrMultiCtlModbufnums1814419813nilPoint( 557, 213 )Rect(1, 368, 450, 375)Rect(1, 344, 450, 375)true
+HrDACunnamed2124467941nilPoint( 230, 408 )Rect(487, 82, 250, 160)Rect(485.28060150146, 132.47366857529, 250, 160)true
+HrFilterunnamed575498868nilPoint( 230, 271 )Rect(557, 29, 350, 260)Rect(557, 29, 350, 260)true
+HrVideoDataunnamed1374166899nilPoint( 123, 43 )Rect(852, 75, 450, 375)Rect(853, 50, 450, 375)true
+HrCtlModmag01trig451728429nilPoint( 123, 86 )Rect(610, 77, 450, 240)Rect(608.61768198013, 102.14995861053, 450, 240)true
+HrCtlModdelaytime1248767882nilPoint( 96, 281 )Rect(844, 470, 450, 240)Rect(230.19700336456, 175.05008506775, 450, 240)true
+HrDIYSynthunnamed1604891272[ "3", "2" ]Point( 230, 345 )Rect(762, 127, 450, 440)Rect(119.80057811737, 66.228048324585, 450, 440)true
+?EndPlugs
+?StartConnections
+1082117777[  ][ [ 575498868, 0 ], [ 575498868, 1 ] ]
+265955780[ [ nil, nil ], [ nil, nil ] ][ [ 1814419813, 0 ], [ nil, nil ] ]
+146106913[ [ nil, nil ], [ nil, nil ] ][ [ 1814419813, 1 ], [ nil, nil ] ]
+533967629[ [ nil, nil ], [ nil, nil ] ][ [ 1814419813, 2 ], [ nil, nil ] ]
+1116568457[ [ 451728429, 0 ] ][ [ 1248767882, 0 ], [ nil, nil ] ]
+1814419813[ [ 265955780, 0 ], [ 146106913, 0 ], [ 533967629, 0 ] ][ [ nil, nil ], [ nil, nil ], [ nil, nil ] ]
+2124467941[ [ 1604891272, 0 ], [ 1604891272, 1 ] ][  ]
+575498868[ [ 1082117777, 0 ], [ 1082117777, 1 ] ][ [ 1604891272, 0 ], [ 1604891272, 1 ] ]
+1374166899[ [ nil, nil ] ][ [ 451728429, 0 ] ]
+451728429[ [ 1374166899, 0 ] ][ [ 1116568457, 0 ] ]
+1248767882[ [ 1116568457, 0 ] ][ [ 1604891272, 2 ] ]
+1604891272[ [ 575498868, 0 ], [ 575498868, 1 ], [ 1248767882, 0 ] ][ [ 2124467941, 0 ], [ 2124467941, 1 ] ]
+?EndConnections
+?StartPlugParams
+10821177770.000000nilList[  ]0.000000nilList[  ]0.500000nilList[  ]1.000000nilList[  ]0.000000nilList[  ]0.433677nilList[  ]1.000000nilList[  ]1
+265955780336020.000000true"../samples/5-6-mono.wav"true1false
+146106913396176.000000true"../samples/7-8-mono.wav"true1false
+533967629466876.000000true"../samples/9-10-mono.wav"true1false
+1116568457'a_dly'[ [ 'dur', "Pexprand(0.5, 2.0, inf)" ], [ 'bufnum', "Pswitch1([HrPMod(\\a_buf1, 0, #[0, 128]), HrPMod(\\a_buf2, 0, #[0, 128]), HrPMod(\\a_buf3, 0, #[0, 128])], Pwhite(0, 2, inf))" ], [ 'sustain', "2.5" ], [ 'amp', "1" ], [ 'rate', "1" ] ]10821177770Set[  ]1.000000( 'independent': true, 'reset': false )
+1814419813"{ |b1, b2, b3| [b1, b2, b3] }"[ [ 5, 'a_buf1' ], [ 5, 'a_buf2' ], [ 5, 'a_buf3' ] ]14
+21244679411.000000nil0
+5754988684000[ 829.52798651898, 1, 0.0 ]
+1374166899"[ 'Mag@(0,1)' ]"[ [ 0, 0 ] ]08
+451728429"{ |sig| Trig1.kr(sig > 1, 0.1) }"[ 0, 0 ]04
+1248767882"{ |sig| var gate = PulseCount.kr(sig) > 1; EnvGen.kr(Env(#[0, 0.3], #[15]), gate) }"[ 0, 0 ]04
+1604891272"{ |input| FreeVerb2.ar(input[0], input[1], mix: 0.5, room: 0.9, damp: 0.1) }"
+?EndPlugParams
+?EndSave
