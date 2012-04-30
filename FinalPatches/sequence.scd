@@ -1,5 +1,6 @@
 (
 s.waitForBoot {
+	var midiIndex;
 	PR(\funcCmd).clone {
 		~setDoneSignal = {
 			~doneSignal = true;
@@ -42,8 +43,16 @@ s.waitForBoot {
 	MIDIClient.init;
 	MIDIIn.connectAll;
 
+	midiIndex = MIDIClient.sources.detectIndex { |src| src.name.contains("ReMOTE") };
+	MIDIPort.init(midiIndex.asArray);
+
 	topEnvironment[\goButton].remove;
 	topEnvironment[\goButton] = CCResponder({ NotificationCenter.notify(\midiGo, \go) }, num: 13);
+
+	if(MixingBoard.boards.size < 1) { 'makeEmptyMixer8'.eval };
+	if(thisProcess.platform.name == \linux) {
+		{ "wmctrl -r 'Mixer' -b add,above".unixCmd }.defer(0.6);
+	};
 };
 );
 
