@@ -6,6 +6,7 @@ s.waitForBoot {
 			~doneSignal = true;
 		};
 		~func = {
+			~preload.();
 			~hadron = Hadron.new;
 			HadronStateLoad(~hadron).addFunc(e { ~stop.() }).loadState(~path);
 			Library.put(\hadronCmd, ~id, ~hadron)
@@ -60,7 +61,6 @@ s.waitForBoot {
 var upd;
 
 t.stop;
-
 t = TLSequenceIterator([
 	// load synths, convolution IR buffer
 	funcCmd: (
