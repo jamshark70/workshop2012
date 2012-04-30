@@ -11,6 +11,12 @@ s.waitForBoot {
 			HadronStateLoad(~hadron).addFunc(e { ~stop.() }).loadState(~path);
 			Library.put(\hadronCmd, ~id, ~hadron)
 		};
+		// optionally may be called in ~done
+		~findMixerPlug = { |ident|
+			~hadron.alivePlugs.detect { |plug|
+				plug.isKindOf(HrMixerCh) and: { ident.isNil or: { plug.ident == ident } }
+			};
+		};
 	} => PR(\hadronCmd);
 
 	PR(\funcCmd).clone {
@@ -61,6 +67,7 @@ s.waitForBoot {
 var upd;
 
 t.stop;
+
 t = TLSequenceIterator([
 	// load synths, convolution IR buffer
 	funcCmd: (
@@ -136,17 +143,20 @@ t = TLSequenceIterator([
 				)).add;
 
 				topEnvironment.use {
-					if(~master.notNil and: { ~master.active.not }) {
-						~master = MixerChannel(\master, s, 2, 2, level: 1);
+					if(~master.isNil or: { ~master.active.not }) {
+						~master = MixerChannel(\master, s, 2, 2, level: 1).debug("made");
 					};
-					if(~guzheng.notNil and: { ~guzheng.active.not }) {
-						~guzheng = MixerChannel(\guzheng, s, 2, 2, level: 1, outbus: ~master);
-						~guzheng => MCG(6);
+					if(~guzheng.isNil or: { ~guzheng.active.not }) {
+						~guzheng = MixerChannel(\guzheng, s, 2, 2, level: 1, outbus: ~master).debug("made");
 					};
-					if(~electr.notNil and: { ~electr.active.not }) {
-						~electr = MixerChannel(\electr, s, 2, 2, level: 1, outbus: ~master);
-						~electr => MCG(7);
+					if(~electr.isNil or: { ~electr.active.not }) {
+						~electr = MixerChannel(\electr, s, 2, 2, level: 1, outbus: ~master).debug("made");
 					};
+				};
+
+				defer {
+					topEnvironment[\guzheng] => MCG(6);
+					topEnvironment[\electr] => MCG(7);
 				};
 
 				if(topEnvironment[\gzkernel].isKindOf(Buffer)) { topEnvironment[\gzkernel].free };
@@ -154,6 +164,8 @@ t = TLSequenceIterator([
 					bufLoadFailed = false;
 					cond.unhang;
 				});
+				cond.hang;
+				if(bufLoadFailed.not) { ~stop.() };
 
 				AppClock.sched(2, e {
 					if(bufLoadFailed) {
@@ -163,9 +175,6 @@ t = TLSequenceIterator([
 					};
 					nil
 				});
-
-				cond.hang;
-				if(bufLoadFailed.not) { ~stop.() };
 			}
 		}
 	),
@@ -177,12 +186,11 @@ t = TLSequenceIterator([
 
 	hadronCmd: (
 		id: \delay,
-		preload: {
-			topEnvironment[\delay] = MixerChannel(\delay, s, 2, 2,
-				level: 0.5, outbus: topEnvironment[\electr]
-			);
-		},
-		path: topEnvironment[\dir] +/+ "A-delays3.hadron"
+		path: topEnvironment[\dir] +/+ "A-delays3.hadron",
+		done: {
+			var mixer = ~findMixerPlug.();
+			if(mixer.notNil) { mixer.mixer.outbus = topEnvironment[\electr].debug("topE[\\electr]") };
+		}
 	),
 	\cmdSync,
 	{
@@ -192,12 +200,11 @@ t = TLSequenceIterator([
 
 	hadronCmd: (
 		id: \conv,
-		preload: {
-			topEnvironment[\conv] = MixerChannel(\conv, s, 2, 2,
-				level: 0.5, outbus: topEnvironment[\electr]
-			);
-		},
-		path: topEnvironment[\dir] +/+ "A-convolution.hadron"
+		path: topEnvironment[\dir] +/+ "A-convolution.hadron",
+		done: {
+			var mixer = ~findMixerPlug.();
+			if(mixer.notNil) { mixer.mixer.outbus = topEnvironment[\electr] };
+		}
 	),
 	\cmdSync,
 	waitCmd: (label: "Click/MIDI to fade in convolution"),
@@ -217,12 +224,11 @@ t = TLSequenceIterator([
 	},
 	hadronCmd: (
 		id: \scrape,
-		preload: {
-			topEnvironment[\scrape] = MixerChannel(\scrape, s, 2, 2,
-				level: 0.5, outbus: topEnvironment[\electr]
-			);
-		},
-		path: topEnvironment[\dir] +/+ "A-scrape-transition.hadron"
+		path: topEnvironment[\dir] +/+ "A-scrape-transition.hadron",
+		done: {
+			var mixer = ~findMixerPlug.();
+			if(mixer.notNil) { mixer.mixer.outbus = topEnvironment[\electr] };
+		}
 	),
 	\cmdSync,
 	waitCmd: (label: "Click/MIDI to run transition"),
@@ -265,12 +271,11 @@ t = TLSequenceIterator([
 	// but do load the next one we'll need... (doesn't play automatically)
 	hadronCmd: (
 		id: \trem129,
-		preload: {
-			topEnvironment[\t129] = MixerChannel(\t129, s, 2, 2,
-				level: 0.5, outbus: topEnvironment[\electr]
-			);
-		},
-		path: topEnvironment[\dir] +/+ "B-tremolo129.hadron"
+		path: topEnvironment[\dir] +/+ "B-tremolo129.hadron",
+		done: {
+			var mixer = ~findMixerPlug.();
+			if(mixer.notNil) { mixer.mixer.outbus = topEnvironment[\electr] };
+		}
 	),
 	\cmdSync,
 	{
@@ -303,12 +308,11 @@ t = TLSequenceIterator([
 
 	hadronCmd: (
 		id: \contour,
-		preload: {
-			topEnvironment[\contour] = MixerChannel(\contour, s, 2, 2,
-				level: 0.5, outbus: topEnvironment[\electr]
-			);
-		},
-		path: topEnvironment[\dir] +/+ "hjh-producing-some-pitch-contours2.hadron"
+		path: topEnvironment[\dir] +/+ "hjh-producing-some-pitch-contours2.hadron",
+		done: {
+			var mixer = ~findMixerPlug.();
+			if(mixer.notNil) { mixer.mixer.outbus = topEnvironment[\electr] };
+		}
 	),
 	\cmdSync,
 	{
@@ -334,12 +338,11 @@ t = TLSequenceIterator([
 
 	hadronCmd: (
 		id: \bells,
-		preload: {
-			topEnvironment[\bells] = MixerChannel(\bells, s, 2, 2,
-				level: 0.5, outbus: topEnvironment[\electr]
-			);
-		},
-		path: topEnvironment[\dir] +/+ "deep-note-bells.hadron"
+		path: topEnvironment[\dir] +/+ "deep-note-bells.hadron",
+		done: {
+			var mixer = ~findMixerPlug.();
+			if(mixer.notNil) { mixer.mixer.outbus = topEnvironment[\electr] };
+		}
 	),
 	\cmdSync,
 
@@ -358,12 +361,11 @@ t = TLSequenceIterator([
 
 	hadronCmd: (
 		id: \trem133,
-		preload: {
-			topEnvironment[\t133] = MixerChannel(\t133, s, 2, 2,
-				level: 0.5, outbus: topEnvironment[\electr]
-			);
-		},
-		path: topEnvironment[\dir] +/+ "C-tremolo133.hadron"
+		path: topEnvironment[\dir] +/+ "C-tremolo133.hadron",
+		done: {
+			var mixer = ~findMixerPlug.();
+			if(mixer.notNil) { mixer.mixer.outbus = topEnvironment[\electr] };
+		}
 	),
 	\cmdSync,
 	waitCmd: (label: "Click/MIDI for tremolo"),
@@ -387,12 +389,11 @@ t = TLSequenceIterator([
 
 	hadronCmd: (
 		id: \ringz,
-		preload: {
-			topEnvironment[\perc] = MixerChannel(\perc, s, 2, 2,
-				level: 0.5, outbus: topEnvironment[\electr]
-			);
-		},
-		path: topEnvironment[\dir] +/+ "xthird-part-1.hadron"
+		path: topEnvironment[\dir] +/+ "xthird-part-1.hadron",
+		done: {
+			var mixer = ~findMixerPlug.();
+			if(mixer.notNil) { mixer.mixer.outbus = topEnvironment[\electr] };
+		}
 	),
 	\cmdSync,
 
@@ -423,12 +424,11 @@ t = TLSequenceIterator([
 
 	hadronCmd: (
 		id: \deepnote,
-		preload: {
-			topEnvironment[\deepnote] = MixerChannel(\deepnote, s, 2, 2,
-				level: 0.5, outbus: topEnvironment[\electr]
-			);
-		},
-		path: topEnvironment[\dir] +/+ "C-deep-note-converge.hadron"
+		path: topEnvironment[\dir] +/+ "C-deep-note-converge.hadron",
+		done: {
+			var mixer = ~findMixerPlug.();
+			if(mixer.notNil) { mixer.mixer.outbus = topEnvironment[\electr] };
+		}
 	),
 	\cmdSync,
 	waitCmd: (label: "Click/MIDI for deep note"),
