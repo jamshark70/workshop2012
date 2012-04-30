@@ -2,25 +2,25 @@
 ?StartPlugs
 HrFMOscilunnamed1557396576nilPoint( 311, 380 )Rect(811, 67, 554, 270)Rect(317.17530345917, 37.768938064575, 554, 270)true
 HrPolyPatternunnamed1557000089nilPoint( 110, 289 )Rect(716, 185, 600, 490)Rect(530.97886657715, 620.87973976135, 600, 490)false
-HrDACunnamed1830027856nilPoint( 311, 423 )Rect(985, 460, 250, 160)Rect(981.72890853882, 535.25411653519, 250, 160)true
 HrRangeMapdeepMove628741205nilPoint( 271, 102 )Rect(317, 377, 410, 315)Rect(1, 29, 410, 315)false
 HrMIDIunnamed753644473nilPoint( 269, 39 )Rect(414, 29, 330, 255)Rect(414, 29, 330, 255)false
-HrMultiCtlModunnamed901168226nilPoint( 276, 148 )Rect(399, 43, 450, 375)Rect(872.10398006439, 120.52632284164, 450, 375)true
+HrMultiCtlModunnamed901168226nilPoint( 276, 148 )Rect(1, 368, 450, 375)Rect(872, 121, 450, 375)true
+HrMixerChunnamed1218498885[ "deepnote", "3", "0.5" ]Point( 311, 428 )Rect(1, 573, 366, 170)Rect(610, 470, 366, 170)true
 ?EndPlugs
 ?StartConnections
-1557396576[  ][ [ 1830027856, 0 ], [ 1830027856, 1 ] ]
+1557396576[  ][ [ 1218498885, 0 ], [ 1218498885, 1 ] ]
 1557000089[  ][ [ nil, nil ], [ nil, nil ] ]
-1830027856[ [ 1557396576, 0 ], [ 1557396576, 1 ] ][  ]
 628741205[ [ nil, nil ] ][ [ 901168226, 0 ] ]
 753644473[  ][ [ nil, nil ] ]
 901168226[ [ 628741205, 0 ] ][ [ nil, nil ], [ nil, nil ], [ nil, nil ] ]
+1218498885[ [ 1557396576, 0 ], [ 1557396576, 1 ] ][  ]
 ?EndConnections
 ?StartPlugParams
 1557396576[ 440, 0.0, 0.045801526717557, 0.1, 1.0 ][ [ 1.0, 7.0, 0.10000000149012, 1, 0 ], [ 0.5, 0, 0.10000000149012, 1, 0 ] ][ [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 ], [ 1.0, 0.0, 0.0, 0.0, 0.32653057575226, 0.0, 0.0, 0.4693877696991, 0.0, 0.0 ], [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 ] ]Env([ 0.0, 1.0, 0.48837210619172, 0.0 ], [ 0.057812497019768, 0.058854147791862, 0.88333335518837 ], [ -2.6971080662741, -3.5960966826931, -3.8909896224546 ])
 1557000089'deepnote'[ [ 'gen_dur', "Penvir((map: Env(#[0.8, 1.5, 5], #[0.85, 0.15], #[0, -2.5])), Pexprand(0.07, 0.2, inf) * Pfunc({ ~map.at(HrPMod(\\meter).source) }))" ], [ 'nextBeat', "Ptime() + Pkey(\\gen_dur)" ], [ 'nextRounded', "max(0.125, Pkey(\\nextBeat).roundUp(0.125))" ], [ 'dur', "blend(Pkey(\\nextBeat), Pkey(\\nextRounded), HrPMod(\\meter, 0, #[0, 1])) - Ptime()" ], [ 'timescale', "Pkey(\\dur) * Pexprand(1.2, 2.4, inf) * HrPMod(\\deepMove, 0, #[0, 1]).linexp(0, 1, 1, 5)" ], [ 'degree', "Pclutch(Pn(Pshuf(#[-14, -7, -3, 0, 2, 4, 7, 9, 11, 14, 16, 18, 21], 1), inf).clump(Pwhite(2, 4, inf)), Pif(Pkey(\\dur) <= 0.125, Pn(0.87, inf).coin, true))" ], [ 'lag', "Pfunc({ |ev| { (1 - HrPMod(\\meter).source).rand * 0.5 } ! ev[\\degree].size })" ], [ 'root', "2" ], [ 'dNote', "Pkey(\\degree).degreeToKey(Scale.major, 12) + 60 + Pkey(\\root)" ], [ 'mapped', "Penvir((maps: { var m = IdentityDictionary.new; #[-14, -7, -3, 0, 2, 4, 7, 9, 11, 14, 16, 18, 21].do { |deg| m[deg] = rrand(36.0, 96.0) }; m }.value), Pfunc({ |ev| ev[\\degree].collect(~maps[_]) }))" ], [ 'midinote', "blend(Pkey(\\mapped), Pkey(\\dNote), #[0, 1, 2.5].asSpec.map(HrPMod(\\deepMove)))" ] ]15573965760Set[  ]1.000000( 'independent': true, 'reset': false )
-18300278560.308989nil0
-628741205"[ HrControlSpec(0.0, 1.0, 'linear', 0.0, 0.0, \"\"), HrControlSpec(0.0, 1.0, 'linear', 0.0, 0.0, \"\") ]"0[ 2, 'deepMove' ]0.000000
-753644473HrControlSpec(0, 1, -3.0, 0.0, 0, "")0.000000'cc'117"ReMOTE25-ReMOTE25 MIDI 1"[ 4, 'modValue' ]
-901168226"{ |sig| [sig, sig.linexp(0, 1, 0.1, 4.47), sig.linexp(0, 1, 0.1, 2.45)] }"[ [ 2, 'meter' ], [ 1, 'm0_level' ], [ 1, 'm1_level' ] ]14
+628741205"[ HrControlSpec(0.0, 1.0, 'linear', 0.0, 0.0, \"\"), HrControlSpec(0.0, 1.0, 'linear', 0.0, 0.0, \"\") ]"0[ 1557000089, 'deepMove' ]0.000000
+753644473HrControlSpec(0, 1, -3.0, 0.0, 0, "")0.000000'cc'117"ReMOTE25-ReMOTE25 MIDI 1"[ 628741205, 'modValue' ]
+901168226"{ |sig| [sig, sig.linexp(0, 1, 0.1, 4.47), sig.linexp(0, 1, 0.1, 2.45)] }"[ [ 1557000089, 'meter' ], [ 1557396576, 'm0_level' ], [ 1557396576, 'm1_level' ] ]14
+1218498885[ 'deepnote', 3 ]1
 ?EndPlugParams
 ?EndSave
