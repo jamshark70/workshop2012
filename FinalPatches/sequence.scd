@@ -135,13 +135,25 @@ t = TLSequenceIterator([
 					)
 				)).add;
 
-				// if(topEnvironment[\gzkernel].isKindOf(Buffer)) { topEnvironment[\gzkernel].free };
+				topEnvironment.use {
+					if(~master.notNil and: { ~master.active.not }) {
+						~master = MixerChannel(\master, s, 2, 2, level: 1);
+					};
+					if(~guzheng.notNil and: { ~guzheng.active.not }) {
+						~guzheng = MixerChannel(\guzheng, s, 2, 2, level: 1, outbus: ~master);
+						~guzheng => MCG(6);
+					};
+					if(~electr.notNil and: { ~electr.active.not }) {
+						~electr = MixerChannel(\electr, s, 2, 2, level: 1, outbus: ~master);
+						~electr => MCG(7);
+					};
+				};
+
+				if(topEnvironment[\gzkernel].isKindOf(Buffer)) { topEnvironment[\gzkernel].free };
 				topEnvironment[\gzkernel] = Buffer.read(s, topEnvironment[\dir] +/+ "../samples/partconv-ir-trim.wav", action: {
 					bufLoadFailed = false;
 					cond.unhang;
 				});
-				cond.hang;
-				if(bufLoadFailed.not) { ~stop.() };
 
 				AppClock.sched(2, e {
 					if(bufLoadFailed) {
@@ -151,6 +163,9 @@ t = TLSequenceIterator([
 					};
 					nil
 				});
+
+				cond.hang;
+				if(bufLoadFailed.not) { ~stop.() };
 			}
 		}
 	),
@@ -162,6 +177,11 @@ t = TLSequenceIterator([
 
 	hadronCmd: (
 		id: \delay,
+		preload: {
+			topEnvironment[\delay] = MixerChannel(\delay, s, 2, 2,
+				level: 0.5, outbus: topEnvironment[\electr]
+			);
+		},
 		path: topEnvironment[\dir] +/+ "A-delays3.hadron"
 	),
 	\cmdSync,
@@ -172,6 +192,11 @@ t = TLSequenceIterator([
 
 	hadronCmd: (
 		id: \conv,
+		preload: {
+			topEnvironment[\conv] = MixerChannel(\conv, s, 2, 2,
+				level: 0.5, outbus: topEnvironment[\electr]
+			);
+		},
 		path: topEnvironment[\dir] +/+ "A-convolution.hadron"
 	),
 	\cmdSync,
@@ -192,6 +217,11 @@ t = TLSequenceIterator([
 	},
 	hadronCmd: (
 		id: \scrape,
+		preload: {
+			topEnvironment[\scrape] = MixerChannel(\scrape, s, 2, 2,
+				level: 0.5, outbus: topEnvironment[\electr]
+			);
+		},
 		path: topEnvironment[\dir] +/+ "A-scrape-transition.hadron"
 	),
 	\cmdSync,
@@ -235,6 +265,11 @@ t = TLSequenceIterator([
 	// but do load the next one we'll need... (doesn't play automatically)
 	hadronCmd: (
 		id: \trem129,
+		preload: {
+			topEnvironment[\t129] = MixerChannel(\t129, s, 2, 2,
+				level: 0.5, outbus: topEnvironment[\electr]
+			);
+		},
 		path: topEnvironment[\dir] +/+ "B-tremolo129.hadron"
 	),
 	\cmdSync,
@@ -268,6 +303,11 @@ t = TLSequenceIterator([
 
 	hadronCmd: (
 		id: \contour,
+		preload: {
+			topEnvironment[\contour] = MixerChannel(\contour, s, 2, 2,
+				level: 0.5, outbus: topEnvironment[\electr]
+			);
+		},
 		path: topEnvironment[\dir] +/+ "hjh-producing-some-pitch-contours2.hadron"
 	),
 	\cmdSync,
@@ -294,6 +334,11 @@ t = TLSequenceIterator([
 
 	hadronCmd: (
 		id: \bells,
+		preload: {
+			topEnvironment[\bells] = MixerChannel(\bells, s, 2, 2,
+				level: 0.5, outbus: topEnvironment[\electr]
+			);
+		},
 		path: topEnvironment[\dir] +/+ "deep-note-bells.hadron"
 	),
 	\cmdSync,
@@ -313,6 +358,11 @@ t = TLSequenceIterator([
 
 	hadronCmd: (
 		id: \trem133,
+		preload: {
+			topEnvironment[\t133] = MixerChannel(\t133, s, 2, 2,
+				level: 0.5, outbus: topEnvironment[\electr]
+			);
+		},
 		path: topEnvironment[\dir] +/+ "C-tremolo133.hadron"
 	),
 	\cmdSync,
@@ -337,6 +387,11 @@ t = TLSequenceIterator([
 
 	hadronCmd: (
 		id: \ringz,
+		preload: {
+			topEnvironment[\perc] = MixerChannel(\perc, s, 2, 2,
+				level: 0.5, outbus: topEnvironment[\electr]
+			);
+		},
 		path: topEnvironment[\dir] +/+ "xthird-part-1.hadron"
 	),
 	\cmdSync,
@@ -368,6 +423,11 @@ t = TLSequenceIterator([
 
 	hadronCmd: (
 		id: \deepnote,
+		preload: {
+			topEnvironment[\deepnote] = MixerChannel(\deepnote, s, 2, 2,
+				level: 0.5, outbus: topEnvironment[\electr]
+			);
+		},
 		path: topEnvironment[\dir] +/+ "C-deep-note-converge.hadron"
 	),
 	\cmdSync,
