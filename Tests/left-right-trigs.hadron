@@ -1,0 +1,32 @@
+?Hadron 1
+?StartPlugs
+HrVideoDataunnamed1018139460nilPoint( 248, 106 )Rect(859, 329, 450, 375)Rect(437.73851776123, 51.337700486183, 450, 375)false
+HrMultiCtlModunnamed156732903nilPoint( 248, 154 )Rect(884, 29, 450, 375)Rect(884, 29, 450, 375)false
+HrRangeMapdown271106588nilPoint( 158, 217 )Rect(543, 404, 410, 315)Rect(266.23775720596, 348.83099114895, 410, 315)false
+HrRangeMapup1071617857nilPoint( 315, 217 )Rect(955, 379, 410, 315)Rect(325.75207948685, 215.59131002426, 410, 315)false
+HrDACunnamed2064398442nilPoint( 230, 395 )Rect(1, 583, 250, 160)Rect(429, 138, 250, 160)true
+HrMultiCtlModconverge1712475128nilPoint( 230, 275 )Rect(813, 344, 450, 375)Rect(1.3254175186157, 267.83176398277, 450, 375)false
+HrRangeMapfreq2014911241nilPoint( 234, 317 )Rect(793, 36, 410, 315)Rect(791.8080739975, 60.947279214859, 410, 315)false
+HrFMOscilunnamed1241404482nilPoint( 232, 357 )Rect(229, 449, 554, 270)Rect(285.82051372528, 157.13932061195, 554, 270)false
+?EndPlugs
+?StartConnections
+1018139460[ [ nil, nil ] ][ [ 156732903, 0 ], [ 156732903, 1 ], [ 156732903, 2 ], [ 156732903, 3 ], [ 156732903, 4 ], [ 156732903, 5 ] ]
+156732903[ [ 1018139460, 0 ], [ 1018139460, 1 ], [ 1018139460, 2 ], [ 1018139460, 3 ], [ 1018139460, 4 ], [ 1018139460, 5 ] ][ [ nil, nil ], [ nil, nil ] ]
+271106588[ [ nil, nil ] ][ [ 1712475128, 0 ] ]
+1071617857[ [ nil, nil ] ][ [ 1712475128, 1 ] ]
+2064398442[ [ 1241404482, 0 ], [ 1241404482, 1 ] ][  ]
+1712475128[ [ 271106588, 0 ], [ 1071617857, 0 ] ][ [ nil, nil ] ]
+2014911241[ [ nil, nil ] ][ [ nil, nil ] ]
+1241404482[  ][ [ 2064398442, 0 ], [ 2064398442, 1 ] ]
+?EndConnections
+?StartPlugParams
+1018139460"[ 'Mag@(0,0)', 'Mag@(0,1)', 'Mag@(0,2)', 'Mag@(2,0)', 'Mag@(2,1)', 'Mag@(2,2)' ]"[ [ nil, 0 ], [ nil, 0 ], [ nil, 0 ], [ nil, 0 ], [ nil, 0 ], [ nil, 0 ] ]08
+156732903"{ |a, b, c, d, e, f| var downup = [a+b+c, d+e+f], trigs = downup > 1.0, times = Timer.kr(HPZ1.kr(trigs)); (times > 0.5) * trigs }"[ [ 271106588, 'modValue' ], [ 1071617857, 'modValue' ] ]14
+271106588"[ HrControlSpec(0.0, 1.0, 'linear', 0.0, 0.0, \"\"), HrControlSpec(0.0, 1.0, 'linear', 0.0, 0.0, \"\") ]"0[ nil, 0 ]0.000000
+1071617857"[ HrControlSpec(0.0, 1.0, 'linear', 0.0, 0.0, \"\"), HrControlSpec(0.0, 1.0, 'linear', 0.0, 0.0, \"\") ]"0[ nil, 0 ]0.000000
+20643984420.264045nil0
+1712475128"{ |ltrig, rtrig| var initTrig = Impulse.kr(0), low, hi, mid; low = LocalIn.kr(2); hi = Select.kr(initTrig, [low[1], 1]); low = Select.kr(initTrig, [low[0], 0]); mid = (low + hi) / 2; #ltrig, rtrig = HPZ1.kr([ltrig, rtrig] > 0) > 0; low = Select.kr(rtrig, [low, (hi-low) * 0.1 + low]); hi = Select.kr(ltrig, [hi, (hi-low) * 0.9 + low]); LocalOut.kr([low, hi]); mid }"[ [ 2014911241, 'modValue' ] ]14
+2014911241"[ HrControlSpec(0.0, 1.0, 'linear', 0.0, 0.0, \"\"), HrControlSpec(200.0, 800.0, 'exp', 0.0, 0.0, \"\") ]"0[ 1241404482, 'freq' ]0.455973
+1241404482[ 376.31616210938, 0, 0, 0.063457840452188, 1 ][ [ 1, 0, 1, 1, 0 ], [ 1, 0, 1, 1, 0 ] ][ [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 ], [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 ], [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 ] ]Env([ 0, 1, 1, 0 ], [ 0.05, 0.9, 0.05 ], 0, 2)
+?EndPlugParams
+?EndSave

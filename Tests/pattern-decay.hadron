@@ -1,0 +1,17 @@
+?Hadron 1
+?StartPlugs
+HrPolyPatternunnamed318355292nilPoint( 225, 190 )Rect(403, 208, 600, 490)Rect(344.65684485435, 399.60358905792, 600, 490)false
+HrFMOscilunnamed887150177nilPoint( 234, 263 )Rect(796, 48, 554, 270)Rect(794.74605703354, 72.799127101898, 554, 270)false
+HrDACunnamed1854258031nilPoint( 227, 350 )Rect(869, 234, 250, 160)Rect(868.02076864243, 258.58529233932, 250, 160)false
+?EndPlugs
+?StartConnections
+318355292[ [ nil, nil ] ][ [ nil, nil ], [ nil, nil ] ]
+887150177[  ][ [ 1854258031, 0 ], [ 1854258031, 1 ] ]
+1854258031[ [ 887150177, 0 ], [ 887150177, 1 ] ][  ]
+?EndConnections
+?StartPlugParams
+318355292'decay'[ [ 'dur', "Pgeom(0.05, 1.1, 20)" ], [ 'sustain', "0.5" ], [ 'freq', "Pexprand(100, 1000, inf)" ], [ 'amp', "Pgeom.fromEndpoints(0.2, 0.01, 20)" ] ]8871501770Set[  ]1.000000( 'independent': true, 'reset': false )
+887150177[ 440, 0, 0, 0.1, 1 ][ [ 1, 0, 1, 1, 0 ], [ 1, 0, 1, 1, 0 ] ][ [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 ], [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 ], [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 ] ]Env([ 0, 1, 1, 0 ], [ 0.05, 0.9, 0.05 ], 0, 2)
+18542580310.286517nil0
+?EndPlugParams
+?EndSave
