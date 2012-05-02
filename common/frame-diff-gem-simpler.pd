@@ -3,7 +3,7 @@
 1;
 #X text 37 1 camera on/off;
 #X obj 351 26 hsl 128 15 0 127 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 0 1;
+-1 -1 1800 1;
 #X obj 348 61 s noise_reduction;
 #X obj 257 170 r noise_reduction;
 #X obj 10 238 loadbang;
@@ -60,17 +60,18 @@
 #X obj 53 288 outlet;
 #X obj 53 216 pix_video;
 #X obj 77 173 gemhead;
-#X obj -117 82 loadbang;
-#X msg -117 112 colorspace Grey;
+#X obj -101 88 loadbang;
 #X obj 53 251 pix_resize 320 240;
 #X obj -8 96 route list float;
-#X connect 0 0 11 0;
-#X connect 6 0 10 0;
+#X msg -101 128 device 0;
+#X connect 0 0 10 0;
+#X connect 6 0 9 0;
 #X connect 7 0 6 0;
-#X connect 8 0 9 0;
-#X connect 10 0 5 0;
+#X connect 8 0 11 0;
+#X connect 9 0 5 0;
+#X connect 10 0 6 0;
+#X connect 10 1 7 0;
 #X connect 11 0 6 0;
-#X connect 11 1 7 0;
 #X restore 127 105 pd camera_in;
 #X obj 36 109 tgl 15 1 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
