@@ -41,6 +41,86 @@ s.waitForBoot {
 		};
 	} => PR(\waitCmd);
 
+	Proto {
+		~recordEnabled = false;
+		~isRecording = false;
+		~prep = {
+			defer(e {
+				~recWindow = Window("Record switch",
+					Rect(Window.screenBounds.width - 200, 50, 200, 100));
+				~recButton = Button(~recWindow, Rect(2, 2, 196, 40))
+				.states_([
+					["Recording disabled"],
+					["Recording enabled", Color.black, Color(0.8, 1.0, 0.8)],
+					["Recording active", Color.black, Color(1.0, 0.8, 0.8)]
+				])
+				.action_(e { |view|
+					if(view.value == 2) {
+						view.valueAction = 0;
+					} {
+						~recordEnabled = view.value > 0;
+						if(view.value == 0) {
+							~stopRecord.();
+						};
+					};
+				});
+				~stopButton = Button(~recWindow, Rect(2, 46, 196, 40))
+				.states_([["Stop all"]])
+				.action_(e { ~stopAll.(); });
+				~recWindow.front.onClose_(e { ~recWindow = nil });
+			});
+			currentEnvironment
+		};
+		~freeCleanup = {
+			defer(e {
+				if(~recWindow.notNil) { ~recWindow.close };
+			});
+		};
+		~startRecord = {
+			var e = topEnvironment;
+			fork {
+				e[\guzheng].prepareRecord;
+				e[\electr].prepareRecord;
+"prepared record, sync".debug;
+				Server.default.sync;
+				// ensure sample sync between files
+"synced".debug;
+				Server.default.makeBundle(nil, {
+					e[\guzheng].startRecord;
+					e[\electr].startRecord;
+				});
+				~isRecording = true;
+				defer(e { ~recButton.value = 2 });
+			};
+			currentEnvironment
+		};
+		~stopRecord = {
+			var e = topEnvironment;
+			e[\guzheng].stopRecord;
+			e[\electr].stopRecord;
+			defer(e { ~recButton.value = ~recordEnabled.binaryValue });
+			~isRecording = false;
+			currentEnvironment
+		};
+		~stopAll = {
+			// ~stopRecord.();
+			t.stop;  // will stopRecord too
+			currentEnvironment
+		};
+		~runRecIfNeeded = {
+			if(~recordEnabled and: { ~isRecording.not }) {
+				~startRecord.();
+			};
+			currentEnvironment
+		};
+		~stopRecIfNeeded = {
+			if(~isRecording) {
+				~stopRecord.();
+			};
+			currentEnvironment
+		};
+	} => PR(\recorder);
+
 	if(thisProcess.platform.name == \windows) {
 		~dir = HrVideoData.filenameSymbol.asString.dirname.dirname.dirname +/+ "StudentPatches";
 	} {
@@ -155,9 +235,13 @@ t = TLSequenceIterator([
 				};
 
 				defer {
-					topEnvironment[\guzheng] => MCG(6);
-					topEnvironment[\electr] => MCG(7);
+					topEnvironment.use {
+						~guzheng => MCG(6);
+						~electr => MCG(7);
+					};
 				};
+
+				PR(\recorder) => BP(\rec);
 
 				if(topEnvironment[\gzkernel].isKindOf(Buffer)) { topEnvironment[\gzkernel].free };
 				topEnvironment[\gzkernel] = Buffer.read(s, topEnvironment[\dir] +/+ "../samples/partconv-ir-trim.wav", action: {
@@ -193,7 +277,10 @@ t = TLSequenceIterator([
 		}
 	),
 	\cmdSync,
+	waitCmd: (label: "Click/MIDI to start"),
+	\cmdSync,
 	{
+		BP(\rec).runRecIfNeeded;
 		HrVideoData.videoGui.cameraPowerSwitch(1);
 		2 // 10,
 	},
@@ -471,6 +558,8 @@ t = TLSequenceIterator([
 upd = SimpleController(t).put(\done, {
 	upd.remove;
 	{
+		BP(\rec).stopRecIfNeeded;
+		BP(\rec).free;
 		Library.at(\hadronCmd).keys.do({ |key| Library.at(\hadronCmd, key).graceExit });
 		topEnvironment[\gzkernel].free;
 	}.fork(AppClock);
