@@ -59,7 +59,7 @@ s.waitForBoot {
 						view.valueAction = 0;
 					} {
 						~recordEnabled = view.value > 0;
-						if(view.value == 0) {
+						if(view.value == 0 and: { ~isRecording }) {
 							~stopRecord.();
 						};
 					};
@@ -115,6 +115,7 @@ s.waitForBoot {
 		};
 		~stopRecIfNeeded = {
 			if(~isRecording) {
+				"~isRecording is true; stopping record".debug;
 				~stopRecord.();
 			};
 			currentEnvironment
