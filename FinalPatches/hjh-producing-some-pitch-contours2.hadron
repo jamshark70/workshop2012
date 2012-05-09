@@ -43,7 +43,7 @@ HrMixerChunnamed1816429294[ "contour", "4", "0.5" ]Point( 302, 414 )Rect(1,
 1914360927"{ |index, m1, m2, m3| SelectX.kr(index, [m1, m2, m3]) }"[ [ 1, 'freq' ] ]14
 830943057"{ |gate| EnvGen.kr(Env([0, 0.1, 0.1, 0.25, 0], [10, 5, 30, 5], releaseNode: 3), gate) }"[ 16, 'level' ]14
 1943226904500.0000000.523560[ 8000.0, 3.5, 0.8959629535675 ]
-118119294"{ |sig| EnvGen.kr(Env([0, 0, 0, 1], [(10 + 5), 15, 10])) }"[ 7, nil ]04
+118119294"{ |sig| EnvGen.kr(Env([0, 0, 1], [15, 18])) }"[ 7, nil ]04
 679010034"{ arg input;  var dry = input[[0, 1]], wet = input[[2, 3]], xfade = input[4];  XFade2.ar(dry, wet, xfade * 2 - 1)}"
 8014665831.0000001.000000nilnilList[  ]List[  ]
 1995258456"{ |sig| EnvGen.kr(Env([2, 2, 1, 0], [25, 10, 10])) }"[ 12, 'modValue' ]14
