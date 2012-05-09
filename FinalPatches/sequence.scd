@@ -475,6 +475,7 @@ t = TLSequenceIterator([
 	],
 
 	hadronCmd: (
+
 		id: \bells,
 		path: topEnvironment[\dir] +/+ "deep-note-bells.hadron",
 		done: {
@@ -488,8 +489,8 @@ t = TLSequenceIterator([
 	\cmdSync,
 	{
 		var p = Library.at(\hadronCmd, \bells).alivePlugs
-		.detect(_.isKindOf(HrPolyPattern));
-		defer { p.run(true) };
+		.detect({ |plug| plug.ident == "start" });
+		defer { p.modSets[\modValue].value(1) };
 		4
 	},
 	// midi to fade in/out
@@ -515,7 +516,11 @@ t = TLSequenceIterator([
 			defer { p.do(_.run(bool)) };
 		}, p;
 		func.(\trem133, true);
-		func.(\bells, false);
+		// func.(\bells, false);
+
+		p = Library.at(\hadronCmd, \bells).alivePlugs
+		.detect({ |plug| plug.ident == "start" });
+		defer { p.debug("start plug").modSets[\modValue].debug("mod set func").value(0) };
 
 		// fade out contour
 		p = Library.at(\hadronCmd, \contour)
