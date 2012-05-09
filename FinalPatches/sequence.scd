@@ -81,10 +81,8 @@ s.waitForBoot {
 			fork {
 				e[\guzheng].prepareRecord;
 				e[\electr].prepareRecord;
-"prepared record, sync".debug;
 				Server.default.sync;
 				// ensure sample sync between files
-"synced".debug;
 				Server.default.makeBundle(nil, {
 					e[\guzheng].startRecord;
 					e[\electr].startRecord;
@@ -223,6 +221,44 @@ t = TLSequenceIterator([
 					)
 				)).add;
 
+				SynthDef("deepnote", { |freq1 = 440, freq2 = 440, detune, amp = 0.1, keyscale = 0.05,
+					m0_coarse = 1, m0_fine = 7, m0_level = 3.75, m0_mul = 1, m0_pan,
+					m1_coarse = 1, m1_fine = 0, m1_level = 2.11, m1_mul = 1, m1_pan,
+					bufs = #[0, 0, 0], outBus0, timescale = 1, doneAction = 2, slideTime = 0.001|
+
+					var basefreq = 220, freq, freqs, mods, cars, env, eg, gate = 1;
+
+					slideTime = slideTime * timescale;
+					freq = XLine.kr(freq1, freq2, slideTime);
+					m0_level = m0_level * basefreq / ((keyscale * freq) + (basefreq * (1 - keyscale)));
+					m1_level = m1_level * basefreq / ((keyscale * freq) + (basefreq * (1 - keyscale)));
+
+					env = Env([ 0.0, 1.0, 0.48837210619172, 0.0 ], [ 0.057812497019768, 0.058854147791862, 0.88333335518837 ], [ -2.6971080662741, -3.5960966826931, -3.8909896224546 ]);
+					eg = EnvGen.kr(env, timeScale: timescale, doneAction: 2);
+
+					freqs = freq * [1, (detune * 0.01).midiratio];
+					mods = [
+						[m0_coarse, m0_fine, m0_level, m0_mul],
+						[m1_coarse, m1_fine, m1_level, m1_mul]
+					].collect { |row, i|
+						var ratio = row[0] * (row[1] * 0.01).midiratio;
+						Osc.ar(bufs[i+1], freqs[i] * ratio, 0, row[2] * row[3], 1)
+					};
+					cars = Osc.ar(bufs[0], freqs * mods, 0);
+					Out.ar(outBus0, Pan2.ar(cars, [m0_pan, m1_pan], amp * eg).sum)
+				}, metadata: (
+					numOutputs: 2,
+					specs: (
+						freq1: \freq,
+						freq2: \freq,
+						amp: \amp,
+						timescale: #[0.01, 10, \exp],
+						slideTime: #[0, 1],
+						m0_level: #[0.01, 50, \exp],
+						m1_level: #[0.01, 50, \exp]
+					)
+				)).add;
+
 				topEnvironment.use {
 					if(~master.isNil or: { ~master.active.not }) {
 						~master = MixerChannel(\master, s, 2, 2, level: 1).debug("made");
@@ -244,6 +280,18 @@ t = TLSequenceIterator([
 
 				PR(\recorder) => BP(\rec);
 
+				topEnvironment.use {
+					~sinebuf.free; ~mod1buf.free;
+					~sinebuf = Buffer.alloc(s, 2048, 1, completionMessage: { |buf|
+						buf.sine1Msg([1]);
+					});
+					~mod1buf = Buffer.alloc(s, 2048, 1, completionMessage: { |buf|
+						buf.sine1Msg([1.00, 0.00, 0.00, 0.00, 0.33, 0.00, 0.00, 0.47]);
+					});
+
+					Pdefn(\fmbufs, [[~sinebuf, ~mod1buf, ~sinebuf]]);
+				};
+
 				if(topEnvironment[\gzkernel].isKindOf(Buffer)) { topEnvironment[\gzkernel].free };
 				topEnvironment[\gzkernel] = Buffer.read(s, topEnvironment[\dir] +/+ "../samples/partconv-ir-trim.wav", action: {
 					bufLoadFailed = false;
@@ -260,6 +308,8 @@ t = TLSequenceIterator([
 					};
 					nil
 				});
+
+				Server.default.latency = 0.08;
 			}
 		}
 	),
@@ -333,7 +383,7 @@ t = TLSequenceIterator([
 	// waitCmd: (label: "Click/MIDI to fade convolution"),
 	// \cmdSync,
 	[
-		3,
+		// 3,
 		{
 			var p = Library.at(\hadronCmd, \conv).alivePlugs
 			.select(_.isKindOf(HrRangeMap))
