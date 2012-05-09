@@ -28,17 +28,17 @@ HrMixerChunnamed683206107[ "conv", "1", "0.375" ]Point( 322, 397 )Rect(1, 5
 683206107[ [ 506175234, 0 ], [ 506175234, 1 ] ][  ]
 ?EndConnections
 ?StartPlugParams
-993162550.000000nilList[  ]0.551860nilList[  ]0.923077nilList[  ]0.833333nilList[  ]0.717949nilList[  ]0.551823nilList[  ]0.707107nilList[  ]0.846154nilList[  ]0.688451nilList[  ]1
+993162550.000000nilList[  ]0.551860nilList[  ]0.923077nilList[  ]0.833333nilList[  ]0.717949nilList[  ]0.551823nilList[  ]0.707107nilList[  ]0.846154nilList[  ]0.428262nilList[  ]1
 506175234"{ arg input;	PartConv.ar(input, 1024, topEnvironment[\\gzkernel])}"
 12890462800.447474nilList[  ]0.551860nilList[  ]0.717949nilList[  ]0.541667nilList[  ]0.692308nilList[  ]0.628205nilList[  ]0.897436nilList[  ]0.756410nilList[  ]0.500000nilList[  ]1
 1946358337'pulsepad'[ [ 'dur', "Pwhite(0.5, 2.5, inf)" ], [ 'legato', "Pwhite(2.0, 4.0, inf)" ], [ 'topNote', "Pseries({ rrand(4, 10) }, Pwrand(#[1, 2, 3], #[0.1, 0.45, 0.45], inf) * Prand(#[-1, 1], inf), inf).fold(-3, 14)" ], [ 'degree', "Pkey(\\topNote) - Pn(Pseries(0, Pwrand(#[1, 2, 3, 4], #[0.1, 0.4, 0.3, 0.2].normalizeSum, inf), { rrand(2, 4) }).clump(10), inf)" ], [ 'root', "2" ], [ 'pan', "Pwhite(0.4, 0.8, inf) * Prand(#[-1, 1], inf)" ] ]12890462800Set[  ]0.000000( 'independent': true, 'reset': false )
-1561291505"{ |goTrig = 0| var eg, go2; [ eg = EnvGen.kr(Env([10, 10, 10, 67.midicps, 67.midicps - 0.02], #[0.05, 0.5, 15, 0.25], \\sin, releaseNode: 1), goTrig <= 0).linexp(10, 67.midicps, 10, 67.midicps), go2 = SetResetFF.kr(HPZ1.kr(eg) < 0.0, Trig1.kr(goTrig <= 0, 0.1)), EnvGen.kr(Env(#[-20, -20, -300], #[2, 9], 6, releaseNode: 1), 1 - go2) ] }"[ [ 1, 'freq' ], [ 4, 'startOrStop' ], [ 1, 'db' ] ]14
-1368327133"[ HrControlSpec(0.0, 1.0, 'linear', 0.0, 0.0, \"\"), HrControlSpec(-0.5, 0.5, 'linear', 0.0, 0.0, \"\") ]"0[ 0, 0 ]0.000000
-662043057"[ HrControlSpec(-1.0, 1.0, 'linear', 0.0, 0.0, \"\"), HrControlSpec(-1.0, 1.0, 'linear', 0.0, 0.0, \"\") ]"0[ 0, 0 ]-1.000000
-662552891"{ |gate| EnvGen.kr(Env.asr(8, 1, 11, curve: -3), gate > 0) }"[ 12, 'level' ]14
+1561291505"{ |goTrig = 0| var eg, go2; [ eg = EnvGen.kr(Env([10, 10, 10, 67.midicps, 67.midicps - 0.02], #[0.05, 0.5, 15, 0.25], \\sin, releaseNode: 1), goTrig <= 0).linexp(10, 67.midicps, 10, 67.midicps), go2 = SetResetFF.kr(HPZ1.kr(eg) < 0.0, Trig1.kr(goTrig <= 0, 0.1)), EnvGen.kr(Env(#[-20, -20, -300], #[2, 9], 6, releaseNode: 1), 1 - go2) ] }"[ [ 99316255, 'freq' ], [ 1946358337, 'startOrStop' ], [ 99316255, 'db' ] ]14
+1368327133"[ HrControlSpec(0.0, 1.0, 'linear', 0.0, 0.0, \"\"), HrControlSpec(-0.5, 0.5, 'linear', 0.0, 0.0, \"\") ]"0[ nil, 0 ]0.000000
+662043057"[ HrControlSpec(-1.0, 1.0, 'linear', 0.0, 0.0, \"\"), HrControlSpec(-1.0, 1.0, 'linear', 0.0, 0.0, \"\") ]"0[ nil, 0 ]-0.992032
+662552891"{ |gate| EnvGen.kr(Env.asr(8, 1, 6, curve: -3), gate > 0) }"[ 683206107, 'level' ]14
 7814906001.0000001.000000nilnilList[  ]List[  ]
-2413692005HrControlSpec(-0.8, 0.8, 'linear', 0.0, 0.0, "")[ 1, 'pan' ]14[ 1.4093651771545, 0, 0.0 ]
-75751065HrControlSpec(0.25, 5.0, 'linear', 0.0, 0.0, "")[ 10, 'param0' ]14[ 0.2222348125544, 0, 0.0 ]
+2413692005HrControlSpec(-0.8, 0.8, 'linear', 0.0, 0.0, "")[ 99316255, 'pan' ]14[ 2.587806224823, 0, 0.0 ]
+75751065HrControlSpec(0.25, 5.0, 'linear', 0.0, 0.0, "")[ 241369200, 'param0' ]14[ 0.2222348125544, 0, 0.0 ]
 683206107[ 'conv', 1 ]0.000000
 ?EndPlugParams
 ?EndSave
