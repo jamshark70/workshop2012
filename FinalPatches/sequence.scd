@@ -377,7 +377,7 @@ t = TLSequenceIterator([
 		.detect { |plug| plug.ident == "goctl" };
 		defer { p.modSets[\modValue].value(1) };
 		HrVideoData.videoGui.cameraPowerSwitch(1);
-		10
+		0
 	},
 
 	// waitCmd: (label: "Click/MIDI to fade convolution"),
@@ -402,7 +402,7 @@ t = TLSequenceIterator([
 		}
 	],
 
-	5,  // total 15 seconds wait, enough for bigscrape?
+	15,  // total 15 seconds wait, enough for bigscrape?
 	
 	///// SECTION B
 	// starts with, "Pause electronics," so, discard all existing hadron patches
