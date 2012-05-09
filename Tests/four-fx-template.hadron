@@ -1,0 +1,23 @@
+?Hadron 1
+?StartPlugs
+HrADCunnamed1553195852nilPoint( 64, 103 )Rect(868, 585, 350, 120)Rect(83.461475372314, 388.51241588593, 350, 120)false
+HrStereoSplitterunnamed138151392[ "5" ]Point( 64, 144 )Rect(857, 325, 250, 220)Rect(200, 200, 250, 220)false
+HrStereoMixerunnamed126378778[ "5" ]Point( 64, 342 )Rect(857, 129, 250, 220)Rect(200, 200, 250, 220)false
+HrFlangerunnamed684930488nilPoint( 84, 252 )Rect(738, 138, 450, 240)Rect(736.94546222687, 163.35587501526, 450, 240)false
+HrMultiCtlModunnamed548983014nilPoint( 335, 141 )Rect(412, 267, 450, 375)Rect(794.84452152252, 255.54295015335, 450, 375)false
+?EndPlugs
+?StartConnections
+1553195852[  ][ [ 138151392, 0 ], [ 138151392, 1 ] ]
+138151392[ [ 1553195852, 0 ], [ 1553195852, 1 ] ][ [ 126378778, 0 ], [ 126378778, 1 ], [ 684930488, 0 ], [ 684930488, 1 ], [ nil, nil ], [ nil, nil ], [ nil, nil ], [ nil, nil ], [ nil, nil ], [ nil, nil ] ]
+126378778[ [ 138151392, 0 ], [ 138151392, 1 ], [ 684930488, 0 ], [ 684930488, 1 ], [ nil, nil ], [ nil, nil ], [ nil, nil ], [ nil, nil ], [ nil, nil ], [ nil, nil ] ][ [ nil, nil ], [ nil, nil ] ]
+684930488[ [ 138151392, 2 ], [ 138151392, 3 ] ][ [ 126378778, 2 ], [ 126378778, 3 ] ]
+548983014[ [ nil, nil ] ][ [ nil, nil ], [ nil, nil ], [ nil, nil ], [ nil, nil ] ]
+?EndConnections
+?StartPlugParams
+1553195852100.000000trueinfnilList[  ]
+1381513921.0000000.0000000.0000000.0117060.795314nilnilnilnilnilList[  ]List[  ]List[  ]List[  ]List[  ]
+1263787781.0000001.0000001.0000001.0000001.000000nilnilnilnilnilList[  ]List[  ]List[  ]List[  ]List[  ]
+68493048830.0100000.0500000.00400000.4000000.0100000
+548983014"{ |sig|	var x = SinOsc.kr(0.1).range(1, 4), map;	Array.fill(4, { |i|		map = InterplEnv([0, 0, 1, 0], [i, 1, 1], \\sin);		IEnvGen.kr(map, x).squared	})}"[ [ 138151392, 'level1' ], [ 138151392, 'level2' ], [ 138151392, 'level3' ], [ 138151392, 'level4' ] ]19.892430
+?EndPlugParams
+?EndSave
