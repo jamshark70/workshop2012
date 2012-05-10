@@ -514,18 +514,18 @@ t = TLSequenceIterator([
 			var p = Library.at(\hadronCmd, key).alivePlugs
 			.select(_.isKindOf(HrPolyPattern));
 			defer { p.do(_.run(bool)) };
-		}, p;
+		}, startplug, gateplug;
 		func.(\trem133, true);
 		// func.(\bells, false);
 
-		p = Library.at(\hadronCmd, \bells).alivePlugs
+		startplug = Library.at(\hadronCmd, \bells).alivePlugs
 		.detect({ |plug| plug.ident == "start" });
-		defer { p.debug("start plug").modSets[\modValue].debug("mod set func").value(0) };
+		defer { startplug.modSets[\modValue].value(0) };
 
 		// fade out contour
-		p = Library.at(\hadronCmd, \contour)
-		.alivePlugs.detect { |plug| plug.ident == "envgate" };
-		if(p.notNil) { defer { p.modSets[\modValue].value(0) } };
+		gateplug = Library.at(\hadronCmd, \contour).alivePlugs
+		.detect { |plug| plug.ident == "envgate" };
+		if(gateplug.notNil) { defer { gateplug.modSets[\modValue].value(0) } };
 
 		2
 	},
