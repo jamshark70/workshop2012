@@ -121,7 +121,7 @@ s.waitForBoot {
 	} => PR(\recorder);
 
 	if(thisProcess.platform.name == \windows) {
-		~dir = HrVideoData.filenameSymbol.asString.dirname.dirname.dirname +/+ "StudentPatches";
+		~dir = HrVideoData.filenameSymbol.asString.dirname.dirname.dirname +/+ "FinalPatches";
 	} {
 		~dir = thisProcess.nowExecutingPath.dirname;
 	};
