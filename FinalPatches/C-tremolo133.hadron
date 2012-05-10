@@ -15,7 +15,7 @@ HrMixerChunnamed406962066[ "t133", "1", "0.5" ]Point( 291, 353 )Rect(1, 573
 ?EndConnections
 ?StartPlugParams
 677349836926634.000000true"../samples/133-134.wav"true1false
-17210977820.000000nilList[  ]0.015625nilList[  ]0.000000nilList[  ]0.500000nilList[  ]1.000000nilList[  ]0.987179nilList[  ]0.974359nilList[  ]1
+17210977820.000000nilList[  ]0.015625nilList[  ]0.000000nilList[  ]0.000000nilList[  ]1.000000nilList[  ]0.987179nilList[  ]0.974359nilList[  ]1
 466047997"{ |sig| sig }"[ 2, 'bufnum' ]14
 597930772'fade133'[ [ 'dur', "Pwhite(1.6, 2.5)" ], [ 'sustain', "5.000000" ], [ 'start', "Pwhite(0.0, 0.09)" ], [ 'amp', "0.5" ], [ 'rate', "Pexprand(0.98)" ], [ 'pan', "Pwhite(-0.7, 0.7, inf)" ] ]17210977820Set[  ]1.000000( 'independent': true, 'reset': false )
 406962066[ 't133', 1 ]1

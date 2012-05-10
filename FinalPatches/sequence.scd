@@ -154,7 +154,7 @@ t = TLSequenceIterator([
 		func: {
 			var bufLoadFailed = true, cond = Condition.new;
 			fork {
-				SynthDef(\bufGrainPan, { |start, gate = 1, bufnum, pan, rate = 1, amp = 1,
+				SynthDef(\bufGrainPan, { |start, gate = 1, bufnum, pan, rate = 0, amp = 1,
 					attack = 0.001, decay = 0.02, outBus0|
 					var sig;
 					sig = PlayBuf.ar(1, bufnum, rate * BufRateScale.kr(bufnum), 1, start * BufFrames.kr(bufnum), 0)
@@ -170,7 +170,7 @@ t = TLSequenceIterator([
 						amp: \amp,
 						attack: #[0.001, 1.0, \exp],
 						decay: #[0.001, 1.0, \exp],
-						rate: #[0.1, 10, \exp]
+						rate: #[0, 2, \lin] // #[0.1, 10, \exp]
 					)
 				)).add;
 
