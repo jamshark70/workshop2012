@@ -62,7 +62,9 @@ HrVideoData : HrMultiCtlMod {
 
 	init
 	{
-		loadSemaphore = Semaphore(1);
+		loadConditions = Array.fill(5, { |i|
+			Condition(false)
+		});
 
 		window.background_(Color.gray(0.7));
 		if(extraArgs.size >= 1 and: {
@@ -139,36 +141,34 @@ HrVideoData : HrMultiCtlMod {
 				{ |argg|
 					postOpText.activeItems = argg.interpret;
 					fork {
-						loadSemaphore.wait; // block others
 						this.makeSynth;
-						loadSemaphore.signal; // unblock others
+						loadConditions[1].test_(true).signal; // unblock others
 					};
 				},
 				{ |argg|
 					{
-						loadSemaphore.wait;
+						loadConditions[1].wait;
 						modControl.do { |ctl, i|
 							ctl.putSaveValues(argg[i]).doWakeFromLoad
 						};
-						loadSemaphore.signal;
+						loadConditions[2].test_(true).signal; // unblock others
 					}.fork(AppClock);
 				},
 				{ |argg|
 					{
-						loadSemaphore.wait;
+						loadConditions[2].wait;
 						startButton.valueAction_(argg);
-						loadSemaphore.signal;
+						loadConditions[3].test_(true).signal; // unblock others
 					}.fork(AppClock);
 				},
 				{ |argg|
 					{
-						loadSemaphore.wait;
+						loadConditions[3].wait;
 						if(argg.notNil) {
 							this.pollRate = argg;
 							pollRateView.tryPerform(\valueAction_, argg);
 						};
-						loadSemaphore.signal;
-						loadSemaphore = nil;
+						loadConditions[4].test_(true).signal; // unblock others
 					}.fork(AppClock);
 				}
 			];
