@@ -1,9 +1,9 @@
 ?Hadron 1
 ?StartPlugs
-HrFMOscilunnamed1172643111nilPoint( 302, 234 )Rect(10, 68, 554, 270)Rect(172, 527, 554, 270)true
+HrFMOscilunnamed1172643111nilPoint( 302, 234 )Rect(574, 436, 554, 270)Rect(172, 527, 554, 270)false
 HrCtlModfirst contour439579663nilPoint( 275, 71 )Rect(1, 503, 450, 240)Rect(1, 479, 450, 240)true
 HrCtlModsecond contour1843226872nilPoint( 265, 42 )Rect(1, 503, 450, 240)Rect(1, 479, 450, 240)true
-HrCtlModthird contour1613330758nilPoint( 285, 101 )Rect(1, 503, 450, 240)Rect(1, 479, 450, 240)true
+HrCtlModthird contour1613330758nilPoint( 285, 101 )Rect(1, 503, 450, 240)Rect(90, 336, 450, 240)true
 HrMultiCtlModmix the modulators1914360927nilPoint( 255, 142 )Rect(1, 368, 450, 375)Rect(1, 344, 450, 375)true
 HrCtlModamplitude for all the synth830943057nilPoint( 114, 450 )Rect(820, 435, 450, 240)Rect(1, 479, 450, 240)false
 HrFilterunnamed1943226904nilPoint( 322, 324 )Rect(10, 383, 350, 260)Rect(1, 459, 350, 260)true
@@ -12,10 +12,11 @@ HrDIYSynthunnamed679010034[ "5", "2" ]Point( 302, 374 )Rect(1, 303, 450, 44
 HrStereoSplitterunnamed801466583nilPoint( 302, 269 )Rect(1, 523, 250, 220)Rect(2, 498, 250, 220)true
 HrCtlModselectX_index1995258456nilPoint( 132, 88 )Rect(1, 503, 450, 240)Rect(1, 479, 450, 240)true
 HrRangeMapview895068717nilPoint( 98, 164 )Rect(780, 156, 410, 315)Rect(17.335760116577, 331.70709991455, 410, 315)true
-HrVideoDataunnamed1699118455nilPoint( 496, 80 )Rect(800, 29, 450, 375)Rect(798.5749745369, 29.773354768753, 450, 375)true
-HrRangeMapffreq1732665617nilPoint( 499, 128 )Rect(780, 404, 410, 315)Rect(208.32018566132, 308.19843256474, 410, 315)false
-HrRangeMapenvgate1962013376nilPoint( 116, 397 )Rect(741, 107, 410, 315)Rect(739.4454536438, 157.36146354675, 410, 315)false
+HrVideoDataunnamed1699118455nilPoint( 496, 80 )Rect(852, 255, 450, 375)Rect(798.5749745369, 29.773354768753, 450, 375)false
+HrRangeMapffreq1732665617nilPoint( 481, 225 )Rect(780, 404, 410, 315)Rect(208.32018566132, 308.19843256474, 410, 315)false
+HrRangeMapenvgate1962013376nilPoint( 116, 397 )Rect(742, 82, 410, 315)Rect(739.4454536438, 157.36146354675, 410, 315)false
 HrMixerChunnamed1816429294[ "contour", "4", "0.5" ]Point( 302, 414 )Rect(1, 573, 366, 170)Rect(926, 185, 366, 170)true
+HrMultiCtlModfmpan938779662nilPoint( 557, 137 )Rect(673, 29, 450, 375)Rect(60.696653366089, 249.26619565487, 450, 375)false
 ?EndPlugs
 ?StartConnections
 1172643111[  ][ [ 801466583, 0 ], [ 801466583, 1 ] ]
@@ -30,27 +31,29 @@ HrMixerChunnamed1816429294[ "contour", "4", "0.5" ]Point( 302, 414 )Rect(1,
 801466583[ [ 1172643111, 0 ], [ 1172643111, 1 ] ][ [ 679010034, 0 ], [ 679010034, 1 ], [ 1943226904, 0 ], [ 1943226904, 1 ] ]
 1995258456[ [ nil, nil ] ][ [ 1914360927, 0 ] ]
 895068717[ [ nil, nil ] ][ [ nil, nil ] ]
-1699118455[ [ nil, nil ] ][ [ nil, nil ] ]
+1699118455[ [ nil, nil ] ][ [ nil, nil ], [ 938779662, 0 ], [ nil, nil ] ]
 1732665617[ [ nil, nil ] ][ [ nil, nil ] ]
 1962013376[ [ nil, nil ] ][ [ 830943057, 0 ] ]
 1816429294[ [ 679010034, 0 ], [ 679010034, 1 ] ][  ]
+938779662[ [ 1699118455, 1 ] ][ [ nil, nil ], [ nil, nil ] ]
 ?EndConnections
 ?StartPlugParams
-1172643111[ 18000.0, 0.0, 0, 0.1, 1 ][ [ 1, 0.0, 1, 1, 0 ], [ 1, 0, 1, 1, 0 ] ][ [ 1.0, 0.5, 0.33333333333333, 0.25, 0.2, 0.16666666666667, 0.14285714285714, 0.125, 0.11111111111111, 0.1 ], [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 ], [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 ] ]Env([ 0, 1, 1, 0 ], [ 0.05, 0.9, 0.05 ], 0, 2)
-439579663"{ |sig| var trig; trig = [Impulse.kr(10), Impulse.kr(Line.kr(50, 0, 10)), Impulse.kr(Line.kr(0, 50, 5))]; Select.kr(ToggleFF.kr(trig.at(0)), [DC.ar(880), DC.ar(440)]) * Select.kr(ToggleFF.kr(trig.at(1)), [DC.ar(0.9), DC.ar(1.1)]) * Select.kr(ToggleFF.kr(trig.at(2)), [DC.ar(1.5), DC.ar(0.5)]) }"[ 0, 0 ]025.000000
-1843226872"{ |sig| var trig; trig = Impulse.kr(50); XLine.kr(20, 20000, 60) * Select.kr(ToggleFF.kr(trig), [DC.kr(0.9), DC.kr(1.1)]) }"[ 0, 0 ]025.000000
-1613330758"{ |sig| var trig; trig = [Dust.kr(10), Dust.kr(5), Dust.kr(50)]; Select.kr(ToggleFF.kr(trig.at(0)), [DC.ar(880) , DC.ar(440)]) * Select.kr(ToggleFF.kr(trig.at(1)), [DC.ar(0.9), DC.ar(1.1)]) * Select.kr(ToggleFF.kr(trig.at(2)), [DC.ar(1.5), DC.ar(0.5)]) * EnvGen.kr(Env([0.8, 0.8, 1, 1], [10, 5, 30], \\exp)) }"[ 0, 0 ]025.000000
-1914360927"{ |index, m1, m2, m3| SelectX.kr(index, [m1, m2, m3]) }"[ [ 1, 'freq' ] ]14
-830943057"{ |gate| EnvGen.kr(Env([0, 0.1, 0.1, 0.25, 0], [10, 5, 30, 5], releaseNode: 3), gate) }"[ 16, 'level' ]14
+1172643111[ 1188.0, 0.0, 0, 0.1, 1 ][ [ 1.0, 0.0, 4.1813577428302, 1, -1.0 ], [ 1, 0, 3.9101334323476, 1.0, 1.0 ] ][ [ 1.0, 0.5, 0.33333333333333, 0.25, 0.2, 0.16666666666667, 0.14285714285714, 0.125, 0.11111111111111, 0.1 ], [ 1.0, 0.5306122303009, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ], [ 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.47959184646606, 0.42857146263123, 0.43877553939819, 0.0 ] ]Env([ 0, 1, 1, 0 ], [ 0.05, 0.9, 0.05 ], 0, 2)
+439579663"{ |sig| var trig; trig = [Impulse.kr(10), Impulse.kr(Line.kr(50, 0, 10)), Impulse.kr(Line.kr(0, 50, 5))]; Select.kr(ToggleFF.kr(trig.at(0)), [DC.ar(880), DC.ar(440)]) * Select.kr(ToggleFF.kr(trig.at(1)), [DC.ar(0.9), DC.ar(1.1)]) * Select.kr(ToggleFF.kr(trig.at(2)), [DC.ar(1.5), DC.ar(0.5)]) }"[ nil, 0 ]025.000000
+1843226872"{ |sig| var trig; trig = Impulse.kr(50); XLine.kr(20, 20000, 60) * Select.kr(ToggleFF.kr(trig), [DC.kr(0.9), DC.kr(1.1)]) }"[ nil, 0 ]025.000000
+1613330758"{ |sig| var trig;  trig = [Dust.kr(10), Dust.kr(5), Dust.kr(50)];  Select.kr(ToggleFF.kr(trig.at(0)), [DC.ar(880) , DC.ar(440)]) *  Select.kr(ToggleFF.kr(trig.at(1)), [DC.ar(0.9), DC.ar(1.1)]) *  Select.kr(ToggleFF.kr(trig.at(2)), [DC.ar(1.5), DC.ar(0.5)]) * EnvGen.kr(Env([0.8, 0.8, 1, 1], [10, 5, 30], \\exp))}"[ nil, 0 ]025.000000
+1914360927"{ |index, m1, m2, m3| SelectX.kr(index, [m1, m2, m3]) }"[ [ 1172643111, 'freq' ] ]14
+830943057"{ |gate| EnvGen.kr(Env([0, 0.1, 0.1, 0.25, 0], [10, 5, 30, 5], releaseNode: 3), gate) }"[ 1816429294, 'level' ]14
 1943226904500.0000000.523560[ 8000.0, 3.5, 0.8959629535675 ]
-118119294"{ |sig| EnvGen.kr(Env([0, 0, 1], [15, 18])) }"[ 7, nil ]04
+118119294"{ |sig| EnvGen.kr(Env([0, 0, 1], [15, 18])) }"[ 1943226904, nil ]04
 679010034"{ arg input;  var dry = input[[0, 1]], wet = input[[2, 3]], xfade = input[4];  XFade2.ar(dry, wet, xfade * 2 - 1)}"
 8014665831.0000001.000000nilnilList[  ]List[  ]
-1995258456"{ |sig| EnvGen.kr(Env([2, 2, 1, 0], [25, 10, 10])) }"[ 12, 'modValue' ]14
-895068717"[ HrControlSpec(0.0, 2.0, 'linear', 0.0, 0.0, \"\"), HrControlSpec(0.0, 1.0, 'linear', 0.0, 0.0, \"\") ]"0[ 0, 0 ]0.000000
-1699118455"[ 'CentroidY' ]"[ [ 14, 'modValue' ] ]18
-1732665617"[ HrControlSpec(0.0, 1.0, 'linear', 0.0, 0.0, \"\"), HrControlSpec(8000.0, 800.0, 'exp', 0.0, 0.0, \"\") ]"0[ 7, 'param0' ]0.569836
-1962013376"[ HrControlSpec(0.0, 1.0, 'linear', 0.0, 0.0, \"\"), HrControlSpec(0.0, 1.0, 'linear', 0.0, 0.0, \"\") ]"0[ 0, 0 ]0.601594
+1995258456"{ DC.kr(2) /* { |sig| EnvGen.kr(Env([2, 2, 1, 0], [25, 10, 10])) } */ }"[ 895068717, 'modValue' ]14
+895068717"[ HrControlSpec(0.0, 2.0, 'linear', 0.0, 0.0, \"\"), HrControlSpec(0.0, 1.0, 'linear', 0.0, 0.0, \"\") ]"0[ nil, 0 ]2.000000
+1699118455"[ 'CentroidY', 'CentroidX', 'NormMag' ]"[ [ 1732665617, 'modValue' ], [ nil, 0 ], [ nil, 0 ] ]18
+1732665617"[ HrControlSpec(0.0, 1.0, 'linear', 0.0, 0.0, \"\"), HrControlSpec(8000.0, 800.0, 'exp', 0.0, 0.0, \"\") ]"0[ 1943226904, 'param0' ]0.611328
+1962013376"[ HrControlSpec(0.0, 1.0, 'linear', 0.0, 0.0, \"\"), HrControlSpec(0.0, 1.0, 'linear', 0.0, 0.0, \"\") ]"0[ nil, 0 ]0.601594
 1816429294[ 'contour', 4 ]0.250000
+938779662"{ |sig| sig = sig.clip(1/3, 2/3) - (1/3); [sig, 1/3-sig].madd(6, -1) }"[ [ 1172643111, 'm0_pan' ], [ 1172643111, 'm1_pan' ] ]14
 ?EndPlugParams
 ?EndSave
