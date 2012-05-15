@@ -1,24 +1,28 @@
 ?Hadron 1
 ?StartPlugs
-HrWrapSynthtrans99316255[ "impulses" ]Point( 242, 225 )Rect(1, 383, 350, 360)Rect(879, 122, 350, 360)true
-HrDIYSynthpartconv506175234nilPoint( 322, 332 )Rect(1, 303, 450, 440)Rect(651, 166, 450, 440)true
-HrWrapSynthpad1289046280[ "impulses" ]Point( 411, 225 )Rect(1, 383, 350, 360)Rect(401, 67, 350, 360)true
-HrPolyPatternpad1946358337nilPoint( 574, 63 )Rect(1, 253, 600, 490)Rect(260, 204, 600, 490)true
-HrMultiCtlModup1561291505nilPoint( 98, 137 )Rect(1, 368, 450, 375)Rect(265, 185, 450, 375)true
-HrRangeMapstart1368327133nilPoint( 99, 69 )Rect(31, 90, 410, 315)Rect(190.04923629761, 315.07082033157, 410, 315)false
-HrRangeMapfade662043057nilPoint( 250, 69 )Rect(60, 29, 410, 315)Rect(55.73869228363, 16.421683073044, 410, 315)false
-HrCtlModfade662552891nilPoint( 249, 135 )Rect(1, 503, 450, 240)Rect(560, 65, 450, 240)true
-HrStereoMixerunnamed781490600nilPoint( 322, 284 )Rect(1, 523, 250, 220)Rect(201, 175, 250, 220)true
-HrLFOtranspan241369200nilPoint( 405, 137 )Rect(1, 428, 350, 315)Rect(826, 298, 350, 315)true
-HrLFOlfofreq7575106nilPoint( 404, 99 )Rect(1, 428, 350, 315)Rect(784, 41, 350, 315)true
-HrMixerChunnamed683206107[ "conv", "1", "0.375" ]Point( 322, 397 )Rect(1, 573, 366, 170)Rect(871, 182, 366, 170)true
+HrWrapSynthtrans99316255[ "impulses" ]Point( 244, 271 )Rect(1, 383, 350, 360)Rect(605, 80, 350, 360)true
+HrDIYSynthpartconv506175234nilPoint( 324, 378 )Rect(1, 303, 450, 440)Rect(651, 166, 450, 440)true
+HrWrapSynthpad1289046280[ "impulses" ]Point( 413, 271 )Rect(1, 383, 350, 360)Rect(401, 67, 350, 360)true
+HrPolyPatternpad1946358337nilPoint( 574, 63 )Rect(1, 253, 600, 490)Rect(715, 229, 600, 490)true
+HrMultiCtlModup1561291505nilPoint( 100, 183 )Rect(1, 368, 450, 375)Rect(402, 83, 450, 375)true
+HrRangeMapstart1368327133nilPoint( 22, 143 )Rect(1, 60, 410, 315)Rect(190.04923629761, 315.07082033157, 410, 315)false
+HrRangeMapfade662043057nilPoint( 251, 146 )Rect(61, 29, 410, 315)Rect(55.73869228363, 16.421683073044, 410, 315)false
+HrCtlModfade662552891nilPoint( 251, 181 )Rect(1, 503, 450, 240)Rect(560, 65, 450, 240)true
+HrStereoMixerunnamed781490600nilPoint( 324, 330 )Rect(1, 523, 250, 220)Rect(201, 175, 250, 220)true
+HrLFOtranspan241369200nilPoint( 407, 183 )Rect(1, 428, 350, 315)Rect(826, 298, 350, 315)true
+HrLFOlfofreq7575106nilPoint( 406, 145 )Rect(1, 428, 350, 315)Rect(784, 41, 350, 315)true
+HrMixerChunnamed683206107[ "conv", "1", "0.375" ]Point( 324, 443 )Rect(1, 573, 366, 170)Rect(871, 182, 366, 170)true
+HrRangeMapdfreq1697937695nilPoint( 136, 142 )Rect(1, 428, 410, 315)Rect(400, 235, 410, 315)true
+HrVideoDataunnamed59220756nilPoint( 142, 16 )Rect(1, 368, 450, 375)Rect(915, 29, 450, 375)true
+HrRangeMapdtopfreq1090638330nilPoint( 229, 45 )Rect(1, 428, 410, 315)Rect(239, 102, 410, 315)true
+HrMultiCtlModampfix1731173348nilPoint( 140, 224 )Rect(1, 368, 450, 375)Rect(282, 316, 450, 375)true
 ?EndPlugs
 ?StartConnections
 99316255[  ][ [ 781490600, 0 ], [ 781490600, 1 ] ]
 506175234[ [ 781490600, 0 ], [ 781490600, 1 ] ][ [ 683206107, 0 ], [ 683206107, 1 ] ]
 1289046280[  ][ [ 781490600, 2 ], [ 781490600, 3 ] ]
 1946358337[  ][ [ nil, nil ], [ nil, nil ] ]
-1561291505[ [ 1368327133, 0 ] ][ [ nil, nil ], [ nil, nil ], [ nil, nil ] ]
+1561291505[ [ 1368327133, 0 ], [ 1697937695, 0 ] ][ [ nil, nil ], [ nil, nil ], [ 1731173348, 0 ] ]
 1368327133[ [ nil, nil ] ][ [ 1561291505, 0 ] ]
 662043057[ [ nil, nil ] ][ [ 662552891, 0 ] ]
 662552891[ [ 662043057, 0 ] ][ [ nil, nil ] ]
@@ -26,19 +30,27 @@ HrMixerChunnamed683206107[ "conv", "1", "0.375" ]Point( 322, 397 )Rect(1, 5
 241369200[ [ nil, nil ] ][ [ nil, nil ] ]
 7575106[ [ nil, nil ] ][ [ nil, nil ] ]
 683206107[ [ 506175234, 0 ], [ 506175234, 1 ] ][  ]
+1697937695[ [ nil, nil ] ][ [ 1561291505, 1 ] ]
+59220756[ [ nil, nil ] ][ [ nil, nil ], [ 1731173348, 1 ] ]
+1090638330[ [ nil, nil ] ][ [ nil, nil ] ]
+1731173348[ [ 1561291505, 2 ], [ 59220756, 1 ] ][ [ nil, nil ] ]
 ?EndConnections
 ?StartPlugParams
-993162550.000000nilList[  ]0.551860nilList[  ]0.923077nilList[  ]0.833333nilList[  ]0.717949nilList[  ]0.551823nilList[  ]0.707107nilList[  ]0.846154nilList[  ]0.428262nilList[  ]1
+993162550.200687nilList[  ]0.551860nilList[  ]0.651142nilList[  ]0.749583nilList[  ]0.717949nilList[  ]0.551823nilList[  ]0.707107nilList[  ]0.846154nilList[  ]0.297053nilList[  ]1
 506175234"{ arg input;	PartConv.ar(input, 1024, topEnvironment[\\gzkernel])}"
 12890462800.447474nilList[  ]0.551860nilList[  ]0.717949nilList[  ]0.541667nilList[  ]0.692308nilList[  ]0.628205nilList[  ]0.897436nilList[  ]0.756410nilList[  ]0.500000nilList[  ]1
 1946358337'pulsepad'[ [ 'dur', "Pwhite(0.5, 2.5, inf)" ], [ 'legato', "Pwhite(2.0, 4.0, inf)" ], [ 'topNote', "Pseries({ rrand(4, 10) }, Pwrand(#[1, 2, 3], #[0.1, 0.45, 0.45], inf) * Prand(#[-1, 1], inf), inf).fold(-3, 14)" ], [ 'degree', "Pkey(\\topNote) - Pn(Pseries(0, Pwrand(#[1, 2, 3, 4], #[0.1, 0.4, 0.3, 0.2].normalizeSum, inf), { rrand(2, 4) }).clump(10), inf)" ], [ 'root', "2" ], [ 'pan', "Pwhite(0.4, 0.8, inf) * Prand(#[-1, 1], inf)" ] ]12890462800Set[  ]0.000000( 'independent': true, 'reset': false )
-1561291505"{ |goTrig = 0| var eg, go2; [ eg = EnvGen.kr(Env([10, 10, 10, 67.midicps, 67.midicps - 0.02], #[0.05, 0.5, 15, 0.25], \\sin, releaseNode: 1), goTrig <= 0).linexp(10, 67.midicps, 10, 67.midicps), go2 = SetResetFF.kr(HPZ1.kr(eg) < 0.0, Trig1.kr(goTrig <= 0, 0.1)), EnvGen.kr(Env(#[-20, -20, -300], #[2, 9], 6, releaseNode: 1), 1 - go2) ] }"[ [ 99316255, 'freq' ], [ 1946358337, 'startOrStop' ], [ 99316255, 'db' ] ]14
+1561291505"{ |goTrig = 0, droneFreq = 10|   var eg, go2, env0gate = (goTrig <= 0);   [      XFade2.kr(eg = EnvGen.kr(Env([4.5, 4.5, 4.5, 67.midicps, 67.midicps - 0.02], #[0, 0, 15, 0.25], \\sin, releaseNode: 0), env0gate).linexp(4.5, 67.midicps, 4.5, 67.midicps), droneFreq, Lag.kr(env0gate, 0.02) * 2 - 1),      go2 = SetResetFF.kr((HPZ1.kr(eg) * (1 - env0gate)) < 0.0, Trig1.kr(goTrig <= 0, 0.1)),      EnvGen.kr(Env(#[-20, -20, -300], #[2, 9], 6, releaseNode: 1), 1 - go2)   ]}"[ [ 99316255, 'freq' ], [ 1946358337, 'startOrStop' ], [ nil, 0 ] ]14
 1368327133"[ HrControlSpec(0.0, 1.0, 'linear', 0.0, 0.0, \"\"), HrControlSpec(-0.5, 0.5, 'linear', 0.0, 0.0, \"\") ]"0[ nil, 0 ]0.000000
-662043057"[ HrControlSpec(-1.0, 1.0, 'linear', 0.0, 0.0, \"\"), HrControlSpec(-1.0, 1.0, 'linear', 0.0, 0.0, \"\") ]"0[ nil, 0 ]-0.992032
+662043057"[ HrControlSpec(-1.0, 1.0, 'linear', 0.0, 0.0, \"\"), HrControlSpec(-1.0, 1.0, 'linear', 0.0, 0.0, \"\") ]"0[ nil, 0 ]-1.000000
 662552891"{ |gate| EnvGen.kr(Env.asr(8, 1, 6, curve: -3), gate > 0) }"[ 683206107, 'level' ]14
 7814906001.0000001.000000nilnilList[  ]List[  ]
-2413692005HrControlSpec(-0.8, 0.8, 'linear', 0.0, 0.0, "")[ 99316255, 'pan' ]14[ 2.587806224823, 0, 0.0 ]
+2413692005HrControlSpec(-0.8, 0.8, 'linear', 0.0, 0.0, "")[ 99316255, 'pan' ]14[ 4.1872091293335, 0, 0.0 ]
 75751065HrControlSpec(0.25, 5.0, 'linear', 0.0, 0.0, "")[ 241369200, 'param0' ]14[ 0.2222348125544, 0, 0.0 ]
 683206107[ 'conv', 1 ]0.000000
+1697937695"[ HrControlSpec(0.0, 0.5, 'linear', 0.0, 0.0, \"\"), HrControlSpec(4.0, 22.0, 'exp', 0.0, 0.0, \"\") ]"0[ nil, 0 ]0.000000
+59220756"[ 'NormMag', 'CentroidY' ]"[ [ 1697937695, 'modValue' ], [ 1090638330, 'modValue' ] ]18
+1090638330"[ HrControlSpec(0.0, 1.0, 'linear', 0.0, 0.0, \"\"), HrControlSpec(12000.0, 400.0, 'exp', 0.0, 0.0, \"\") ]"0[ 99316255, 'topFreq' ]0.558333
+1731173348"{ |envAmp, videoY| var adjust = videoY.linlin(0, 1, 0, -18); envAmp + adjust }"[ [ 99316255, 'db' ] ]14
 ?EndPlugParams
 ?EndSave

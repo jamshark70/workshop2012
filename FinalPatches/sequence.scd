@@ -209,7 +209,7 @@ t = TLSequenceIterator([
 				}, metadata: (
 					numOutputs: 2,
 					specs: (
-						freq: \freq.asSpec,
+						freq: #[1, 1000, \exp].asSpec,
 						topFreq: \freq.asSpec,
 						det: [-0.5.midiratio, 0.5.midiratio, \exp].asSpec,
 						db: #[-120, 0],
