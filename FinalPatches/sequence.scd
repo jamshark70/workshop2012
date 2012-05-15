@@ -586,6 +586,15 @@ t = TLSequenceIterator([
 		6
 	},
 
+	waitCmd: (label: "Click/MIDI to stop deep note"),
+	\cmdSync,
+	{
+		var p = Library.at(\hadronCmd, \deepnote).alivePlugs
+		.detect(_.isKindOf(HrPolyPattern));
+		if(p.notNil) { defer { p.run(false) } };
+		0
+	},
+
 	{
 		var func = { |key, bool|
 			var p = Library.at(\hadronCmd, key).alivePlugs
@@ -594,15 +603,6 @@ t = TLSequenceIterator([
 		};
 		func.(\trem133, false);
 		func.(\ringz, false);
-		0
-	},
-
-	waitCmd: (label: "Click/MIDI to stop deep note"),
-	\cmdSync,
-	{
-		var p = Library.at(\hadronCmd, \deepnote).alivePlugs
-		.detect(_.isKindOf(HrPolyPattern));
-		if(p.notNil) { defer { p.run(false) } };
 		0
 	},
 
