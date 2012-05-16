@@ -11,7 +11,7 @@ HrCtlModfade662552891nilPoint( 251, 181 )Rect(1, 503, 450, 240)Rect(560, 6
 HrStereoMixerunnamed781490600nilPoint( 324, 330 )Rect(1, 523, 250, 220)Rect(201, 175, 250, 220)true
 HrLFOtranspan241369200nilPoint( 407, 183 )Rect(1, 428, 350, 315)Rect(826, 298, 350, 315)true
 HrLFOlfofreq7575106nilPoint( 406, 145 )Rect(1, 428, 350, 315)Rect(784, 41, 350, 315)true
-HrMixerChunnamed683206107[ "conv", "1", "0.375" ]Point( 324, 443 )Rect(1, 573, 366, 170)Rect(871, 182, 366, 170)true
+HrMixerChunnamed683206107[ "conv", "2", "0.375" ]Point( 324, 443 )Rect(1, 573, 366, 170)Rect(871, 182, 366, 170)true
 HrRangeMapdfreq1697937695nilPoint( 136, 142 )Rect(1, 428, 410, 315)Rect(400, 235, 410, 315)true
 HrVideoDataunnamed59220756nilPoint( 142, 16 )Rect(1, 368, 450, 375)Rect(915, 29, 450, 375)true
 HrRangeMapdtopfreq1090638330nilPoint( 229, 45 )Rect(1, 428, 410, 315)Rect(239, 102, 410, 315)true
@@ -47,7 +47,7 @@ HrMultiCtlModampfix1731173348nilPoint( 140, 224 )Rect(1, 368, 450, 375)Rec
 7814906001.0000001.000000nilnilList[  ]List[  ]
 2413692005HrControlSpec(-0.8, 0.8, 'linear', 0.0, 0.0, "")[ 99316255, 'pan' ]14[ 4.1872091293335, 0, 0.0 ]
 75751065HrControlSpec(0.25, 5.0, 'linear', 0.0, 0.0, "")[ 241369200, 'param0' ]14[ 0.2222348125544, 0, 0.0 ]
-683206107[ 'conv', 1 ]0.000000
+683206107[ 'conv', 2 ]0.000000
 1697937695"[ HrControlSpec(0.0, 0.5, 'linear', 0.0, 0.0, \"\"), HrControlSpec(4.0, 22.0, 'exp', 0.0, 0.0, \"\") ]"0[ nil, 0 ]0.000000
 59220756"[ 'NormMag', 'CentroidY' ]"[ [ 1697937695, 'modValue' ], [ 1090638330, 'modValue' ] ]18
 1090638330"[ HrControlSpec(0.0, 1.0, 'linear', 0.0, 0.0, \"\"), HrControlSpec(12000.0, 400.0, 'exp', 0.0, 0.0, \"\") ]"0[ 99316255, 'topFreq' ]0.558333

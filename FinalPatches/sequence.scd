@@ -259,6 +259,27 @@ t = TLSequenceIterator([
 					)
 				)).add;
 
+				SynthDef(\gzgrains, { |inBus0, outBus0, dur = 0.1, grainfreq = 40, rate = 1, pan, extraDelay = 0, amp = 1|
+					var input = InFeedback.ar(inBus0, 2);
+					var bufnum, frame, trig, center, sig;
+					#bufnum, frame = input;
+					trig = Impulse.ar(grainfreq);
+					center = (frame / BufSampleRate.kr(bufnum)) - (dur * rate * 0.5) - extraDelay;
+					sig = TGrains.ar(2, trig, bufnum, rate, center, dur, pan, amp);
+					Out.ar(outBus0, sig);
+				}, metadata: (
+					numInputs: 2,
+					numOutputs: 2,
+					specs: (
+						dur: #[0.02, 1.0, \exp],
+						grainfreq: #[4, 80, \exp],
+						rate: #[0.25, 4.0, \exp],
+						pan: \bipolar,
+						extraDelay: #[0, 3.5],
+						amp: \amp
+					)
+				)).add;
+
 				topEnvironment.use {
 					if(~master.isNil or: { ~master.active.not }) {
 						~master = MixerChannel(\master, s, 2, 2, level: 1).debug("made");
@@ -293,7 +314,7 @@ t = TLSequenceIterator([
 				};
 
 				if(topEnvironment[\gzkernel].isKindOf(Buffer)) { topEnvironment[\gzkernel].free };
-				topEnvironment[\gzkernel] = Buffer.read(s, topEnvironment[\dir] +/+ "../samples/partconv-ir-trim.wav", action: {
+				topEnvironment[\gzkernel] = Buffer.read(s, topEnvironment[\dir] +/+ "../samples/partconv-ir-trim2.wav", action: {
 					bufLoadFailed = false;
 					cond.unhang;
 				});
@@ -320,11 +341,20 @@ t = TLSequenceIterator([
 
 
 	hadronCmd: (
+		id: \gzfx,
+		path: topEnvironment[\dir] +/+ "gz-effects.hadron",
+		done: {
+			var mixer = ~findMixerPlug.();
+			if(mixer.notNil) { mixer.mixer.outbus = topEnvironment[\electr] };
+		}
+	),
+	\cmdSync,
+	hadronCmd: (
 		id: \delay,
 		path: topEnvironment[\dir] +/+ "A-delays3.hadron",
 		done: {
 			var mixer = ~findMixerPlug.();
-			if(mixer.notNil) { mixer.mixer.outbus = topEnvironment[\electr].debug("topE[\\electr]") };
+			if(mixer.notNil) { mixer.mixer.outbus = topEnvironment[\electr] };
 		}
 	),
 	\cmdSync,
@@ -340,8 +370,16 @@ t = TLSequenceIterator([
 		id: \conv,
 		path: topEnvironment[\dir] +/+ "A-convolution.hadron",
 		done: {
-			var mixer = ~findMixerPlug.();
+			var mixer = ~findMixerPlug.(), rvbctl;
 			if(mixer.notNil) { mixer.mixer.outbus = topEnvironment[\electr] };
+
+			rvbctl = Library.at(\hadronCmd, \gzfx).alivePlugs.detect { |plug|
+				plug.isKindOf(HrRangeMap) and: { plug.ident == "rvbRun" }
+			};
+			if(rvbctl.notNil) {
+				// fade out and pause reverb
+				rvbctl.modSets[\modValue].value(0);
+			};
 		}
 	),
 	\cmdSync,
@@ -350,6 +388,7 @@ t = TLSequenceIterator([
 	{
 		var p = Library.at(\hadronCmd, \conv).alivePlugs.detect { |plug| plug.ident == "fade" };
 		defer { p.modSets[\modValue].value(1) };
+		HrVideoData.videoGui.cameraPowerSwitch(1);
 		3
 	},
 	{ defer { Library.at(\hadronCmd, \delay).graceExit; Library.global.removeEmptyAt(\hadronCmd, \delay) }; 0 },
@@ -393,9 +432,20 @@ t = TLSequenceIterator([
 		},
 		{
 			defer {
+				var rvb, rvbctl;
 				if(Library.at(\hadronCmd, \conv).notNil) {
 					Library.at(\hadronCmd, \conv).graceExit;
-					Library.global.removeEmptyAt(\hadronCmd, \conv)
+					Library.global.removeEmptyAt(\hadronCmd, \conv);
+				};
+
+				rvb = Library.at(\hadronCmd, \gzfx).alivePlugs.detect(_.isKindOf(HrDIYSynth));
+				if(rvb.notNil) { rvb.synthInstance.run(true) };
+				rvbctl = Library.at(\hadronCmd, \gzfx).alivePlugs.detect { |plug|
+					plug.isKindOf(HrRangeMap) and: { plug.ident == "rvbRun" }
+				};
+				if(rvbctl.notNil) {
+					// fade in reverb
+					rvbctl.modSets[\modValue].value(1);
 				};
 			};
 			0
@@ -419,7 +469,7 @@ t = TLSequenceIterator([
 	{
 		defer {
 			Library.at(\hadronCmd).keys.do { |key|
-				if(#[trem129, scrape].includes(key).not) {
+				if(#[trem129, scrape, gzfx].includes(key).not) {
 					Library.at(\hadronCmd, key).graceExit;
 					Library.global.removeEmptyAt(\hadronCmd, key);
 				};
@@ -546,7 +596,7 @@ t = TLSequenceIterator([
 		{
 			defer {
 				Library.at(\hadronCmd).keys.do { |key|
-					if(#[trem133, ringz].includes(key).not) {
+					if(#[trem133, ringz, gzfx].includes(key).not) {
 						Library.at(\hadronCmd, key).graceExit;
 						Library.global.removeEmptyAt(\hadronCmd, key);
 					};
