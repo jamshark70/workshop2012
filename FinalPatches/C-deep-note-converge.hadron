@@ -4,7 +4,7 @@ HrPolyPatternunnamed1557000089nilPoint( 110, 289 )Rect(211, 191, 600, 490)
 HrRangeMapdeepMove628741205nilPoint( 271, 102 )Rect(449, 404, 410, 315)Rect(1, 29, 410, 315)false
 HrMIDIunnamed753644473nilPoint( 269, 39 )Rect(414, 29, 330, 255)Rect(414, 29, 330, 255)false
 HrMultiCtlModunnamed901168226nilPoint( 276, 148 )Rect(1, 368, 450, 375)Rect(58, 146, 450, 375)true
-HrMixerChunnamed1218498885[ "deepnote", "3", "0.5" ]Point( 311, 428 )Rect(1, 573, 366, 170)Rect(610, 470, 366, 170)true
+HrMixerChunnamed1218498885[ "deepnote", "4", "0.5" ]Point( 311, 428 )Rect(1, 573, 366, 170)Rect(610, 470, 366, 170)true
 HrWrapSynthunnamed1616075666[ "deepnote" ]Point( 311, 381 )Rect(878, 51, 350, 270)Rect(400, 2, 350, 270)false
 ?EndPlugs
 ?StartConnections
@@ -20,7 +20,7 @@ HrWrapSynthunnamed1616075666[ "deepnote" ]Point( 311, 381 )Rect(878, 51, 35
 628741205"[ HrControlSpec(0.0, 1.0, 'linear', 0.0, 0.0, \"\"), HrControlSpec(0.0, 1.0, -3.0, 0.0, 0.0, \"\") ]"0[ 1557000089, 'deepMove' ]0.000000
 753644473HrControlSpec(0, 1, -3.0, 0.0, 0, "")0.000000'cc'117"ReMOTE25-ReMOTE25 MIDI 1"[ 628741205, 'modValue' ]
 901168226"{ |sig| [sig, sig.linexp(0, 1, 0.1, 4.47), sig.linexp(0, 1, 0.1, 2.45)] }"[ [ 1557000089, 'meter' ], [ 1616075666, 'm0_level' ], [ 1616075666, 'm1_level' ] ]14
-1218498885[ 'deepnote', 3 ]1
+1218498885[ 'deepnote', 4 ]1
 16160756660.447474nilList[  ]0.447474nilList[  ]0.316228nilList[  ]0.270346nilList[  ]0.270346nilList[  ]0.666667nilList[  ]0.000000nilList[  ]1
 ?EndPlugParams
 ?EndSave

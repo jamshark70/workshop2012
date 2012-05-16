@@ -11,7 +11,7 @@ HrVideoDataunnamed1374166899nilPoint( 123, 43 )Rect(852, 75, 450, 375)Rect
 HrCtlModmag01trig451728429nilPoint( 123, 86 )Rect(610, 77, 450, 240)Rect(608.61768198013, 102.14995861053, 450, 240)true
 HrCtlModdelaytime1248767882nilPoint( 96, 281 )Rect(844, 470, 450, 240)Rect(230.19700336456, 175.05008506775, 450, 240)true
 HrDIYSynthunnamed1604891272[ "3", "2" ]Point( 230, 345 )Rect(762, 127, 450, 440)Rect(119.80057811737, 66.228048324585, 450, 440)true
-HrMixerChunnamed360272506[ "delay", "0", "0.5" ]Point( 230, 403 )Rect(1, 573, 366, 170)Rect(384, 62, 366, 170)true
+HrMixerChunnamed360272506[ "delay", "1", "0.5" ]Point( 230, 403 )Rect(1, 573, 366, 170)Rect(384, 62, 366, 170)true
 ?EndPlugs
 ?StartConnections
 1082117777[  ][ [ 575498868, 0 ], [ 575498868, 1 ] ]
@@ -39,6 +39,6 @@ HrMixerChunnamed360272506[ "delay", "0", "0.5" ]Point( 230, 403 )Rect(1, 57
 451728429"{ |sig| Trig1.kr(sig > 1, 0.1) }"[ 0, 0 ]04
 1248767882"{ |sig| var gate = PulseCount.kr(sig) > 1; EnvGen.kr(Env(#[0, 0.3], #[15]), gate) }"[ 0, 0 ]04
 1604891272"{ |input| FreeVerb2.ar(input[0], input[1], mix: 0.5, room: 0.9, damp: 0.1) }"
-360272506[ 'delay', 0 ]1
+360272506[ 'delay', 1 ]1
 ?EndPlugParams
 ?EndSave

@@ -45,6 +45,6 @@ HrMixerChunnamed2006440106[ "scrape", "3", "0.5" ]Point( 175, 443 )Rect(1, 
 1641266065"{ |input| FreeVerb2.ar(input[0], input[1], 0.45, 0.95, damp: 0.7) }"
 93378608"{ |sig| var run = Trig1.kr(sig, 15), runbig = Trig1.kr((run <= 0) * (PulseCount.kr(sig) > 0), 0.2); run.poll(run, 'run'); runbig.poll(runbig, 'runbig'); [run, runbig] }"[ [ 3, 'startOrStop' ], [ 7, 'start' ] ]14
 508565143"[ HrControlSpec(0.0, 1.0, 'linear', 0.0, 0.0, \"\"), HrControlSpec(-1.0, 1.0, 'linear', 0.0, 0.0, \"\") ]"0[ 0, 0 ]0.063745
-2006440106[ 'scrape', 2 ]1
+2006440106[ 'scrape', 3 ]1
 ?EndPlugParams
 ?EndSave

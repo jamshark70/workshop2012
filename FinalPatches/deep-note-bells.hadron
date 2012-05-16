@@ -3,7 +3,7 @@
 HrFMOscilunnamed1557396576nilPoint( 311, 380 )Rect(811, 92, 554, 270)Rect(317.17530345917, 37.768938064575, 554, 270)true
 HrPolyPatternunnamed1557000089nilPoint( 163, 283 )Rect(1, 253, 600, 490)Rect(531, 229, 600, 490)true
 HrRangeMapdeepMove628741205nilPoint( 268, 97 )Rect(1, 29, 410, 315)Rect(805.16398048401, 152.52799201012, 410, 315)false
-HrMixerChunnamed917673038[ "bells", "5", "0.0" ]Point( 311, 428 )Rect(1, 573, 366, 170)Rect(368, 33, 366, 170)true
+HrMixerChunnamed917673038[ "bells", "1", "0.0" ]Point( 311, 428 )Rect(1, 573, 366, 170)Rect(368, 33, 366, 170)true
 HrRangeMapstart73758199nilPoint( 105, 98 )Rect(413, 29, 410, 315)Rect(413, 29, 410, 315)false
 HrMultiCtlModfadeout1968411947nilPoint( 105, 163 )Rect(1, 368, 450, 375)Rect(497, 29, 450, 375)true
 ?EndPlugs
@@ -19,7 +19,7 @@ HrMultiCtlModfadeout1968411947nilPoint( 105, 163 )Rect(1, 368, 450, 375)Re
 1557396576[ 440, 0.0, 0.045801526717557, 0.13991026163976, 1.0 ][ [ 5.0, 32.0, 1.869856804563, 1, 0 ], [ 8.0, -35.0, 2.7961652718935, 1, 0 ] ][ [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 ], [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 ], [ 1.0, 0, -0.11111111111111, 0, 0.04, 0, -0.020408163265306, 0, 0.012345679012346, 0, -0.0082644628099174, 0, 0.0059171597633136, 0, -0.0044444444444444 ] ]Env([ 0.0, 1.0, 0.48837210619172, 0.0 ], [ 0.057812497019768, 0.058854147791862, 0.88333335518837 ], [ -2.6971080662741, -3.5960966826931, -3.8909896224546 ])
 1557000089'deepnote'[ [ 'dur', "Pwrand(#[0.125, 0.25, 0.5, 0.75], #[0.9, 0.06, 0.02, 0.02], inf)" ], [ 'timescale', "Pkey(\\dur) * Pexprand(1.2, 2.4, inf) * HrPMod(\\deepMove, 0, #[0, 1]).linexp(0, 1, 0.5, 5)" ], [ 'degree', "Pclutch(Pn(Pshuf(#[-14, -7, -3, 0, 2, 4, 7, 9, 11, 14, 16, 18, 21], 1), inf).clump(Pwhite(2, 4, inf)), Pif(Pkey(\\dur) <= 0.125, Pn(0.87, inf).coin, true))" ], [ 'root', "2" ], [ 'dNote', "Pkey(\\degree).degreeToKey(Scale.major, 12) + 60 + Pkey(\\root)" ], [ 'mapped', "Penvir((maps: { var m = IdentityDictionary.new; #[-14, -7, -3, 0, 2, 4, 7, 9, 11, 14, 16, 18, 21].do { |deg| m[deg] = exprand(60.0, 69.0); }; m }.value), Pfunc({ |ev| ev[\\degree].collect(~maps[_]) }))" ], [ 'midinote', "blend(Pkey(\\mapped), Pkey(\\dNote), #[0, 1, 2.5].asSpec.map(HrPMod(\\deepMove)))" ] ]15573965760Set[  ]1.000000( 'independent': true, 'reset': false )
 628741205"[ HrControlSpec(0.0, 1.0, 'linear', 0.0, 0.0, \"\"), HrControlSpec(0.0, 1.0, 'linear', 0.0, 0.0, \"\") ]"0[ 1557000089, 'deepMove' ]0.791500
-917673038[ 'bells', 5 ]0.000000
+917673038[ 'bells', 1 ]0.000000
 73758199"[ HrControlSpec(0.0, 1.0, 'linear', 0.0, 0.0, \"\"), HrControlSpec(0.0, 1.0, 'linear', 0.0, 0.0, \"\") ]"0[ nil, 0 ]0.000000
 1968411947"{ |sig| var eg = EnvGen.kr(Env.asr(0.1, 1, 10, -3), sig > 0); [eg, eg > 0] }"[ [ 917673038, 'level' ], [ 1557000089, 'startOrStop' ] ]14
 ?EndPlugParams
