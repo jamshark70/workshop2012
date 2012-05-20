@@ -260,8 +260,20 @@ s.bufferAllocator.debug
 b.free;
 b = Buffer.readAndQuery(s, thisProcess.nowExecutingPath.dirname.dirname +/+ "samples/23-24-trim.wav");
 
+a = Buffer.alloc(s, 0.842 * 44100, 1);
+
+z = {
+	RecordBuf.ar(
+		PlayBuf.ar(2, b).sum * (-3.1.dbamp) * EnvGen.kr(Env.linen(0.01, a.duration - 0.05, 0.04), doneAction: 2), a, loop: 0
+	);
+}.play;
+
+a.getToFloatArray(action: { |data| d = data });
+
+d.abs.maxItem
+
 c.free; c = nil;
-c = Buffer.alloc(s, PartConv.calcBufSize(1024, b), 1);
+c = Buffer.alloc(s, PartConv.calcBufSize(1024, a), 1);
 c.preparePartConv(b, 1024);
 
-c.write(b.path.dirname.dirname +/+ "partconv-ir-trim.wav", headerFormat: "WAV", sampleFormat: "float");
+c.write(b.path.dirname +/+ "partconv-ir-trim2.wav", headerFormat: "WAV", sampleFormat: "float");
