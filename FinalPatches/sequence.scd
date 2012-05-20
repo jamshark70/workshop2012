@@ -37,6 +37,9 @@ s.waitForBoot {
 		};
 		~clearDoneSignal = {
 			~doneSignal.remove;
+			if(BP.exists(\rec)) {
+				BP(\rec).v[\timer].tryPerform(\reset);
+			};
 			defer(e { ~window.close });
 		};
 	} => PR(\waitCmd);
@@ -47,7 +50,11 @@ s.waitForBoot {
 		~prep = {
 			defer(e {
 				~recWindow = Window("Record switch",
-					Rect(Window.screenBounds.width - 200, 50, 200, 100));
+					Rect(Window.screenBounds.width - 200, 50, 200, 150));
+				~recWindow.view.decorator = FlowLayout(
+					~recWindow.view.bounds,
+					Point(2, 2), Point(2, 2)
+				);
 				~recButton = Button(~recWindow, Rect(2, 2, 196, 40))
 				.states_([
 					["Recording disabled"],
@@ -67,6 +74,7 @@ s.waitForBoot {
 				~stopButton = Button(~recWindow, Rect(2, 46, 196, 40))
 				.states_([["Stop all"]])
 				.action_(e { ~stopAll.(); });
+				~timer = DDWTimer(~recWindow);
 				~recWindow.front.onClose_(e { ~recWindow = nil });
 			});
 			currentEnvironment
@@ -133,8 +141,14 @@ s.waitForBoot {
 	MIDIPort.init(midiIndex.asArray);
 
 	topEnvironment[\goButton].remove;
-	topEnvironment[\goButton] = CCResponder({ NotificationCenter.notify(\midiGo, \go) }, num: 13);
-
+	topEnvironment[\lastGo] = Main.elapsedTime;
+	topEnvironment[\goButton] = CCResponder({
+		var now = Main.elapsedTime;
+		if((now - topEnvironment[\lastGo]) > 0.25) {
+			NotificationCenter.notify(\midiGo, \go);
+			topEnvironment[\lastGo] = now;
+		};
+	}, num: 13);
 	if(MixingBoard.boards.size < 1) { 'makeEmptyMixer8'.eval };
 	if(thisProcess.platform.name == \linux) {
 		{ "wmctrl -r 'Mixer' -b add,above".unixCmd }.defer(0.6);
