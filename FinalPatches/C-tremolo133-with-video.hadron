@@ -1,0 +1,35 @@
+?Hadron 1
+?StartPlugs
+HrBuffer133677349836nilPoint( 594, 86 )Rect(1, 533, 300, 210)Rect(771, 314, 300, 210)true
+HrWrapSynthunnamed1721097782[ "bufGrainPan" ]Point( 291, 262 )Rect(882, 341, 350, 330)Rect(400, 62, 350, 330)true
+HrCtlModunnamed466047997nilPoint( 594, 132 )Rect(660, 182, 450, 240)Rect(658.80861616135, 207.1990737915, 450, 240)true
+HrPolyPatternunnamed597930772nilPoint( 176, 127 )Rect(568, 65, 600, 490)Rect(118.72175979614, 78.003736495972, 600, 490)false
+HrMixerChunnamed406962066[ "t133", "2", "0.5" ]Point( 291, 353 )Rect(1, 573, 366, 170)Rect(6, 330, 366, 170)true
+HrVideoDataunnamed673128837nilPoint( 310, 46 )Rect(1, 368, 450, 375)Rect(59, 29, 450, 375)true
+HrFilterunnamed1963746859nilPoint( 291, 307 )Rect(1, 483, 350, 260)Rect(565, 459, 350, 260)true
+HrRangeMapvidY2052834863nilPoint( 305, 87 )Rect(1, 428, 410, 315)Rect(264, 29, 410, 315)true
+HrRangeMapvidMag1909493167nilPoint( 436, 91 )Rect(1, 428, 410, 315)Rect(920, 41, 410, 315)true
+?EndPlugs
+?StartConnections
+677349836[ [ nil, nil ], [ nil, nil ] ][ [ 466047997, 0 ], [ nil, nil ] ]
+1721097782[  ][ [ 1963746859, 0 ], [ 1963746859, 1 ] ]
+466047997[ [ 677349836, 0 ] ][ [ nil, nil ] ]
+597930772[ [ nil, nil ] ][ [ nil, nil ], [ nil, nil ] ]
+406962066[ [ 1963746859, 0 ], [ 1963746859, 1 ] ][  ]
+673128837[ [ nil, nil ] ][ [ nil, nil ], [ nil, nil ], [ nil, nil ] ]
+1963746859[ [ 1721097782, 0 ], [ 1721097782, 1 ] ][ [ 406962066, 0 ], [ 406962066, 1 ] ]
+2052834863[ [ nil, nil ] ][ [ nil, nil ] ]
+1909493167[ [ nil, nil ] ][ [ nil, nil ] ]
+?EndConnections
+?StartPlugParams
+677349836926634.000000true"../samples/133-134.wav"true1false
+17210977820.000000nilList[  ]0.023438nilList[  ]0.000000nilList[  ]0.000000nilList[  ]1.000000nilList[  ]0.987179nilList[  ]0.974359nilList[  ]1
+466047997"{ |sig| sig }"[ 1721097782, 'bufnum' ]14
+597930772'fade133'[ [ 'dur', "Pwhite(1.6, 2.5)" ], [ 'sustain', "5.000000" ], [ 'start', "Pwhite(0.0, 0.5)" ], [ 'amp', "0.5" ], [ 'rate', "Pexprand(0.98)" ], [ 'pan', "Pwhite(-0.5, 0.5, inf) + (HrPMod(\\t133x, 0.5, #[0, 1]) - 0.5)" ] ]17210977820Set[  ]1.000000( 'independent': true, 'reset': false )
+406962066[ 't133', 2 ]1
+673128837"[ 'CentroidX', 'CentroidY', 'NormMag' ]"[ [ 597930772, 't133x' ], [ 2052834863, 'modValue' ], [ 1909493167, 'modValue' ] ]18
+19637468592000.000000[ 872.01092529297, 0.9589062333107, 0.0 ]
+2052834863"[ HrControlSpec(0.0, 1.0, 'linear', 0.0, 0.0, \"\"), HrControlSpec(12000.0, 200.0, 'exp', 0.0, 0.0, \"\") ]"0[ 1963746859, 'param0' ]0.640361
+1909493167"[ HrControlSpec(0.0, 0.3, 'linear', 0.0, 0.0, \"\"), HrControlSpec(1.0, 0.1, 'linear', 0.0, 0.0, \"\") ]"0[ 1963746859, 'param1' ]0.013698
+?EndPlugParams
+?EndSave
