@@ -3,7 +3,7 @@
 HrWrapSynthunnamed589015576[ "percussive" ]Point( 329, 312 )Rect(911, 91, 350, 270)Rect(400, 2, 350, 270)true
 HrPolyPatternunnamed1827888755nilPoint( 443, 203 )Rect(354, 177, 600, 490)Rect(705.5758562088, 188.14642572403, 600, 490)false
 HrDIYSynthrvb1161017036nilPoint( 329, 366 )Rect(786, 29, 450, 440)Rect(775.95115232468, 66.741930007935, 450, 440)true
-HrMixerChunnamed520221204[ "perc", "3", "0.5" ]Point( 329, 411 )Rect(1, 573, 366, 170)Rect(177, 29, 366, 170)true
+HrMixerChunnamed520221204[ "perc", "3", "0.18" ]Point( 329, 411 )Rect(1, 573, 366, 170)Rect(177, 29, 366, 170)true
 ?EndPlugs
 ?StartConnections
 589015576[  ][ [ 1161017036, 0 ], [ 1161017036, 1 ] ]
