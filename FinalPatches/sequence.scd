@@ -564,7 +564,7 @@ t = TLSequenceIterator([
 
 	hadronCmd: (
 		id: \trem133,
-		path: topEnvironment[\dir] +/+ "C-tremolo133.hadron",
+		path: topEnvironment[\dir] +/+ "C-tremolo133-with-video.hadron",
 		done: {
 			var mixer = ~findMixerPlug.();
 			if(mixer.notNil) { mixer.mixer.outbus = topEnvironment[\electr] };
