@@ -48,7 +48,7 @@ HrStereoMixertofx747742207nilPoint( 291, 290 )Rect(1, 523, 250, 220)Rect(2
 310181206"{ |sig| sig }"[ 609052000, 'bufnum' ]14
 1641266065"{ |input| FreeVerb2.ar(input[0], input[1], 0.45, 0.95, damp: 0.7) }"
 93378608"{ |sig| var run = Trig1.kr(sig, 15), runbig = Trig1.kr((run <= 0) * (PulseCount.kr(sig) > 0), 0.3); run.poll(run, 'run'); runbig.poll(runbig, 'runbig'); [run, runbig] }"[ [ 1670450738, 'startOrStop' ], [ 1406834853, 'start' ] ]14
-508565143"[ HrControlSpec(0.0, 1.0, 'linear', 0.0, 0.0, \"\"), HrControlSpec(-1.0, 1.0, 'linear', 0.0, 0.0, \"\") ]"0[ nil, 0 ]0.972112
+508565143"[ HrControlSpec(0.0, 1.0, 'linear', 0.0, 0.0, \"\"), HrControlSpec(-1.0, 1.0, 'linear', 0.0, 0.0, \"\") ]"0[ nil, 0 ]0.0
 2006440106[ 'scrape', 3 ]1
 6195778211.0000000.410000nilnilList[  ]List[  ]
 7477422071.0000001.000000nilnilList[  ]List[  ]
